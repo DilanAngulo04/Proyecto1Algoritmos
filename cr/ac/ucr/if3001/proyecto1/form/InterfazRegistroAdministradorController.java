@@ -1,6 +1,7 @@
 package cr.ac.ucr.if3001.proyecto1.form;
 
 import com.jfoenix.controls.JFXButton;
+import cr.ac.ucr.if3001.proyecto1.util.Utilidades;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -8,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 public class InterfazRegistroAdministradorController implements Initializable {
 
@@ -23,13 +25,15 @@ public class InterfazRegistroAdministradorController implements Initializable {
     private PasswordField pwf_confirmarContraseña;
     @FXML
     private JFXButton registrar;
-
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private AnchorPane anp_root;
+    @FXML
+    private PasswordField pwf_claveAdmi;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        anp_root.setOpacity(0);
+        Utilidades.transition(anp_root);
     }    
 
     @FXML

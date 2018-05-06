@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 
-public class InterfazModuloAdministradorController implements Initializable {
+public class InterfazSubModuloVerParticipanteController implements Initializable {
 
     @FXML
     private AnchorPane anp_root;
@@ -16,6 +16,6 @@ public class InterfazModuloAdministradorController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         anp_root.setOpacity(0);
         Utilidades.transition(anp_root);
-    }//fin initialize
-
-}
+    }//fin initialize 
+    
+}//fin class

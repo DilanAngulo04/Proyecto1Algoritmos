@@ -1,12 +1,11 @@
 package cr.ac.ucr.if3001.proyecto1.form;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
 import cr.ac.ucr.if3001.proyecto1.domain.ControlArchivos;
 import cr.ac.ucr.if3001.proyecto1.domain.ListaEnlazada;
 import cr.ac.ucr.if3001.proyecto1.exception.ListaException;
 import cr.ac.ucr.if3001.proyecto1.object.Participantes;
+import cr.ac.ucr.if3001.proyecto1.util.Utilidades;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,34 +19,34 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class InterfazLoginAdministradorController implements Initializable {
-    
+
     private ListaEnlazada listE = new ListaEnlazada();
     private ControlArchivos controlA = new ControlArchivos();
 
-    @FXML    
-    private JFXPasswordField tfd_contraseña;
-    @FXML
-    private JFXTextField tfd_nombreUsuario;
     @FXML
     private JFXButton btn_ingresar;
     @FXML
     private JFXButton btn_registrate;
-
+    @FXML
+    private AnchorPane anp_root;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-    }
+        anp_root.setOpacity(0);
+        Utilidades.transition(anp_root);
+    }//fin initialize
 
     @FXML
-    private void btn_ingresarInfo(ActionEvent event) throws IOException, ListaException {      
-        verificar();        
-        AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazBienvenida.fxml"));
+    private void btn_ingresarInfo(ActionEvent event) throws IOException, ListaException {
+        verificar();
+        AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazPrincipalAdministrador.fxml"));
         Scene scene = new Scene(anchor);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.show();  
-    }
+        stage.setTitle("TreasureHill::Administrador");
+        stage.setMaximized(true);
+        stage.show();
+    }//fin action
 
     @FXML
     private void btn_registrarUsuario(ActionEvent event) throws IOException {
@@ -55,21 +54,19 @@ public class InterfazLoginAdministradorController implements Initializable {
         Scene scene = new Scene(anchor);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.show();       
-    }
-    
-    public void verificar() throws ListaException{   
+        stage.show();
+    }//fin action
+
+    public void verificar() throws ListaException {
         Object participantes = new Participantes();
-        
-        controlA.setNombre("Participantes.dat");        
-        listE.insertar(controlA.cargar(new Participantes())); 
+        controlA.setNombre("Participantes.dat");
+        listE.insertar(controlA.cargar(new Participantes()));
         System.out.println(listE.toString());
-        if(!listE.isEmpty()){
-            for(int i = 0; i < listE.getSize(); i++){
-                participantes = (Participantes)listE.getNodo(i);   
-            }          
-            }
-        }
-    }
-
-
+        if (!listE.isEmpty()) {
+            for (int i = 0; i < listE.getSize(); i++) {
+                participantes = (Participantes) listE.getNodo(i);
+            }//fin for
+        }//fin if
+    }//fin m'etodo
+    
+}//fin class

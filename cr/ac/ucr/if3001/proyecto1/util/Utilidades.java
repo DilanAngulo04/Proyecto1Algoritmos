@@ -1,12 +1,14 @@
 package cr.ac.ucr.if3001.proyecto1.util;
 
-import cr.ac.ucr.if3001.proyecto1.domain.Nodo;
 import cr.ac.ucr.if3001.proyecto1.object.Administrador;
 import cr.ac.ucr.if3001.proyecto1.object.Bienes;
 import cr.ac.ucr.if3001.proyecto1.object.Participantes;
 import cr.ac.ucr.if3001.proyecto1.object.Productos;
 import cr.ac.ucr.if3001.proyecto1.object.Servicios;
 import cr.ac.ucr.if3001.proyecto1.object.Subastas;
+import javafx.animation.FadeTransition;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 public class Utilidades {
     
@@ -31,7 +33,7 @@ public class Utilidades {
             a = new Administrador();
         }         
         return a;
-    }       
+    }//fin me'etodo   
     
     private static boolean igualQ(Object a, Object b) {
         boolean o = false;
@@ -67,6 +69,15 @@ public class Utilidades {
         } 
         
         return o;
-    }
+    }//fin m'etodo
     
-}
+        public static void transition(AnchorPane anp_root){
+        FadeTransition fadeTransition = new FadeTransition();
+        fadeTransition.setDuration(Duration.millis(1000));
+        fadeTransition.setNode(anp_root);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);       
+        fadeTransition.play();
+    }//fin transition();
+    
+}//fin class

@@ -1,6 +1,7 @@
 package cr.ac.ucr.if3001.proyecto1.form;
 
 import com.jfoenix.controls.JFXListView;
+import cr.ac.ucr.if3001.proyecto1.util.Utilidades;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,64 +19,67 @@ import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TabPane;
 
-public class InterfazBienvenidaAdministradorController implements Initializable {
-
-    @FXML
-    private AnchorPane anchorRoot;
+public class InterfazPrincipalUsuarioController implements Initializable {
+    
     @FXML
     private JFXListView<String> listViewMaterial;
     @FXML
     private TabPane tab_ventanas;
+    @FXML
+    private AnchorPane anp_root;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        anp_root.setOpacity(0);
+        Utilidades.transition(anp_root);
         loadListView();
         selectmenu();
-    }
+    }//fin initialize
 
     //Agregar contenido a la lista de opciones
-    private void loadListView() {
+    private void loadListView(){
         ObservableList<String> ols = FXCollections.observableArrayList();
         ols.add("Productos");
         ols.add("Bienes");
         ols.add("Servicios");
         listViewMaterial.setItems(ols);
-    }
-
+    }//fin m'etodo
+    
     //Añadir la ventana que se elije
-    private void selectmenu() {
+    private void selectmenu(){
         listViewMaterial.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 int i = listViewMaterial.getSelectionModel().getSelectedIndex();
-                if (i == 0) {
-                    try {
+                //se agrega la ventana según el numero por defecto de las opciones de la lista
+                if(i==0){
+                    try{
                         Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloProductos.fxml"));
                         Tab td = new Tab("Productos", node);
                         tab_ventanas.getTabs().add(td);
-                    } catch (IOException ioe) {
-                        Logger.getLogger(InterfazBienvenidaAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
+                    }catch(IOException ioe){
+                        Logger.getLogger(InterfazPrincipalUsuarioController.class.getName()).log(Level.SEVERE, null, ioe);
                     }
                 }
-                if (i == 1) {
-                    try {
+                if(i==1){
+                    try{
                         Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloBienes.fxml"));
                         Tab td = new Tab("Bienes", node);
                         tab_ventanas.getTabs().add(td);
-                    } catch (IOException ioe) {
-                        Logger.getLogger(InterfazBienvenidaAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
+                    }catch(IOException ioe){
+                        Logger.getLogger(InterfazPrincipalUsuarioController.class.getName()).log(Level.SEVERE, null, ioe);
                     }
                 }
-                if (i == 2) {
-                    try {
+                if(i==2){
+                    try{
                         Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloServicios.fxml"));
-                        Tab td = new Tab("Subastas", node);
+                        Tab td = new Tab("Servicios", node);
                         tab_ventanas.getTabs().add(td);
-                    } catch (IOException ioe) {
-                        Logger.getLogger(InterfazBienvenidaAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
+                    }catch(IOException ioe){
+                        Logger.getLogger(InterfazPrincipalUsuarioController.class.getName()).log(Level.SEVERE, null, ioe);
                     }
                 }
             }
         });
-    }
+    }//fin m'etodo        
 }//fin class

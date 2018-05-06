@@ -12,9 +12,9 @@ public class Proyecto1Algoritmos extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-//        Parent root = FXMLLoader.load(getClass().getResource("InterfazElegirLogin.fxml"));
-//        Parent root = FXMLLoader.load(getClass().getResource("InterfazBienvenidaAdministrador.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("InterfazElegirLogin.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("InterfazPrincipalAdministrador.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("InterfazElegirLogin.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

@@ -11,9 +11,9 @@
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorRoot" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="626.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazBienvenidaAdministradorController">
+<AnchorPane fx:id="anp_root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="626.0" prefWidth="805.0" style="-fx-background-color: #004C71;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazPrincipalUsuarioController">
    <effect>
-      <Lighting diffuseConstant="2.0">
+      <Lighting diffuseConstant="1.51">
          <bumpInput>
             <Shadow />
          </bumpInput>
@@ -23,15 +23,18 @@
       </Lighting>
    </effect>
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" layoutX="67.0" layoutY="115.0" prefHeight="534.0" prefWidth="728.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.29797979797979796" layoutX="67.0" layoutY="115.0" prefHeight="534.0" prefWidth="728.0" style="-fx-background-color: #004C71;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="50.0" SplitPane.resizableWithParent="false">
                <children>
-                  <Accordion layoutX="5.0" prefHeight="532.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Accordion layoutX="5.0" prefHeight="532.0" prefWidth="50.0" style="-fx-background-color: #004C71;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <panes>
                       <TitledPane animated="false" text="Participantes">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #004C71;">
+                                 <children>
+                                    <JFXListView layoutX="-7.0" layoutY="62.0" prefHeight="523.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children></AnchorPane>
                         </content>
                            <tooltip>
                               <Tooltip text="Participantes" />
@@ -47,9 +50,9 @@
                               </Lighting>
                            </effect>
                       </TitledPane>
-                      <TitledPane animated="false" text="Subastas">
+                      <TitledPane animated="false" style="-fx-background-color: #004C71;" text="Subastas">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #fffff;">
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #004C71;">
                                  <effect>
                                     <Lighting diffuseConstant="2.0">
                                        <bumpInput>
@@ -59,7 +62,10 @@
                                           <Light.Distant />
                                        </light>
                                     </Lighting>
-                                 </effect></AnchorPane>
+                                 </effect>
+                                 <children>
+                                    <JFXListView layoutX="-7.0" layoutY="49.0" prefHeight="523.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children></AnchorPane>
                         </content>
                            <tooltip>
                               <Tooltip text="Subastas" />
@@ -67,7 +73,7 @@
                       </TitledPane>
                       <TitledPane animated="false" text="Material">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #004C71;">
                                  <children>
                                     <JFXListView fx:id="listViewMaterial" layoutX="-19.0" prefHeight="419.0" prefWidth="210.0" style="-fx-background-color: #fffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
@@ -89,7 +95,7 @@
                       </TitledPane>
                         <TitledPane animated="false" text="Seguridad">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #004C71;">
                                  <effect>
                                     <Lighting diffuseConstant="2.0">
                                        <bumpInput>
@@ -99,16 +105,14 @@
                                           <Light.Distant />
                                        </light>
                                     </Lighting>
-                                 </effect></AnchorPane>
+                                 </effect>
+                                 <children>
+                                    <JFXListView layoutX="-7.0" layoutY="52.0" prefHeight="523.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children></AnchorPane>
                           </content>
                            <tooltip>
                               <Tooltip text="Seguridad" textOverrun="CLIP" />
                            </tooltip>
-                        </TitledPane>
-                        <TitledPane animated="false" text="Administrador">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                          </content>
                         </TitledPane>
                     </panes>
                   </Accordion>
@@ -116,7 +120,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TabPane fx:id="tab_ventanas" layoutY="14.0" prefHeight="532.0" prefWidth="506.0" style="-fx-background-color: #fffff;" tabClosingPolicy="ALL_TABS" AnchorPane.bottomAnchor="-14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                  <TabPane fx:id="tab_ventanas" prefHeight="532.0" prefWidth="506.0" tabClosingPolicy="ALL_TABS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <effect>
                         <Lighting diffuseConstant="2.0">
                            <bumpInput>

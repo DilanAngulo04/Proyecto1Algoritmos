@@ -1,5 +1,6 @@
 package cr.ac.ucr.if3001.proyecto1.form;
 
+import cr.ac.ucr.if3001.proyecto1.util.Utilidades;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,9 +15,13 @@ import javafx.stage.Stage;
 
 public class InterfazElegirLoginController implements Initializable {
 
+    @FXML
+    private AnchorPane anp_root;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        anp_root.setOpacity(0);
+        Utilidades.transition(anp_root);
     }
 
     //funci'on a la imagen para ingresar al ser presionada con el mouse

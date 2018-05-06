@@ -1,27 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cr.ac.ucr.if3001.proyecto1.form;
 
+import cr.ac.ucr.if3001.proyecto1.util.Utilidades;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
 
-/**
- * FXML Controller class
- *
- * @author dilan_000
- */
 public class InterfazSubModuloBienesController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private AnchorPane anp_root;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        anp_root.setOpacity(0);
+        Utilidades.transition(anp_root);
+    }//fin initialize 
     
-}
+}//fin class
