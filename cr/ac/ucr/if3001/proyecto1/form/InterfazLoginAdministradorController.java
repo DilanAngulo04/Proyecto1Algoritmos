@@ -19,13 +19,12 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class InterfazLoginParticipantesController implements Initializable {
-
-    //instancias necesarias
+public class InterfazLoginAdministradorController implements Initializable {
+    
     private ListaEnlazada listE = new ListaEnlazada();
     private ControlArchivos controlA = new ControlArchivos();
 
-    @FXML
+    @FXML    
     private JFXPasswordField tfd_contraseña;
     @FXML
     private JFXTextField tfd_nombreUsuario;
@@ -34,41 +33,43 @@ public class InterfazLoginParticipantesController implements Initializable {
     @FXML
     private JFXButton btn_registrate;
 
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //TODO
+
     }
 
     @FXML
-    private void btn_ingresarInfo(ActionEvent event) throws IOException, ListaException {
-        verificar();
+    private void btn_ingresarInfo(ActionEvent event) throws IOException, ListaException {      
+        verificar();        
         AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazBienvenida.fxml"));
         Scene scene = new Scene(anchor);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.show();
-    }//fin action
+        stage.show();  
+    }
 
     @FXML
     private void btn_registrarUsuario(ActionEvent event) throws IOException {
-        AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazRegistroParticipantes.fxml"));
+        AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazRegistroAdministrador.fxml"));
         Scene scene = new Scene(anchor);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.show();
-    }//fin action
-
-    public void verificar() throws ListaException {
+        stage.show();       
+    }
+    
+    public void verificar() throws ListaException{   
         Object participantes = new Participantes();
-
-        controlA.setNombre("Participantes.dat");
-        listE.insertar(controlA.cargar(new Participantes()));
+        
+        controlA.setNombre("Participantes.dat");        
+        listE.insertar(controlA.cargar(new Participantes())); 
         System.out.println(listE.toString());
-        if (!listE.isEmpty()) {
-            for (int i = 0; i < listE.getSize(); i++) {
-                participantes = (Participantes) listE.getNodo(i);
+        if(!listE.isEmpty()){
+            for(int i = 0; i < listE.getSize(); i++){
+                participantes = (Participantes)listE.getNodo(i);   
+            }          
             }
         }
-    }//fin verificar
-    
-}//fin class
+    }
+
+

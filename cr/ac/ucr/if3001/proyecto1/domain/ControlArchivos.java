@@ -1,6 +1,5 @@
 package cr.ac.ucr.if3001.proyecto1.domain;
 
-import cr.ac.ucr.if3001.proyecto1.util.Utilidades;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -25,7 +24,6 @@ public class ControlArchivos {
     }    
     
     //permite escribir en un archivo
-    //reemplaza el contenido del archivo
     public void escribir(Object objeto){
         try{
            ObjectOutputStream oos = new ObjectOutputStream(
@@ -38,7 +36,6 @@ public class ControlArchivos {
     }
     
     //carga en tda el contenido de un archivo 
-    //existente
     public Object cargar(Object tda){
         Object aux=null;
         try{

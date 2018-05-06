@@ -14,10 +14,10 @@ import javafx.scene.control.TextField;
 
 public class InterfazRegistroParticipantesController implements Initializable {
 
+    //Clases necesarias
     private ControlArchivos controlA;
     private ListaEnlazada listE = new ListaEnlazada();
     
-
     public InterfazRegistroParticipantesController() {
         this.controlA = new ControlArchivos();
     }    
@@ -41,6 +41,7 @@ public class InterfazRegistroParticipantesController implements Initializable {
         // TODO
     }  
 
+    //Funci'on para serializar el registro de participantes
     @FXML
     private void registrar(ActionEvent event) {
         
@@ -49,15 +50,10 @@ public class InterfazRegistroParticipantesController implements Initializable {
         String nombreUsuario = tfd_nombreUsuario.getText();
         String contraseña = pwf_contraseña.getText();
         String confirmarContraseña = pwf_confirmarContraseña.getText();
-        Participantes participantes = new Participantes(nombreComplet, correo, nombreUsuario, contraseña, confirmarContraseña);
+        Participantes participantes = new Participantes(nombreComplet, correo, nombreUsuario, contraseña);
         controlA.setNombre("Participantes.dat");
-        controlA.escribir(participantes);        
+        controlA.escribir(participantes); 
         
-    }
-    public void mostrar(){
-                        
-        listE.insertar(controlA.cargar(this));
-        System.out.println(listE.toString());
-        
-    }
-}
+    }//fin m'etodo
+    
+}//fin class

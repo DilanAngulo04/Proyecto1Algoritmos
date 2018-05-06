@@ -2,10 +2,9 @@ package cr.ac.ucr.if3001.proyecto1.object;
 
 import java.io.Serializable;
 
-public class Subastas implements Serializable{
-    //atributos
+public class Subastas implements Serializable {
 
-    //control de subastas
+    //atributos
     private int cantidadConsecutivos;
     private int cantidadArticulos;
     private int articulosSubastados;
@@ -15,7 +14,6 @@ public class Subastas implements Serializable{
     private int ranking;
     private String ganadores;
 
-    
     //constructores
     public Subastas() {
         this.cantidadConsecutivos = 0;
@@ -38,9 +36,9 @@ public class Subastas implements Serializable{
         this.ranking = ranking;
         this.ganadores = ganadores;
     }
-    
-    //setters and getters
+    //fin contructores
 
+    //setters and getters
     public int getCantidadConsecutivos() {
         return cantidadConsecutivos;
     }
@@ -104,12 +102,11 @@ public class Subastas implements Serializable{
     public void setGanadores(String ganadores) {
         this.ganadores = ganadores;
     }
-    
-   //fin setters and getters
+    //fin setters and getters
 
+    //toString
     @Override
     public String toString() {
         return "Subastas{" + "cantidadConsecutivos=" + cantidadConsecutivos + ", cantidadArticulos=" + cantidadArticulos + ", articulosSubastados=" + articulosSubastados + ", cantidadParticipantes=" + cantidadParticipantes + ", montosAdjudicados=" + montosAdjudicados + ", cantidadesadquiridas=" + cantidadesadquiridas + ", ranking=" + ranking + ", ganadores=" + ganadores + '}';
-    }    
-    //fin toString
+    }//fin toString
 }//fin class

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazElegirLoginController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazElegirLoginController">
    <children>
       <AnchorPane layoutX="43.0" layoutY="47.0" prefHeight="306.0" prefWidth="515.0" style="-fx-background-color: #004C71;">
          <effect>
@@ -22,16 +23,31 @@
             </Lighting>
          </effect>
          <children>
-            <JFXButton fx:id="btn_administrador" layoutX="68.0" layoutY="134.0" onAction="#ir_administrador" text="Administrador" textFill="WHITE">
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="65.0" layoutY="69.0" onMouseClicked="#ir_administrador" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/AdministratorIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="305.0" layoutY="69.0" onMouseClicked="#ir_participante" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/usuarioIcon.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="83.0" layoutY="242.0" text="Administrador" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
-            </JFXButton>
-            <JFXButton fx:id="btn_usuario" layoutX="337.0" layoutY="134.0" onAction="#ir_usuario" text="Usuario" textFill="WHITE">
+            </Label>
+            <Label layoutX="198.0" layoutY="14.0" text="Ingresar como:" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
-            </JFXButton>
+            </Label>
+            <Label layoutX="332.0" layoutY="242.0" text="Participante" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

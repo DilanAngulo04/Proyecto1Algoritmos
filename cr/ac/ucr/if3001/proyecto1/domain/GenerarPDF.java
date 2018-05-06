@@ -8,14 +8,17 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 public class GenerarPDF {
+    //Atributos
     private String contenido;
     private String ruta;
     
+    //Contructor para el manejo de par'ametros
     public GenerarPDF(String contenido, String ruta){
        this.contenido = contenido;
        this.ruta = ruta;
     }    
     
+    //M'etodo para crear un archivo .pdf
     public void generar() throws DocumentException{
         try{
         FileOutputStream archivo = new FileOutputStream(ruta + ".pdf");

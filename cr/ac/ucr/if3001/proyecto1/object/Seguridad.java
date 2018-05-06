@@ -9,15 +9,13 @@ public class Seguridad implements Serializable{
     private String correo;
     private String nombreUsuario;
     private String contraseña;
-    private String confirContreseña;
 
     //contructores
-    public Seguridad(String nombre, String correo, String nombreUsuario, String contraseña, String confirContreseña) {
+    public Seguridad(String nombre, String correo, String nombreUsuario, String contraseña) {
         this.nombre = nombre;
         this.correo = correo;
         this.nombreUsuario = nombreUsuario;
         this.contraseña = contraseña;
-        this.confirContreseña = confirContreseña;
     }
 
     public Seguridad() {
@@ -25,7 +23,6 @@ public class Seguridad implements Serializable{
         this.correo = "";
         this.nombreUsuario = "";
         this.contraseña = "";
-        this.confirContreseña = "";
     }
 
     public String getNombreUsuario() {
@@ -60,25 +57,14 @@ public class Seguridad implements Serializable{
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
-
-    public String getConfirContreseña() {
-        return confirContreseña;
-    }
-
-    //setters and getters
-    public void setConfirContreseña(String confirContreseña) {
-        this.confirContreseña = confirContreseña;
-    }
-
     //fin setters and getters
     
-    //fin toString
+    
 
     @Override
     public String toString() {
         return "Seguridad {" + "Nombre=" + nombre + ", Correo=" + correo 
-                + ", Nombre de Usuario = " + nombreUsuario + ", Contrase\u00f1a=" + contraseña 
-                + ", Confirmar Contrese\u00f1a=" + confirContreseña + '}';
-    }
+                + ", Nombre de Usuario = " + nombreUsuario + ", Contrase\u00f1a=" + contraseña + '}';
+    }//fin toString
 
 }//fin class

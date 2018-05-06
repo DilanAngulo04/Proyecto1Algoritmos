@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="695.0" style="-fx-background-color: #004C71;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazLoginAdministradorController">
+   <children>
+      <AnchorPane layoutX="348.0" layoutY="35.0" prefHeight="331.0" prefWidth="309.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <JFXButton fx:id="btn_ingresar" layoutX="129.0" layoutY="266.0" onAction="#btn_ingresarInfo" text="Ingresar" />
+            <Label layoutX="116.0" layoutY="73.0" text="Ingresar">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <JFXTextField layoutX="42.0" layoutY="166.0" maxWidth="231.0" minWidth="231.0" prefHeight="31.0" prefWidth="231.0" promptText="Nombre de Usuario" />
+            <JFXPasswordField layoutX="42.0" layoutY="220.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Contraseña" />
+         </children>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </AnchorPane>
+      <ImageView fitHeight="293.0" fitWidth="330.0" layoutX="11.0" layoutY="77.0" opacity="0.46" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+         <image>
+            <Image url="@../image/fondoLogins.jpeg" />
+         </image>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </ImageView>
+      <JFXButton fx:id="btn_registrate" layoutX="119.0" layoutY="181.0" onAction="#btn_registrarUsuario" text="¡Registrate!" textFill="#fffdfd">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

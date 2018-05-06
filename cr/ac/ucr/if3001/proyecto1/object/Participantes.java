@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class Participantes extends Seguridad implements Serializable{
 
-    public Participantes(String nombre, String correo, String nombreUsuario, String contraseña, String confirContreseña) {
-        super(nombre, correo, nombreUsuario, contraseña, confirContreseña);
+    public Participantes(String nombre, String correo, String nombreUsuario, String contraseña) {
+        super(nombre, correo, nombreUsuario, contraseña);
     }   
 
     public Participantes() {

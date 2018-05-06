@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cr.ac.ucr.if3001.proyecto1.form;
 
 import com.jfoenix.controls.JFXListView;
@@ -23,59 +18,65 @@ import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TabPane;
 
-/**
- * FXML Controller class
- *
- * @author dilan_000
- */
-public class InterfazBienvenidaController implements Initializable {
-
+public class InterfazBienvenidaUsuarioController implements Initializable {
+    
     @FXML
     private AnchorPane anchorRoot;
     @FXML
     private JFXListView<String> listViewMaterial;
     @FXML
     private TabPane tab_ventanas;
-    
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         loadListView();
         selectmenu();
     }    
 
+    //Agregar contenido a la lista de opciones
     private void loadListView(){
         ObservableList<String> ols = FXCollections.observableArrayList();
         ols.add("Productos");
         ols.add("Bienes");
         ols.add("Servicios");
         listViewMaterial.setItems(ols);
-    }
+    }//fin m'etodo
     
+    //Añadir la ventana que se elije
     private void selectmenu(){
         listViewMaterial.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 int i = listViewMaterial.getSelectionModel().getSelectedIndex();
-                System.out.print(i);
+                //se agrega la ventana según el numero por defecto de las opciones de la lista
                 if(i==0){
                     try{
-                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazElegirLogin.fxml"));
-                        System.out.println("yes");
+                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloProductos.fxml"));
                         Tab td = new Tab("Productos", node);
                         tab_ventanas.getTabs().add(td);
                     }catch(IOException ioe){
-                        Logger.getLogger(InterfazBienvenidaController.class.getName()).log(Level.SEVERE, null, ioe);
+                        Logger.getLogger(InterfazBienvenidaUsuarioController.class.getName()).log(Level.SEVERE, null, ioe);
+                    }
+                }
+                if(i==1){
+                    try{
+                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloBienes.fxml"));
+                        Tab td = new Tab("Bienes", node);
+                        tab_ventanas.getTabs().add(td);
+                    }catch(IOException ioe){
+                        Logger.getLogger(InterfazBienvenidaUsuarioController.class.getName()).log(Level.SEVERE, null, ioe);
+                    }
+                }
+                if(i==2){
+                    try{
+                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloServicios.fxml"));
+                        Tab td = new Tab("Servicios", node);
+                        tab_ventanas.getTabs().add(td);
+                    }catch(IOException ioe){
+                        Logger.getLogger(InterfazBienvenidaUsuarioController.class.getName()).log(Level.SEVERE, null, ioe);
                     }
                 }
             }
         });
-    }
-    
-    
-}
-//AnchorPane pane = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-//        anchorRoot.getChildren().setAll(pane);
+    }//fin m'etodo        
+}//fin class

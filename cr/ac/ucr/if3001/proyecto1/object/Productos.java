@@ -2,7 +2,6 @@ package cr.ac.ucr.if3001.proyecto1.object;
 
 import java.io.Serializable;
 
-
 public class Productos extends Material implements Serializable{
     
     //atributos
@@ -18,5 +17,6 @@ public class Productos extends Material implements Serializable{
         super();
         this.cantidad = 0;
     }
+    //fin contructores
     
 }//fin class

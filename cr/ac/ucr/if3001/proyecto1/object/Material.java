@@ -1,19 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cr.ac.ucr.if3001.proyecto1.object;
 
-/**
- *
- * @author dilan_000
- */
 public class Material {
 
     //atributos
     private String nombre;
-//    
     private int precio;
     private String tipo;
     private String descripcion;
