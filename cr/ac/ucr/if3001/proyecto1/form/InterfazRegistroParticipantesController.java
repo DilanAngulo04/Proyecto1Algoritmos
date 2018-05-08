@@ -5,6 +5,7 @@ import cr.ac.ucr.if3001.proyecto1.domain.ControlArchivos;
 import cr.ac.ucr.if3001.proyecto1.domain.ListaEnlazada;
 import cr.ac.ucr.if3001.proyecto1.object.Participantes;
 import cr.ac.ucr.if3001.proyecto1.util.Utilidades;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -22,8 +23,7 @@ public class InterfazRegistroParticipantesController implements Initializable {
 
     public InterfazRegistroParticipantesController() {
         this.controlA = new ControlArchivos();
-    }
-    
+    }    
     
     @FXML
     private AnchorPane anp_root;
@@ -48,7 +48,7 @@ public class InterfazRegistroParticipantesController implements Initializable {
 
     //Funci'on para serializar el registro de participantes
     @FXML
-    private void registrar(ActionEvent event) {
+    private void registrar(ActionEvent event) throws IOException, ClassNotFoundException {
 
         String nombreComplet = tfd_nombreCompletp.getText();
         String correo = tfd_correo.getText();

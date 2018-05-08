@@ -156,7 +156,7 @@ public class ListaEnlazada implements Lista {
     }
 
     @Override
-    public Object getNodo(int posicion) throws ListaException {
+    public Nodo getNodo(int posicion) throws ListaException {
         if (isEmpty()) {
             throw new ListaException("La lista esta vacia");
         }
@@ -164,7 +164,7 @@ public class ListaEnlazada implements Lista {
         int posLista = 1;
         while (aux != null) {
             if (igualQ(posLista, posicion)) {
-                return aux.elemento;
+                return aux;
             }
             posLista++;
             aux = aux.sgte;//lo movemos al sgte nodo

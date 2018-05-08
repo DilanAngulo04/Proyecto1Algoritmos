@@ -23,8 +23,8 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <JFXTextField layoutX="42.0" layoutY="166.0" maxWidth="231.0" minWidth="231.0" prefHeight="31.0" prefWidth="231.0" promptText="Nombre de Usuario" />
-            <JFXPasswordField layoutX="42.0" layoutY="220.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Contraseña" />
+            <JFXTextField fx:id="tfd_nombreUsuario" layoutX="42.0" layoutY="166.0" maxWidth="231.0" minWidth="231.0" prefHeight="31.0" prefWidth="231.0" promptText="Nombre de Usuario" />
+            <JFXPasswordField fx:id="pwf_contraseña" layoutX="42.0" layoutY="220.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Contraseña" />
          </children>
          <effect>
             <InnerShadow />
@@ -38,7 +38,7 @@
             <InnerShadow />
          </effect>
       </ImageView>
-      <JFXButton fx:id="btn_registrate" layoutX="119.0" layoutY="181.0" onAction="#btn_registrarUsuario" text="¡Registrate!" textFill="#fffdfd">
+      <JFXButton fx:id="btn_registrate" layoutX="119.0" layoutY="181.0" onAction="#btn_registrarPartcipante" text="¡Registrate!" textFill="#fffdfd">
          <font>
             <Font size="18.0" />
          </font>
