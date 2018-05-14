@@ -15,11 +15,11 @@ public class Proyecto1Algoritmos extends Application {
     public void start(Stage stage) throws Exception {
 //        Parent root = FXMLLoader.load(getClass().getResource("InterfazElegirLogin.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("InterfazSubModuloProductos.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("InterfazPrincipalAdministrador.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("InterfazPrincipalAdministrador.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("InterfazElegirLogin.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("InterfazModuloParticipantes.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("InterfazSubModuloInvitarParticipantes.fxml"));
-//        Parent root = FXMLLoader.load(getClass().getResource("InterfazLoginParticipantes.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("InterfazLoginParticipantes.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("InterfazPrincipalUsuario.fxml"));
         Scene scene = new Scene(root);
 //        scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
