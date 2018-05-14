@@ -13,24 +13,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anp_root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="695.0" style="-fx-background-color: #004C71;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazLoginParticipantesController">
+<AnchorPane id="AnchorPane" fx:id="anp_root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="695.0" style="-fx-background-color: #004C71;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazLoginParticipantesController">
    <children>
-      <AnchorPane layoutX="348.0" layoutY="35.0" prefHeight="331.0" prefWidth="309.0" style="-fx-background-color: #FFFFFF;">
-         <children>
-            <JFXButton fx:id="btn_ingresar" layoutX="129.0" layoutY="266.0" onAction="#btn_ingresarInfo" text="Ingresar" />
-            <Label layoutX="116.0" layoutY="73.0" text="Ingresar">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="tfd_nombreUsuario" layoutX="42.0" layoutY="166.0" maxWidth="231.0" minWidth="231.0" prefHeight="31.0" prefWidth="231.0" promptText="Nombre de Usuario" />
-            <JFXPasswordField fx:id="pwf_contraseña" layoutX="42.0" layoutY="220.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Contraseña" />
-         </children>
-         <effect>
-            <InnerShadow />
-         </effect>
-      </AnchorPane>
-      <ImageView fitHeight="293.0" fitWidth="330.0" layoutX="11.0" layoutY="77.0" opacity="0.46" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fitHeight="247.0" fitWidth="355.0" layoutX="12.0" layoutY="96.0" opacity="0.46" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../image/fondoLogins.jpeg" />
          </image>
@@ -38,11 +23,50 @@
             <InnerShadow />
          </effect>
       </ImageView>
-      <JFXButton fx:id="btn_registrate" layoutX="119.0" layoutY="181.0" onAction="#btn_registrarUsuario" text="¡Registrate!" textFill="#fffdfd">
+      <JFXButton fx:id="btn_registrate" layoutX="119.0" layoutY="199.0" onAction="#btn_registrarUsuario" text="¡Registrate!" textFill="#fffdfd">
          <font>
             <Font size="18.0" />
          </font>
       </JFXButton>
+      <AnchorPane fx:id="anp_registrar" layoutX="348.0" layoutY="22.0" prefHeight="396.0" prefWidth="309.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <JFXButton fx:id="btn_registrar" layoutX="231.0" layoutY="357.0" onAction="#handleRegistrar" text="Registrar" />
+            <Label layoutX="107.0" layoutY="-1.0" text="Registrar">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="tfd_nombreC" focusColor="#004c71" labelFloat="true" layoutX="35.0" layoutY="41.0" maxWidth="247.0" minWidth="247.0" onMouseClicked="#tfd_nombreC" prefHeight="31.0" prefWidth="247.0" promptText="Nombre Completo" />
+            <JFXTextField fx:id="tfd_correo" focusColor="#004c71" labelFloat="true" layoutX="35.0" layoutY="94.0" maxWidth="247.0" minWidth="247.0" onMouseClicked="#tfd_correo" prefHeight="31.0" prefWidth="247.0" promptText="Correo" />
+            <JFXTextField fx:id="tfd_nombreUs" focusColor="#004c71" labelFloat="true" layoutX="35.0" layoutY="152.0" maxWidth="247.0" minWidth="247.0" onMouseClicked="#tfd_nombreUsu" prefHeight="31.0" prefWidth="247.0" promptText="Nombre Usuario" />
+            <JFXPasswordField fx:id="pwf_contrasena" focusColor="#004c71" labelFloat="true" layoutX="35.0" layoutY="262.0" maxWidth="247.0" minWidth="247.0" onMouseClicked="#pwf_contraseña" prefHeight="31.0" prefWidth="247.0" promptText="Contraseña" />
+            <JFXPasswordField fx:id="pwf_confContraseña" focusColor="#004c71" labelFloat="true" layoutX="35.0" layoutY="314.0" maxWidth="247.0" minWidth="247.0" onMouseClicked="#pwf_confContraseña" prefHeight="31.0" prefWidth="247.0" promptText="Confirmar Contraseña" />
+            <JFXTextField fx:id="tfd_numeroTelefono" focusColor="#004c71" labelFloat="true" layoutX="35.0" layoutY="208.0" maxWidth="247.0" minWidth="247.0" onMouseClicked="#tfd_numeroT" prefHeight="31.0" prefWidth="247.0" promptText="Número Telefónico" />
+            <JFXButton fx:id="btn_back" layoutX="16.0" layoutY="358.0" onAction="#hadleSalir" text="Salir" />
+            <Label fx:id="lbl_errorContraseña" layoutX="39.0" layoutY="339.0" prefHeight="17.0" prefWidth="231.0" text="Label" textFill="#d79f9f" visible="false" />
+            <Label fx:id="lbl_errorNUsuario" layoutX="41.0" layoutY="175.0" prefHeight="17.0" prefWidth="231.0" text="Label" textFill="#d79f9f" visible="false" />
+            <Label fx:id="lbl_errorNumero" layoutX="41.0" layoutY="232.0" prefHeight="17.0" prefWidth="231.0" text="Label" textFill="#d79f9f" visible="false" />
+            <AnchorPane fx:id="anp_ingresar" layoutX="34.0" layoutY="-111.0" prefHeight="396.0" prefWidth="721.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXButton fx:id="btn_registrar" layoutX="129.0" layoutY="266.0" onAction="#btn_ingresarInfo" text="Ingresar" />
+                  <Label layoutX="116.0" layoutY="73.0" text="Ingresar">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="tfd_nombreUsuario" focusColor="#004c71" labelFloat="true" layoutX="42.0" layoutY="166.0" maxWidth="231.0" minWidth="231.0" onMouseClicked="#tfd_nombreUsuario" prefHeight="31.0" prefWidth="231.0" promptText="Nombre de Usuario" />
+                  <JFXPasswordField fx:id="pwf_contraseña" focusColor="#004c71" labelFloat="true" layoutX="42.0" layoutY="220.0" maxWidth="231.0" minWidth="225.0" onMouseClicked="#pwf_contraseña" prefHeight="31.0" prefWidth="231.0" promptText="Contraseña" />
+                  <Label fx:id="lbl_error" layoutX="42.0" layoutY="291.0" prefHeight="39.0" prefWidth="231.0" text="Label" textAlignment="CENTER" textFill="RED" visible="false" />
+               </children>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </AnchorPane>
+         </children>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </AnchorPane>
    </children>
    <effect>
       <Lighting diffuseConstant="1.51">

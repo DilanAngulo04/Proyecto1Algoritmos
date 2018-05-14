@@ -41,6 +41,15 @@ public class InterfazPrincipalAdministradorController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         anp_Root.setOpacity(0);
         Utilidades.transition(anp_Root);
+        Node node;
+        try {
+            node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazBienvenida.fxml"));
+            Tab td = new Tab("¡Hola!", node);
+            tab_ventanas.getTabs().add(td);
+        } catch (IOException ex) {
+            Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         loadListViewParticipantes();
         selectmenuParticipantes();
         loadListViewMateriales();
@@ -55,6 +64,7 @@ public class InterfazPrincipalAdministradorController implements Initializable {
         ols.add("Ver Participantes");
         ols.add("Modificar Participantes");
         ols.add("Eliminar Participantes");
+        ols.add("Invitar Participantes");
         lsv_participantes.setItems(ols);
     }//fin
 
@@ -86,6 +96,15 @@ public class InterfazPrincipalAdministradorController implements Initializable {
                     try {
                         Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloEliminarParticipante.fxml"));
                         Tab td = new Tab("Eliminar Participantes", node);
+                        tab_ventanas.getTabs().add(td);
+                    } catch (IOException ioe) {
+                        Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
+                    }
+                }
+                if (i == 3) {
+                    try {
+                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloInvitarParticipantes.fxml"));
+                        Tab td = new Tab("Invitar Participantes", node);
                         tab_ventanas.getTabs().add(td);
                     } catch (IOException ioe) {
                         Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);

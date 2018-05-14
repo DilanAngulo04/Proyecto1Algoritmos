@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="721.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazSubModuloInvitarParticipantesController">
+   <children>
+      <Label layoutX="37.0" layoutY="108.0" text="Fecha a efectuar">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="367.0" layoutY="14.0" text="Invitación de Participantes">
+         <font>
+            <Font name="Monotype Corsiva" size="36.0" />
+         </font>
+      </Label>
+      <JFXDatePicker defaultColor="#004c71" editable="false" layoutX="183.0" layoutY="102.0" />
+      <JFXDatePicker defaultColor="#004c71" editable="false" layoutX="182.0" layoutY="178.0" showTime="true" />
+      <Label layoutX="35.0" layoutY="184.0" text="Hora de Inicio">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="252.0" text="Hora de Finalización">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <JFXDatePicker defaultColor="#004c71" editable="false" layoutX="183.0" layoutY="246.0" showTime="true" />
+      <JFXComboBox fx:id="comboBox" layoutX="187.0" layoutY="318.0" prefHeight="25.0" prefWidth="180.0" />
+      <Label layoutX="32.0" layoutY="320.0" text="Cantidad de artículos ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <JFXListView fx:id="lsv_listaProductos" editable="true" layoutX="491.0" layoutY="143.0" AnchorPane.bottomAnchor="178.0" AnchorPane.leftAnchor="491.0" AnchorPane.rightAnchor="261.0" AnchorPane.topAnchor="143.0">
+         <effect>
+            <Lighting diffuseConstant="1.51">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </JFXListView>
+      <Label layoutX="491.0" layoutY="108.0" text="Lista de productos:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <JFXButton defaultButton="true" layoutX="609.0" layoutY="603.0" ripplerFill="#004c71" text="Enviar Invitaciones" underline="true" />
+   </children>
+</AnchorPane>

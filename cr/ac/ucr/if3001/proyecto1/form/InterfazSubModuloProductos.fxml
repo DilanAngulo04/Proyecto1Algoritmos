@@ -1,34 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazSubModuloProductosController">
    <children>
-      <AnchorPane layoutY="349.0" prefHeight="66.0" prefWidth="350.0" style="-fx-background-color: #1D4366;">
+      <AnchorPane fx:id="anp_options" layoutY="349.0" onMouseClicked="#action" prefHeight="66.0" prefWidth="350.0" style="-fx-background-color: #1D4366;">
          <children>
-            <ImageView fitHeight="49.0" fitWidth="54.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btn_perfil" fitHeight="49.0" fitWidth="54.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/perfilIcon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="56.0" fitWidth="68.0" layoutX="147.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btn_participnates" fitHeight="56.0" fitWidth="68.0" layoutX="147.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/ParticipantesIcon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="34.0" fitWidth="37.0" layoutX="302.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btn_cerrar" fitHeight="34.0" fitWidth="37.0" layoutX="302.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/cerrarIcon.png" />
                </image>
             </ImageView>
          </children>
+         <effect>
+            <Lighting diffuseConstant="1.51">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
       </AnchorPane>
-      <AnchorPane prefHeight="336.0" prefWidth="350.0" style="-fx-background-color: #1D4366;" />
-      <AnchorPane prefHeight="336.0" prefWidth="350.0" style="-fx-background-color: #1D4366;" />
-      <AnchorPane prefHeight="336.0" prefWidth="350.0" style="-fx-background-color: #1D4366;" />
-      <AnchorPane prefHeight="336.0" prefWidth="350.0" style="-fx-background-color: #1D4366;" />
+      <AnchorPane fx:id="anp_perfil" prefHeight="336.0" prefWidth="350.0" style="-fx-background-color: #1D4366;">
+         <children>
+            <JFXListView fx:id="lvw_participantes" layoutX="5.0" layoutY="5.0" prefHeight="327.0" prefWidth="340.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="anp_participantes" prefHeight="336.0" prefWidth="350.0" style="-fx-background-color: #1D4366;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="100.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/MyPerfilIcion.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lbl_nombreUsuario" layoutX="142.0" layoutY="168.0" text="Nombre" textFill="WHITE">
+               <font>
+                  <Font name="Georgia" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_NombreCompleto" layoutX="101.0" layoutY="189.0" text="Nombre Completo" textFill="WHITE">
+               <font>
+                  <Font name="Georgia" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_NombreCompleto1" layoutX="100.0" layoutY="210.0" text="Correo Electronico" textFill="WHITE">
+               <font>
+                  <Font name="Georgia" size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <Lighting diffuseConstant="1.51">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </AnchorPane>
    </children>
 </AnchorPane>

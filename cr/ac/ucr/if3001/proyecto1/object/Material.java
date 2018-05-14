@@ -1,6 +1,8 @@
 package cr.ac.ucr.if3001.proyecto1.object;
 
-public class Material {
+import java.io.Serializable;
+
+public class Material implements Serializable{
 
     //atributos
     private String nombre;
@@ -10,8 +12,7 @@ public class Material {
 
     //constructor vacio 
     public Material() {
-        this.nombre = "";
-        
+        this.nombre = "";        
         this.precio = 0;
         this.tipo = "";
         this.descripcion = "";

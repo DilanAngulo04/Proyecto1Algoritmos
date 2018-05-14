@@ -17,9 +17,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 
 public class InterfazLoginParticipantesController implements Initializable {
 
@@ -28,9 +30,13 @@ public class InterfazLoginParticipantesController implements Initializable {
     private ControlArchivos controlA = new ControlArchivos();
     String nombreUsuario;
     String contraseña;
+    String nombreCompleto;
+    String correo;
+    String nombreU;
+    String contrasena;
+    String confirmarContraseña;
+    String numeroTelefono;
 
-    @FXML
-    private JFXButton btn_ingresar;
     @FXML
     private JFXButton btn_registrate;
     @FXML
@@ -39,6 +45,34 @@ public class InterfazLoginParticipantesController implements Initializable {
     private JFXTextField tfd_nombreUsuario;
     @FXML
     private JFXPasswordField pwf_contraseña;
+    @FXML
+    private AnchorPane anp_registrar;
+    @FXML
+    private JFXTextField tfd_correo;
+    @FXML
+    private JFXPasswordField pwf_confContraseña;
+    @FXML
+    private JFXTextField tfd_numeroTelefono;
+    @FXML
+    private AnchorPane anp_ingresar;
+    @FXML
+    private JFXButton btn_registrar;
+    @FXML
+    private JFXButton btn_back;
+    @FXML
+    private Label lbl_error;
+    @FXML
+    private JFXTextField tfd_nombreC;
+    @FXML
+    private JFXTextField tfd_nombreUs;
+    @FXML
+    private JFXPasswordField pwf_contrasena;
+    @FXML
+    private Label lbl_errorNUsuario;
+    @FXML
+    private Label lbl_errorContraseña;
+    @FXML
+    private Label lbl_errorNumero;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -50,45 +84,129 @@ public class InterfazLoginParticipantesController implements Initializable {
     private void btn_ingresarInfo(ActionEvent event) throws IOException, ListaException, ClassNotFoundException {
         nombreUsuario = tfd_nombreUsuario.getText().trim();
         contraseña = pwf_contraseña.getText().trim();
-        
+
         if (nombreUsuario.length() != 0 || contraseña.length() != 0) {
-            
+
             if (verificar()) {
-                
+
                 AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazPrincipalUsuario.fxml"));
                 Scene scene = new Scene(anchor);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
                 stage.setMaximized(true);
                 stage.show();
-                
+
             } else {
-                JOptionPane.showMessageDialog(null, "Participante no registrado");
+                lbl_error.setVisible(true);
+                lbl_error.setText("¡Lo sentimos! No se encuentra registrado aún");
             }
 
         } else {
-            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
+            lbl_error.setVisible(true);
+            lbl_error.setText("Hay campos sin llenar");
         }
 
     }//fin action
 
     @FXML
-    private void btn_registrarUsuario(ActionEvent event) throws IOException {
+    private void btn_registrarUsuario(ActionEvent event) throws IOException, ClassNotFoundException {
+        //Transicion al mostrar la ventana
+        anp_ingresar.setVisible(false);
+        anp_registrar.setVisible(true);
+        anp_registrar.setOpacity(0);
+        Utilidades.transition(anp_registrar);
+    }//fin action   
 
-        AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazRegistroParticipantes.fxml"));
-        Scene scene = new Scene(anchor);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+    @FXML
+    private void handleRegistrar(ActionEvent event) throws IOException, ClassNotFoundException, ListaException {
+        //controles para registrar datos ingresados
+        nombreCompleto = tfd_nombreC.getText();
+        correo = tfd_correo.getText();
+        nombreU = tfd_nombreUs.getText();
+        contrasena = pwf_contrasena.getText();
+        confirmarContraseña = pwf_confContraseña.getText();
+        numeroTelefono = tfd_numeroTelefono.getText();
 
+        if (nombreCompleto.length() != 0 || correo.length() != 0 || nombreU.length() != 0
+                || contrasena.length() != 0 || confirmarContraseña.length() != 0 || (numeroTelefono + "").length() != 0) {
+
+            if (!verificar()) {
+                if (contrasena.equals(confirmarContraseña)) {
+                    try {
+                        Participantes participantes = new Participantes(nombreCompleto, correo, nombreU, contrasena,
+                                Integer.parseInt(numeroTelefono));
+                        controlA.setNombre("Participantes.dat");
+                        controlA.escribir(participantes);
+                    } catch (NumberFormatException ex) {
+                        lbl_errorNumero.setVisible(true);
+                        lbl_errorNumero.setText("Ingresar un número válido");
+                    }
+                } else {
+                    lbl_errorContraseña.setVisible(true);
+                    lbl_errorContraseña.setText("Las contraseñas no coinciden");
+                }
+            } else {
+                lbl_errorNUsuario.setVisible(true);
+                lbl_errorNUsuario.setText("Nombre de usuario ya registrado");
+            }
+        } else {
+            lbl_errorContraseña.setVisible(true);
+            lbl_errorContraseña.setText("Hay campos sin llenar");
+        }
+
+    }//fin action
+
+    @FXML
+    private void hadleSalir(ActionEvent event) {
+        anp_ingresar.setVisible(true);
+        anp_ingresar.setOpacity(0);
+        Utilidades.transition(anp_ingresar);
+    }//fin action
+
+    @FXML
+    private void tfd_nombreUsuario(MouseEvent event) {
+        lbl_error.setVisible(false);
+        
+    }//fin action
+
+    @FXML
+    private void pwf_contraseña(MouseEvent event) {
+        lbl_error.setVisible(false);
+    }//fin action
+
+    @FXML
+    private void tfd_nombreC(MouseEvent event) {
+        invisible();
+    }//fin action
+
+    @FXML
+    private void tfd_correo(MouseEvent event) {
+        invisible();
+    }//fin action
+
+    @FXML
+    private void tfd_nombreUsu(MouseEvent event) {
+        invisible();
+    }//fin action
+    
+    @FXML
+    private void hadleNombreU(KeyEvent event) throws ListaException, IOException, ClassNotFoundException {
+    }//fin action
+
+    @FXML
+    private void pwf_confContraseña(MouseEvent event) {
+        invisible();
+    }//fin action
+
+    @FXML
+    private void tfd_numeroT(MouseEvent event) {
+        invisible();
     }//fin action
 
     public boolean verificar() throws ListaException, IOException, ClassNotFoundException {
         Object participantes = new Participantes();
         controlA.setNombre("Participantes.dat");
         listE = controlA.cargarLista();
-        System.out.println(listE.toString());
-        System.out.println(listE.getSize());
 
         if (!listE.isEmpty()) {
 
@@ -98,11 +216,25 @@ public class InterfazLoginParticipantesController implements Initializable {
 
                 if (p.getNombreUsuario().equalsIgnoreCase(nombreUsuario) && p.getContraseña().equals(contraseña)) {
                     return true;
+                } else if (p.getNombreUsuario().equalsIgnoreCase(nombreU)) {
+                    return true;
                 }
-
+//                if (p.getCorreo().equalsIgnoreCase(correo)) {
+//                    return true;
+//                }
+//                if (("" + p.getNumeroTelefono()).equals(numeroTelefono + "")) {
+//                    return true;
+//                }
             }
         }
         return false;
     }//fin verificar
+
+    public void invisible() {
+        lbl_errorContraseña.setVisible(false);
+        lbl_errorNUsuario.setVisible(false);
+        lbl_error.setVisible(false);
+        lbl_errorNumero.setVisible(false);
+    }//fin invisible
 
 }//fin class

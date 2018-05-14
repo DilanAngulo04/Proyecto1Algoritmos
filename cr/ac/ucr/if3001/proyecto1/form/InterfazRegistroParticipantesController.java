@@ -20,6 +20,8 @@ public class InterfazRegistroParticipantesController implements Initializable {
     //Clases necesarias
     private ControlArchivos controlA;
     private ListaEnlazada listE = new ListaEnlazada();
+    @FXML
+    private TextField tfd_numeroT;
 
     public InterfazRegistroParticipantesController() {
         this.controlA = new ControlArchivos();
@@ -50,14 +52,7 @@ public class InterfazRegistroParticipantesController implements Initializable {
     @FXML
     private void registrar(ActionEvent event) throws IOException, ClassNotFoundException {
 
-        String nombreComplet = tfd_nombreCompletp.getText();
-        String correo = tfd_correo.getText();
-        String nombreUsuario = tfd_nombreUsuario.getText();
-        String contraseña = pwf_contraseña.getText();
-        String confirmarContraseña = pwf_confirmarContraseña.getText();
-        Participantes participantes = new Participantes(nombreComplet, correo, nombreUsuario, contraseña);
-        controlA.setNombre("Participantes.dat");
-        controlA.escribir(participantes);
+        
 
     }//fin m'etodo
 

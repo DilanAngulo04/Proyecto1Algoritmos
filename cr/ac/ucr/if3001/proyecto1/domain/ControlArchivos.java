@@ -1,6 +1,7 @@
 package cr.ac.ucr.if3001.proyecto1.domain;
 
 import cr.ac.ucr.if3001.proyecto1.exception.ListaException;
+import cr.ac.ucr.if3001.proyecto1.util.Utilidades;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -77,5 +78,30 @@ public class ControlArchivos {
         
         return listaE;
     }//fin m'etodo
+    
+    public void eliminar(Object objeto) throws IOException, ClassNotFoundException {
+
+        File studentFile = new File(ruta + nombre);
+        List<Object> array = new ArrayList<Object>();
+
+        //Validaci'on
+        if (studentFile.exists()) {
+            ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream(ruta + nombre));
+            Object aux = objectInput.readObject();
+
+            array = (List<Object>) aux;
+            for(int i = 0; i < array.size(); i++){
+                if(Utilidades.igualQ(array.get(i), objeto)){
+                    array.remove(i);
+                }
+            }
+            
+            objectInput.close();
+        }
+        
+        ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(ruta + nombre));
+        output.writeUnshared(array);
+        
+    }//Fin del m'etodo
 
 }//fin class

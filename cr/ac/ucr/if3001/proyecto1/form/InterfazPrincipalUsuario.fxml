@@ -5,7 +5,6 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
@@ -23,22 +22,19 @@
       </Lighting>
    </effect>
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" layoutX="67.0" layoutY="115.0" prefHeight="534.0" prefWidth="728.0" style="-fx-background-color: #004C71;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.29797979797979796" layoutX="67.0" layoutY="115.0" prefHeight="534.0" prefWidth="728.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="50.0" SplitPane.resizableWithParent="false">
                <children>
                   <Accordion layoutX="5.0" prefHeight="532.0" prefWidth="50.0" style="-fx-background-color: #004C71;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <panes>
-                      <TitledPane animated="false" text="Participantes">
+                      <TitledPane text="Participantes">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #004C71;">
                                  <children>
                                     <JFXListView layoutX="-7.0" layoutY="62.0" prefHeight="523.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children></AnchorPane>
                         </content>
-                           <tooltip>
-                              <Tooltip text="Participantes" />
-                           </tooltip>
                            <effect>
                               <Lighting diffuseConstant="2.0">
                                  <bumpInput>
@@ -50,7 +46,7 @@
                               </Lighting>
                            </effect>
                       </TitledPane>
-                      <TitledPane animated="false" style="-fx-background-color: #004C71;" text="Subastas">
+                      <TitledPane style="-fx-background-color: #004C71;" text="Subastas">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #004C71;">
                                  <effect>
@@ -67,11 +63,8 @@
                                     <JFXListView layoutX="-7.0" layoutY="49.0" prefHeight="523.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children></AnchorPane>
                         </content>
-                           <tooltip>
-                              <Tooltip text="Subastas" />
-                           </tooltip>
                       </TitledPane>
-                      <TitledPane animated="false" text="Material">
+                      <TitledPane text="Material">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #004C71;">
                                  <children>
@@ -89,11 +82,8 @@
                                  </effect>
                               </AnchorPane>
                         </content>
-                           <tooltip>
-                              <Tooltip text="Material" />
-                           </tooltip>
                       </TitledPane>
-                        <TitledPane animated="false" text="Seguridad">
+                        <TitledPane text="Seguridad">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #004C71;">
                                  <effect>
@@ -110,9 +100,6 @@
                                     <JFXListView layoutX="-7.0" layoutY="52.0" prefHeight="523.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children></AnchorPane>
                           </content>
-                           <tooltip>
-                              <Tooltip text="Seguridad" textOverrun="CLIP" />
-                           </tooltip>
                         </TitledPane>
                     </panes>
                   </Accordion>

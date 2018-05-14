@@ -35,7 +35,7 @@ public class Utilidades {
         return a;
     }//fin me'etodo   
     
-    private static boolean igualQ(Object a, Object b) {
+    public static boolean igualQ(Object a, Object b) {
         boolean o = false;
         if (a instanceof Participantes && b instanceof Participantes) {
             Participantes x = (Participantes) a;
@@ -79,5 +79,14 @@ public class Utilidades {
         fadeTransition.setToValue(1);       
         fadeTransition.play();
     }//fin transition();
+        
+        public static String formatTelefono(int numero){
+            String numeroS = ""+numero;
+            String formato = "";
+            
+            formato = numeroS.substring(0, 4) + "-" + numeroS.substring(4);
+            
+            return formato;
+        }
     
 }//fin class
