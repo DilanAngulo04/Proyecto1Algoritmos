@@ -1,6 +1,8 @@
 package cr.ac.ucr.if3001.proyecto1.form;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import cr.ac.ucr.if3001.proyecto1.domain.ControlArchivos;
@@ -18,9 +20,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class InterfazLoginParticipantesController implements Initializable {
@@ -73,6 +76,10 @@ public class InterfazLoginParticipantesController implements Initializable {
     private Label lbl_errorContraseña;
     @FXML
     private Label lbl_errorNumero;
+    @FXML
+    private ImageView btn_salir;
+    @FXML
+    private Label lbl_errorCorreo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -129,25 +136,50 @@ public class InterfazLoginParticipantesController implements Initializable {
 
         if (nombreCompleto.length() != 0 || correo.length() != 0 || nombreU.length() != 0
                 || contrasena.length() != 0 || confirmarContraseña.length() != 0 || (numeroTelefono + "").length() != 0) {
-
-            if (!verificar()) {
-                if (contrasena.equals(confirmarContraseña)) {
+            if (Utilidades.verificarCorreo(correo)) {
+                if (!verificar()) {
                     try {
-                        Participantes participantes = new Participantes(nombreCompleto, correo, nombreU, contrasena,
-                                Integer.parseInt(numeroTelefono));
-                        controlA.setNombre("Participantes.dat");
-                        controlA.escribir(participantes);
+                        if (numeroTelefono.length() == 8) {
+                            if (contrasena.equals(confirmarContraseña)) {
+
+                                Participantes participantes = new Participantes(nombreCompleto, correo,
+                                        nombreU, contrasena, Integer.parseInt(numeroTelefono));
+                                controlA.setNombre("Participantes.dat");
+                                controlA.escribir(participantes);
+                                tfd_correo.clear();
+                                tfd_nombreC.clear();
+                                tfd_nombreUs.clear();
+                                tfd_numeroTelefono.clear();
+                                pwf_confContraseña.clear();
+                                pwf_contrasena.clear();
+                                pwf_contraseña.clear();
+                                tfd_nombreUsuario.clear();
+                                lbl_errorContraseña.setVisible(true);
+                                lbl_errorContraseña.setText("¡Te damos la bienvenida!");
+                                btn_back.setFocusTraversable(true);
+                            } else {
+                                lbl_errorContraseña.setVisible(true);
+                                lbl_errorContraseña.setText("Las contraseñas no coinciden");
+                            }
+
+                        } else {
+                            lbl_errorNumero.setVisible(true);
+                            lbl_errorNumero.setText("No es un número de teléfono válido");
+
+                        }
                     } catch (NumberFormatException ex) {
                         lbl_errorNumero.setVisible(true);
-                        lbl_errorNumero.setText("Ingresar un número válido");
+                        lbl_errorNumero.setText("No es un número de teléfono válido");
                     }
                 } else {
-                    lbl_errorContraseña.setVisible(true);
-                    lbl_errorContraseña.setText("Las contraseñas no coinciden");
+                    lbl_errorNUsuario.setVisible(true);
+                    lbl_errorNUsuario.setText("Nombre de usuario no disponible");
+
                 }
             } else {
-                lbl_errorNUsuario.setVisible(true);
-                lbl_errorNUsuario.setText("Nombre de usuario ya registrado");
+                lbl_errorCorreo.setVisible(true);
+                lbl_errorCorreo.setText("No es un correo válido");
+
             }
         } else {
             lbl_errorContraseña.setVisible(true);
@@ -166,7 +198,7 @@ public class InterfazLoginParticipantesController implements Initializable {
     @FXML
     private void tfd_nombreUsuario(MouseEvent event) {
         lbl_error.setVisible(false);
-        
+
     }//fin action
 
     @FXML
@@ -187,10 +219,6 @@ public class InterfazLoginParticipantesController implements Initializable {
     @FXML
     private void tfd_nombreUsu(MouseEvent event) {
         invisible();
-    }//fin action
-    
-    @FXML
-    private void hadleNombreU(KeyEvent event) throws ListaException, IOException, ClassNotFoundException {
     }//fin action
 
     @FXML
@@ -231,10 +259,34 @@ public class InterfazLoginParticipantesController implements Initializable {
     }//fin verificar
 
     public void invisible() {
+        
         lbl_errorContraseña.setVisible(false);
         lbl_errorNUsuario.setVisible(false);
         lbl_error.setVisible(false);
         lbl_errorNumero.setVisible(false);
+        lbl_errorCorreo.setVisible(false);
+        
     }//fin invisible
+
+    //salir
+    @FXML
+    private void ir_elegirLogin(MouseEvent event) throws IOException {
+        
+        AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazElegirLogin.fxml"));
+        Scene scene = new Scene(anchor);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+        
+    }//fin action
+
+    private void loadDialog() {
+        JFXDialogLayout content = new JFXDialogLayout();
+        content.setHeading(new Text("Heading"));
+        content.setBody(new Text("¡Saludos! " + nombreCompleto + " \n Te damos la bienvenida "
+                + "a Treasure Hill "));
+        JFXDialog dialog = new JFXDialog();
+    }//fin m'etodo
 
 }//fin class

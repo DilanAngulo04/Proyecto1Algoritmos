@@ -31,11 +31,11 @@ public class ControlArchivos {
 
     public void escribir(Object objeto) throws IOException, ClassNotFoundException {
 
-        File studentFile = new File(ruta + nombre);
+        File file = new File(ruta + nombre);
         List<Object> array = new ArrayList<Object>();
 
         //Validaci'on
-        if (studentFile.exists()) {
+        if (file.exists()) {
             ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream(ruta + nombre));
             Object aux = objectInput.readObject();
 
@@ -51,14 +51,14 @@ public class ControlArchivos {
         output.close();
     }//Fin del m'etodo
 
-    //M'etodo para leer la lista de estudiantes (lista que ha sido serializada)
+    //M'etodo para leer la lista de objetos (lista que ha sido serializada)
     public List<Object> readList() throws IOException, ClassNotFoundException {
 
-        File studenFile = new File(ruta + nombre);
+        File file = new File(ruta + nombre);
         List<Object> studentArray = new ArrayList<Object>();
 
         //Validaci'on
-        if (studenFile.exists()) {
+        if (file.exists()) {
             ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream(ruta + nombre));
             Object aux = objectInput.readObject();
 
@@ -72,28 +72,36 @@ public class ControlArchivos {
     public ListaEnlazada cargarLista() throws IOException, ClassNotFoundException, ListaException {
 
         ListaEnlazada listaE = new ListaEnlazada();
+        
         for(int i = 0; i < readList().size(); i++){
             listaE.insertar(readList().get(i));
         }
         
         return listaE;
-    }//fin m'etodo
+        
+    }//fin m'etodo   
     
     public void eliminar(Object objeto) throws IOException, ClassNotFoundException {
 
-        File studentFile = new File(ruta + nombre);
+        objeto = Utilidades.instanciaDe(objeto);        
+        File file = new File(ruta + nombre);
         List<Object> array = new ArrayList<Object>();
 
         //Validaci'on
-        if (studentFile.exists()) {
+        if (file.exists()) {
             ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream(ruta + nombre));
             Object aux = objectInput.readObject();
 
-            array = (List<Object>) aux;
-            for(int i = 0; i < array.size(); i++){
-                if(Utilidades.igualQ(array.get(i), objeto)){
-                    array.remove(i);
-                }
+            array = (List<Object>) aux;            
+            System.out.println(array.size());
+            System.out.println(array.get(0));
+            
+//            for(int i = 0; i < array.size(); i++){
+                if(array.get(0).equals(objeto) ){
+                    System.out.println("Hola");
+//                    array.remove(i);
+                    
+//                }
             }
             
             objectInput.close();

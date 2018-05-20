@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
-
 
 <AnchorPane id="AnchorPane" fx:id="anp_root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazModuloParticipantesController">
    <children>
-      <JFXTreeTableView fx:id="tbv_participantes" layoutX="38.0" layoutY="28.0" prefHeight="400.0" prefWidth="620.0" />
+      <JFXTreeTableView fx:id="tbv_participantes" layoutX="38.0" layoutY="28.0" prefHeight="400.0" prefWidth="620.0" sortMode="ONLY_FIRST_LEVEL">
+         <columnResizePolicy>
+            <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy></JFXTreeTableView>
    </children>
 </AnchorPane>

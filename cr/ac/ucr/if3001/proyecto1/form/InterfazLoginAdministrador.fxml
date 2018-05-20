@@ -13,36 +13,52 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anp_root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="695.0" style="-fx-background-color: #004C71;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazLoginAdministradorController">
+<AnchorPane id="AnchorPane" fx:id="anp_root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="695.0" style="-fx-background-color: #8F1A1A;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazLoginAdministradorController">
    <children>
       <AnchorPane layoutX="348.0" layoutY="35.0" prefHeight="331.0" prefWidth="309.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <JFXButton fx:id="btn_ingresar" layoutX="129.0" layoutY="266.0" onAction="#btn_ingresarInfo" text="Ingresar" />
+            <JFXButton fx:id="btn_ingresar" layoutX="227.0" layoutY="285.0" onAction="#btn_ingresarInfo" text="Ingresar" />
             <Label layoutX="116.0" layoutY="73.0" text="Ingresar">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="tfd_nombreUsuario" layoutX="42.0" layoutY="166.0" maxWidth="231.0" minWidth="231.0" prefHeight="31.0" prefWidth="231.0" promptText="Nombre de Usuario" />
-            <JFXPasswordField fx:id="pwf_contraseña" layoutX="42.0" layoutY="220.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Contraseña" />
+            <JFXTextField fx:id="tfd_nombreUsuario" focusColor="#8f1a1a" labelFloat="true" layoutX="42.0" layoutY="166.0" maxWidth="231.0" minWidth="231.0" onMouseClicked="#tfd_nombreUsuario" prefHeight="31.0" prefWidth="231.0" promptText="Nombre de Usuario" />
+            <JFXPasswordField fx:id="pwf_contraseña" focusColor="#8f1a1a" labelFloat="true" layoutX="42.0" layoutY="220.0" maxWidth="231.0" minWidth="225.0" onMouseClicked="#pwf_contraseña" prefHeight="31.0" prefWidth="231.0" promptText="Contraseña" />
+            <Label fx:id="lbl_errorDatos" layoutX="39.0" layoutY="261.0" prefHeight="17.0" prefWidth="231.0" text="-" textFill="#d38d8d" visible="false" />
          </children>
          <effect>
             <InnerShadow />
          </effect>
       </AnchorPane>
-      <ImageView fitHeight="293.0" fitWidth="330.0" layoutX="11.0" layoutY="77.0" opacity="0.46" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fitHeight="293.0" fitWidth="330.0" layoutX="33.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../image/fondoLogins.jpeg" />
+            <Image url="@../image/gris2.jpg" />
          </image>
          <effect>
             <InnerShadow />
          </effect>
       </ImageView>
-      <JFXButton fx:id="btn_registrate" layoutX="119.0" layoutY="181.0" onAction="#btn_registrarPartcipante" text="¡Registrate!" textFill="#fffdfd">
+      <Label layoutX="117.0" layoutY="187.0" text="¡Hola de nuevo!" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
-      </JFXButton>
+      </Label>
+      <ImageView fx:id="btn_elegirLogin" fitHeight="35.0" fitWidth="39.0" layoutX="17.0" layoutY="354.0" onMouseClicked="#ir_elegirLogin" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/back.png" />
+         </image>
+         <effect>
+            <Lighting diffuseConstant="1.51">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </ImageView>
    </children>
    <effect>
       <Lighting diffuseConstant="1.51">

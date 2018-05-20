@@ -1,5 +1,6 @@
 package cr.ac.ucr.if3001.proyecto1.form;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import cr.ac.ucr.if3001.proyecto1.util.Utilidades;
 import java.io.IOException;
@@ -11,14 +12,17 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TabPane;
+import javafx.stage.Stage;
 
 public class InterfazPrincipalAdministradorController implements Initializable {
 
@@ -36,6 +40,8 @@ public class InterfazPrincipalAdministradorController implements Initializable {
     private ListView<String> lsv_administrador;
     @FXML
     private AnchorPane anp_Root;
+    @FXML
+    private JFXButton btn_cerrarSesion;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -49,13 +55,16 @@ public class InterfazPrincipalAdministradorController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         loadListViewParticipantes();
         selectmenuParticipantes();
         loadListViewMateriales();
         selectmenuMateriales();
         loadListViewSubastas();
         selectmenuSubastas();
+        loadListViewSeguridad();
+        selectmenuSeguridad();
+
     }//fin initialize
 
     //Agregar contenido a la lista de opciones
@@ -76,7 +85,7 @@ public class InterfazPrincipalAdministradorController implements Initializable {
                 int i = lsv_participantes.getSelectionModel().getSelectedIndex();
                 if (i == 0) {
                     try {
-                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloVerParticipante.fxml"));
+                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloVerParticipantes.fxml"));
                         Tab td = new Tab("Ver Participantes", node);
                         tab_ventanas.getTabs().add(td);
                     } catch (IOException ioe) {
@@ -194,6 +203,40 @@ public class InterfazPrincipalAdministradorController implements Initializable {
                 }
             }
         });
+    }
+    
+     private void loadListViewSeguridad() {
+        ObservableList<String> ols = FXCollections.observableArrayList();
+        ols.add("Registrar Administrador");
+        lsv_seguridad.setItems(ols);
+    }
+
+    //Añadir la ventana que se elije
+    private void selectmenuSeguridad() {
+        lsv_seguridad.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                int i = lsv_seguridad.getSelectionModel().getSelectedIndex();
+                if (i == 0) {
+                    try {
+                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazModuloSeguridadAdministrador.fxml"));
+                        Tab td = new Tab("Registrar Administrador", node);
+                        tab_ventanas.getTabs().add(td);
+                    } catch (IOException ioe) {
+                        Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
+                    }
+                }                
+            }
+        });
+    }
+
+    @FXML
+    private void ir_elegirlogin(ActionEvent event) throws IOException {
+        AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazElegirLogin.fxml"));
+        Scene scene = new Scene(anchor);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();        
     }
 
 }//fin class

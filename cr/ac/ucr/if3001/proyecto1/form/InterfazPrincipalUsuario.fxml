@@ -26,11 +26,11 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="50.0" SplitPane.resizableWithParent="false">
                <children>
-                  <Accordion layoutX="5.0" prefHeight="532.0" prefWidth="50.0" style="-fx-background-color: #004C71;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Accordion layoutX="5.0" prefHeight="532.0" prefWidth="50.0" style="-fx-background-color: #810000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <panes>
                       <TitledPane text="Participantes">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #004C71;">
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #810000;">
                                  <children>
                                     <JFXListView layoutX="-7.0" layoutY="62.0" prefHeight="523.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children></AnchorPane>
@@ -48,7 +48,7 @@
                       </TitledPane>
                       <TitledPane style="-fx-background-color: #004C71;" text="Subastas">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #004C71;">
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #810000;">
                                  <effect>
                                     <Lighting diffuseConstant="2.0">
                                        <bumpInput>
@@ -66,7 +66,7 @@
                       </TitledPane>
                       <TitledPane text="Material">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #004C71;">
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #810000;">
                                  <children>
                                     <JFXListView fx:id="listViewMaterial" layoutX="-19.0" prefHeight="419.0" prefWidth="210.0" style="-fx-background-color: #fffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
@@ -85,7 +85,7 @@
                       </TitledPane>
                         <TitledPane text="Seguridad">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #004C71;">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #810000;">
                                  <effect>
                                     <Lighting diffuseConstant="2.0">
                                        <bumpInput>

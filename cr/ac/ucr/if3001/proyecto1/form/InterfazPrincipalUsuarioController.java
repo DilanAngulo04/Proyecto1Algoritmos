@@ -30,7 +30,16 @@ public class InterfazPrincipalUsuarioController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        anp_root.setOpacity(0);
+        
+        Node node;
+        try {
+            node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazBienvenida.fxml"));
+            Tab td = new Tab("¡Hola!", node);
+            tab_ventanas.getTabs().add(td);
+        } catch (IOException ex) {
+            Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        anp_root.setOpacity(10);
         Utilidades.transition(anp_root);
         loadListView();
         selectmenu();

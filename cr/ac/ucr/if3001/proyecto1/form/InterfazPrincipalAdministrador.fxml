@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anp_Root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="626.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazPrincipalAdministradorController">
+<AnchorPane fx:id="anp_Root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #810000;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazPrincipalAdministradorController">
    <effect>
       <Lighting diffuseConstant="2.0">
          <bumpInput>
@@ -23,22 +23,19 @@
       </Lighting>
    </effect>
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" layoutX="67.0" layoutY="115.0" prefHeight="534.0" prefWidth="728.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.29797979797979796" layoutX="67.0" layoutY="28.0" prefHeight="598.0" prefWidth="805.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="28.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="50.0" style="-fx-background-color: #004C71;" SplitPane.resizableWithParent="false">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="613.0" prefWidth="236.0" style="-fx-background-color: #810000;" SplitPane.resizableWithParent="false">
                <children>
-                  <Accordion layoutX="5.0" prefHeight="532.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Accordion layoutX="5.0" layoutY="-2.0" prefHeight="591.0" prefWidth="236.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-2.0">
                     <panes>
-                      <TitledPane text="Participantes">
+                      <TitledPane prefHeight="513.0" prefWidth="236.0" text="Participantes">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #004C71;">
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #810000;">
                                  <children>
                                     <JFXListView fx:id="lsv_participantes" layoutX="-7.0" layoutY="49.0" prefHeight="498.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children></AnchorPane>
                         </content>
-                           <tooltip>
-                              <Tooltip text="Participantes" />
-                           </tooltip>
                            <effect>
                               <Lighting diffuseConstant="2.0">
                                  <bumpInput>
@@ -52,7 +49,7 @@
                       </TitledPane>
                       <TitledPane text="Subastas">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #004C71;">
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #810000;">
                                  <effect>
                                     <Lighting diffuseConstant="2.0">
                                        <bumpInput>
@@ -67,13 +64,10 @@
                                     <JFXListView fx:id="lsw_subastas" layoutX="-7.0" layoutY="24.0" prefHeight="498.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children></AnchorPane>
                         </content>
-                           <tooltip>
-                              <Tooltip text="Subastas" />
-                           </tooltip>
                       </TitledPane>
                       <TitledPane text="Material">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #004C71;">
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #810000;">
                                  <children>
                                     <JFXListView fx:id="listViewMaterial" layoutX="-19.0" prefHeight="419.0" prefWidth="210.0" style="-fx-background-color: #fffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
@@ -89,13 +83,10 @@
                                  </effect>
                               </AnchorPane>
                         </content>
-                           <tooltip>
-                              <Tooltip text="Material" />
-                           </tooltip>
                       </TitledPane>
                         <TitledPane text="Seguridad">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #004C71;">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #810000;">
                                  <effect>
                                     <Lighting diffuseConstant="2.0">
                                        <bumpInput>
@@ -110,13 +101,10 @@
                                     <JFXListView fx:id="lsv_seguridad" layoutX="-7.0" layoutY="37.0" prefHeight="498.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children></AnchorPane>
                           </content>
-                           <tooltip>
-                              <Tooltip text="Seguridad" textOverrun="CLIP" />
-                           </tooltip>
                         </TitledPane>
                         <TitledPane text="Administrador">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #004C71;">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #810000;">
                                  <children>
                                     <JFXListView fx:id="lsv_administrador" layoutX="-7.0" layoutY="34.0" prefHeight="498.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children></AnchorPane>
@@ -128,7 +116,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TabPane fx:id="tab_ventanas" layoutY="14.0" prefHeight="532.0" prefWidth="506.0" style="-fx-background-color: #fffff;" tabClosingPolicy="ALL_TABS" AnchorPane.bottomAnchor="-14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                  <TabPane fx:id="tab_ventanas" layoutY="-34.0" prefHeight="626.0" prefWidth="561.0" style="-fx-background-color: #fffff;" tabClosingPolicy="ALL_TABS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <effect>
                         <Lighting diffuseConstant="2.0">
                            <bumpInput>
@@ -144,5 +132,20 @@
             </AnchorPane>
         </items>
       </SplitPane>
+      <AnchorPane layoutX="1.0" layoutY="2.0" prefHeight="25.0" prefWidth="798.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <JFXButton fx:id="btn_cerrarSesion" buttonType="RAISED" layoutX="711.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#ir_elegirlogin" ripplerFill="WHITE" text="Cerrar Sesión" textFill="WHITE" AnchorPane.rightAnchor="0.0" />
+         </children>
+         <effect>
+            <Lighting diffuseConstant="1.51">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </AnchorPane>
    </children>
 </AnchorPane>

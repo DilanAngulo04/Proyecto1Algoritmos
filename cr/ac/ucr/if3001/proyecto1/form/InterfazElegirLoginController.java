@@ -31,6 +31,7 @@ public class InterfazElegirLoginController implements Initializable {
         Scene scene = new Scene(anchor);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }//fin m'etodo
 
@@ -41,6 +42,7 @@ public class InterfazElegirLoginController implements Initializable {
         Scene scene = new Scene(anchor);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }//fin m'etodo
 }//fin class

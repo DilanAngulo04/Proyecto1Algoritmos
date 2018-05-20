@@ -18,9 +18,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 
 public class InterfazLoginAdministradorController implements Initializable {
 
@@ -32,13 +34,15 @@ public class InterfazLoginAdministradorController implements Initializable {
     @FXML
     private JFXButton btn_ingresar;
     @FXML
-    private JFXButton btn_registrate;
-    @FXML
     private AnchorPane anp_root;
     @FXML
     private JFXTextField tfd_nombreUsuario;
     @FXML
     private JFXPasswordField pwf_contraseña;
+    @FXML
+    private Label lbl_errorDatos;
+    @FXML
+    private ImageView btn_elegirLogin;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -47,11 +51,11 @@ public class InterfazLoginAdministradorController implements Initializable {
     }//fin initialize
 
     @FXML
-    private void btn_ingresarInfo(ActionEvent event) throws IOException, ListaException, ClassNotFoundException {        
-        
+    private void btn_ingresarInfo(ActionEvent event) throws IOException, ListaException, ClassNotFoundException {
+
         nombreUsuario = tfd_nombreUsuario.getText().trim();
         contraseña = pwf_contraseña.getText().trim();
-        
+
         if (nombreUsuario.length() != 0 || contraseña.length() != 0) {
             if (verificar()) {
                 AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazPrincipalAdministrador.fxml"));
@@ -62,21 +66,14 @@ public class InterfazLoginAdministradorController implements Initializable {
                 stage.setMaximized(true);
                 stage.show();
             } else {
-                JOptionPane.showMessageDialog(null, "Administrador no registrado");
+                lbl_errorDatos.setVisible(true);
+                lbl_errorDatos.setText("El usuario ingresado aún no está registrado");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
-        }        
-    }//fin action  
-    
-    @FXML
-    private void btn_registrarPartcipante(ActionEvent event) throws IOException {
-        AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazRegistroAdministrador.fxml"));
-        Scene scene = new Scene(anchor);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }//fin action
+            lbl_errorDatos.setVisible(true);
+            lbl_errorDatos.setText("Hay campos sin llenar");
+        }
+    }//fin action     
 
     public boolean verificar() throws ListaException, IOException, ClassNotFoundException {
         Object participantes = new Administrador();
@@ -86,13 +83,32 @@ public class InterfazLoginAdministradorController implements Initializable {
         if (!listE.isEmpty()) {
             for (int i = 1; i <= listE.getSize(); i++) {
                 participantes = listE.getNodo(i).elemento;
-                Participantes p = (Participantes) participantes;
-                if (p.getNombreUsuario().equalsIgnoreCase(nombreUsuario) && p.getContraseña().equals(contraseña)) {
+                Administrador a = (Administrador) participantes;
+                if (a.getNombreUsuario().equalsIgnoreCase(nombreUsuario) && a.getContraseña().equals(contraseña)) {
                     return true;
                 }
             }
         }
         return false;
     }//fin verificar   
-    
+
+    @FXML
+    private void tfd_nombreUsuario(MouseEvent event) {
+        lbl_errorDatos.setVisible(false);
+    }
+
+    @FXML
+    private void pwf_contraseña(MouseEvent event) {
+        lbl_errorDatos.setVisible(false);
+    }
+
+    @FXML
+    private void ir_elegirLogin(MouseEvent event) throws IOException {
+        AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazElegirLogin.fxml"));
+        Scene scene = new Scene(anchor);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }//fin class

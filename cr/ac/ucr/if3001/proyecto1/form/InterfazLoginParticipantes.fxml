@@ -13,17 +13,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anp_root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="695.0" style="-fx-background-color: #004C71;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazLoginParticipantesController">
+<AnchorPane id="AnchorPane" fx:id="anp_root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="695.0" style="-fx-background-color: #8F1A1A;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazLoginParticipantesController">
    <children>
-      <ImageView fitHeight="247.0" fitWidth="355.0" layoutX="12.0" layoutY="96.0" opacity="0.46" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fitHeight="306.0" fitWidth="337.0" layoutX="31.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
-            <Image url="@../image/fondoLogins.jpeg" />
+            <Image url="@../image/gris2.jpg" />
          </image>
          <effect>
             <InnerShadow />
          </effect>
       </ImageView>
-      <JFXButton fx:id="btn_registrate" layoutX="119.0" layoutY="199.0" onAction="#btn_registrarUsuario" text="¡Registrate!" textFill="#fffdfd">
+      <JFXButton fx:id="btn_registrate" layoutX="127.0" layoutY="199.0" onAction="#btn_registrarUsuario" text="¡Registrate!" textFill="#fffdfd">
          <font>
             <Font size="18.0" />
          </font>
@@ -36,17 +36,19 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="tfd_nombreC" focusColor="#004c71" labelFloat="true" layoutX="35.0" layoutY="41.0" maxWidth="247.0" minWidth="247.0" onMouseClicked="#tfd_nombreC" prefHeight="31.0" prefWidth="247.0" promptText="Nombre Completo" />
-            <JFXTextField fx:id="tfd_correo" focusColor="#004c71" labelFloat="true" layoutX="35.0" layoutY="94.0" maxWidth="247.0" minWidth="247.0" onMouseClicked="#tfd_correo" prefHeight="31.0" prefWidth="247.0" promptText="Correo" />
-            <JFXTextField fx:id="tfd_nombreUs" focusColor="#004c71" labelFloat="true" layoutX="35.0" layoutY="152.0" maxWidth="247.0" minWidth="247.0" onMouseClicked="#tfd_nombreUsu" prefHeight="31.0" prefWidth="247.0" promptText="Nombre Usuario" />
-            <JFXPasswordField fx:id="pwf_contrasena" focusColor="#004c71" labelFloat="true" layoutX="35.0" layoutY="262.0" maxWidth="247.0" minWidth="247.0" onMouseClicked="#pwf_contraseña" prefHeight="31.0" prefWidth="247.0" promptText="Contraseña" />
-            <JFXPasswordField fx:id="pwf_confContraseña" focusColor="#004c71" labelFloat="true" layoutX="35.0" layoutY="314.0" maxWidth="247.0" minWidth="247.0" onMouseClicked="#pwf_confContraseña" prefHeight="31.0" prefWidth="247.0" promptText="Confirmar Contraseña" />
-            <JFXTextField fx:id="tfd_numeroTelefono" focusColor="#004c71" labelFloat="true" layoutX="35.0" layoutY="208.0" maxWidth="247.0" minWidth="247.0" onMouseClicked="#tfd_numeroT" prefHeight="31.0" prefWidth="247.0" promptText="Número Telefónico" />
-            <JFXButton fx:id="btn_back" layoutX="16.0" layoutY="358.0" onAction="#hadleSalir" text="Salir" />
+            <JFXTextField fx:id="tfd_nombreC" focusColor="#8f1a1a" labelFloat="true" layoutX="35.0" layoutY="41.0" maxWidth="247.0" minWidth="247.0" onMouseClicked="#tfd_nombreC" prefHeight="31.0" prefWidth="247.0" promptText="Nombre Completo" />
+            <JFXTextField fx:id="tfd_correo" focusColor="#8f1a1a" labelFloat="true" layoutX="35.0" layoutY="94.0" maxWidth="247.0" minWidth="247.0" onMouseClicked="#tfd_correo" prefHeight="31.0" prefWidth="247.0" promptText="Correo" />
+            <JFXTextField fx:id="tfd_nombreUs" focusColor="#8f1a1a" labelFloat="true" layoutX="35.0" layoutY="152.0" maxWidth="247.0" minWidth="247.0" onMouseClicked="#tfd_nombreUsu" prefHeight="31.0" prefWidth="247.0" promptText="Nombre Usuario" />
+            <JFXPasswordField fx:id="pwf_contrasena" focusColor="#8f1a1a" labelFloat="true" layoutX="35.0" layoutY="262.0" maxWidth="247.0" minWidth="247.0" onMouseClicked="#pwf_contraseña" prefHeight="31.0" prefWidth="247.0" promptText="Contraseña" />
+            <JFXPasswordField fx:id="pwf_confContraseña" focusColor="#8f1a1a" labelFloat="true" layoutX="35.0" layoutY="314.0" maxWidth="247.0" minWidth="247.0" onMouseClicked="#pwf_confContraseña" prefHeight="31.0" prefWidth="247.0" promptText="Confirmar Contraseña" />
+            <JFXTextField fx:id="tfd_numeroTelefono" focusColor="#8f1a1a" labelFloat="true" layoutX="35.0" layoutY="208.0" maxWidth="247.0" minWidth="247.0" onMouseClicked="#tfd_numeroT" prefHeight="31.0" prefWidth="247.0" promptText="Número Telefónico" />
+            <JFXButton fx:id="btn_back" layoutX="16.0" layoutY="358.0" onAction="#hadleSalir" text="Atrás" />
             <Label fx:id="lbl_errorContraseña" layoutX="39.0" layoutY="339.0" prefHeight="17.0" prefWidth="231.0" text="Label" textFill="#d79f9f" visible="false" />
             <Label fx:id="lbl_errorNUsuario" layoutX="41.0" layoutY="175.0" prefHeight="17.0" prefWidth="231.0" text="Label" textFill="#d79f9f" visible="false" />
             <Label fx:id="lbl_errorNumero" layoutX="41.0" layoutY="232.0" prefHeight="17.0" prefWidth="231.0" text="Label" textFill="#d79f9f" visible="false" />
-            <AnchorPane fx:id="anp_ingresar" layoutX="34.0" layoutY="-111.0" prefHeight="396.0" prefWidth="721.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label fx:id="lbl_errorCorreo" layoutX="39.0" layoutY="119.0" prefHeight="17.0" prefWidth="238.0" text="Label" textFill="#d79f9f" visible="false" />
+            <Label disable="true" layoutX="218.0" layoutY="232.0" prefHeight="17.0" prefWidth="64.0" text="11112222" />
+            <AnchorPane fx:id="anp_ingresar" layoutX="30.0" layoutY="-88.0" prefHeight="396.0" prefWidth="645.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <JFXButton fx:id="btn_registrar" layoutX="129.0" layoutY="266.0" onAction="#btn_ingresarInfo" text="Ingresar" />
                   <Label layoutX="116.0" layoutY="73.0" text="Ingresar">
@@ -54,8 +56,8 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="tfd_nombreUsuario" focusColor="#004c71" labelFloat="true" layoutX="42.0" layoutY="166.0" maxWidth="231.0" minWidth="231.0" onMouseClicked="#tfd_nombreUsuario" prefHeight="31.0" prefWidth="231.0" promptText="Nombre de Usuario" />
-                  <JFXPasswordField fx:id="pwf_contraseña" focusColor="#004c71" labelFloat="true" layoutX="42.0" layoutY="220.0" maxWidth="231.0" minWidth="225.0" onMouseClicked="#pwf_contraseña" prefHeight="31.0" prefWidth="231.0" promptText="Contraseña" />
+                  <JFXTextField fx:id="tfd_nombreUsuario" focusColor="#8f1a1a" labelFloat="true" layoutX="42.0" layoutY="166.0" maxWidth="231.0" minWidth="231.0" onMouseClicked="#tfd_nombreUsuario" prefHeight="31.0" prefWidth="231.0" promptText="Nombre de Usuario" />
+                  <JFXPasswordField fx:id="pwf_contraseña" focusColor="#8f1a1a" labelFloat="true" layoutX="42.0" layoutY="220.0" maxWidth="231.0" minWidth="225.0" onMouseClicked="#pwf_contraseña" prefHeight="31.0" prefWidth="231.0" promptText="Contraseña" />
                   <Label fx:id="lbl_error" layoutX="42.0" layoutY="291.0" prefHeight="39.0" prefWidth="231.0" text="Label" textAlignment="CENTER" textFill="RED" visible="false" />
                </children>
                <effect>
@@ -67,6 +69,21 @@
             <InnerShadow />
          </effect>
       </AnchorPane>
+      <ImageView fx:id="btn_salir" fitHeight="39.0" fitWidth="44.0" layoutX="14.0" layoutY="383.0" onMouseClicked="#ir_elegirLogin" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/back.png" />
+         </image>
+         <effect>
+            <Lighting diffuseConstant="1.51">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </ImageView>
    </children>
    <effect>
       <Lighting diffuseConstant="1.51">
