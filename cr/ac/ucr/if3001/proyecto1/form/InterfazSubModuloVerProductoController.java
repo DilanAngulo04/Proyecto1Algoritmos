@@ -9,6 +9,7 @@ import cr.ac.ucr.if3001.proyecto1.domain.ControlArchivos;
 import cr.ac.ucr.if3001.proyecto1.domain.ListaCircularEnlazadaDoble;
 import cr.ac.ucr.if3001.proyecto1.exception.ListaException;
 import cr.ac.ucr.if3001.proyecto1.object.Material;
+import cr.ac.ucr.if3001.proyecto1.util.Utilidades;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Transparency;
@@ -59,12 +60,16 @@ public class InterfazSubModuloVerProductoController implements Initializable {
     private Label lb_descripcion;
     @FXML
     private AnchorPane anp_infoProducto;
+    @FXML
+    private AnchorPane anp_root;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        anp_root.setOpacity(0);
+        Utilidades.transition(anp_root);
         try {
             ObservableList<String> productos= FXCollections.observableArrayList(getNombres());
             lv_productos.setItems(productos);

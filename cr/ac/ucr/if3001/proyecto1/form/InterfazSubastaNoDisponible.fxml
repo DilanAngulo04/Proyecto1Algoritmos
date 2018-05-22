@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="645.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazSubastaNoDisponibleController">
+   <children>
+      <ImageView fitHeight="226.0" fitWidth="175.0" layoutX="388.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/toonClock.png" />
+         </image>
+         <effect>
+            <DropShadow height="29.9" radius="15.932499999999997" spread="0.1" width="35.83" />
+         </effect>
+      </ImageView>
+      <Label layoutX="203.0" layoutY="471.0" text="La subasta aún no inicia, espere por favor">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_tiempoFalta" layoutX="367.0" layoutY="541.0" prefHeight="40.0" prefWidth="218.0">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

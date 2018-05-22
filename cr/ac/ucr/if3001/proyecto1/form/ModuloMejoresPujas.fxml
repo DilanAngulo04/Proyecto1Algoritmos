@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.ModuloMejoresPujasController">
+   <children>
+      <AnchorPane fx:id="anchPane_3" layoutX="20.0" layoutY="423.0" prefHeight="146.0" prefWidth="506.0" style="-fx-border-color: #090909;">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" height="18.04" radius="7.775" spread="0.03" width="15.06" />
+         </effect>
+         <children>
+            <TextArea fx:id="txaTop_3" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="120.0" prefWidth="436.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchPane_1" layoutX="20.0" layoutY="116.0" prefHeight="146.0" prefWidth="506.0" style="-fx-border-color: #090909;">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" height="18.04" radius="7.775" spread="0.03" width="15.06" />
+         </effect>
+         <children>
+            <TextArea fx:id="txaTop_1" editable="false" layoutX="14.0" layoutY="15.0" prefHeight="120.0" prefWidth="436.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchPane_2" layoutX="20.0" layoutY="270.0" prefHeight="146.0" prefWidth="506.0" style="-fx-border-color: #090909;">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" height="18.04" radius="7.775" spread="0.03" width="15.06" />
+         </effect>
+         <children>
+            <TextArea fx:id="txaTop_2" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="120.0" prefWidth="436.0" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="35.0" layoutY="30.0" text="Mejores 3">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <Separator layoutX="20.0" layoutY="80.0" prefHeight="20.0" prefWidth="657.0" />
+      <Button layoutX="577.0" layoutY="116.0" mnemonicParsing="false" onAction="#actualizaPuja" text="Actualizar" />
+   </children>
+</AnchorPane>

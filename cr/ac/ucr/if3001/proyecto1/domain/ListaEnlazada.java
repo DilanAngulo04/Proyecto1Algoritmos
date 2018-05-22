@@ -1,6 +1,7 @@
 package cr.ac.ucr.if3001.proyecto1.domain;
 
 import cr.ac.ucr.if3001.proyecto1.exception.ListaException;
+import cr.ac.ucr.if3001.proyecto1.util.Utilidades;
 
 public class ListaEnlazada implements Lista {
 
@@ -83,7 +84,42 @@ public class ListaEnlazada implements Lista {
 
     @Override
     public void insertarOrdenado(Object elemento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Nodo nuevoNodo= new Nodo(elemento);
+        //Caso1 la lista esta vacia
+        if (isEmpty()) {
+            inicio= nuevoNodo;
+            
+        }else{
+            //Caso2 inicio.sgte
+            //y el elemento a insertar
+            //o inicio.sgte no sea nulo
+            //y el elemento a insertar es menor
+            if(Utilidades.mayorQ(inicio.elemento, elemento)){
+                nuevoNodo.sgte = inicio;
+                inicio = nuevoNodo;
+            }
+            //para todos los otros casos
+            else{
+                Nodo auxAnt = inicio;
+                Nodo aux = inicio.sgte;
+                boolean insertado = false;
+                while(aux!=null&&!insertado){
+                    if(Utilidades.mayorQ(aux.elemento, elemento)){
+                        auxAnt.sgte = nuevoNodo;
+                        nuevoNodo.sgte = aux;
+                        insertado = true;
+                    }
+                    auxAnt = aux;
+                    aux = aux.sgte;
+                    
+                }
+                //se enlaza al final
+                if(!insertado){
+                    auxAnt.sgte = nuevoNodo;
+                    
+                }
+            }
+        }
     }
 
     @Override

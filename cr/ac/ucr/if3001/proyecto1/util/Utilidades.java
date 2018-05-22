@@ -85,7 +85,7 @@ public class Utilidades {
         return o;
     }//fin m'etodo
 
-        public boolean mayorQ(Object a, Object b){
+        public static boolean mayorQ(Object a, Object b){
         if(a instanceof Integer&&b instanceof Integer){
             int x = (Integer) a;
             int y = (Integer) b;

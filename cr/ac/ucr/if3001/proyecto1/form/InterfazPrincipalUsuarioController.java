@@ -58,6 +58,9 @@ public class InterfazPrincipalUsuarioController extends Thread implements Initia
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        anp_root.setOpacity(0);
+        Utilidades.transition(anp_root);
 
         lbl_fecha.setText(fech);
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
@@ -88,6 +91,8 @@ public class InterfazPrincipalUsuarioController extends Thread implements Initia
         selectmenuMateriales();
         loadListViewParticipantes();
         selectmenuParticipantes();
+        loadListViewSubastas();
+        selectmenuSubastas();
     }//fin initialize
 
     //Agregar contenido a la lista de opciones de participantes
@@ -119,6 +124,35 @@ public class InterfazPrincipalUsuarioController extends Thread implements Initia
             }
         });
     }//fin m'etodo        
+    
+    private void loadListViewSubastas(){
+    ObservableList<String> ols = FXCollections.observableArrayList();
+    ols.add("Subastas");
+    lvw_subastas.setItems(ols);
+    }//fin de metodo
+    
+    //Añadir la ventana que se elije
+    private void selectmenuSubastas() {
+        lvw_subastas.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                int i = lvw_subastas.getSelectionModel().getSelectedIndex();
+                //se agrega la ventana según el numero por defecto de las opciones de la lista
+                if (i == 0) { //hacer condicion aqui para que aparezca pujas o no
+                    try {
+
+                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloSubastasParticipante.fxml"));
+                        Tab td = new Tab("Hacer Pujas", node);
+                        tab_ventanas.getSelectionModel().select(td);
+                        tab_ventanas.getTabs().add(td);
+
+                    } catch (IOException ioe) {
+                        Logger.getLogger(InterfazPrincipalUsuarioController.class.getName()).log(Level.SEVERE, null, ioe);
+                    }
+                }
+            }
+        });
+    }//fin m'etodo
 
     //Agregar contenido a la lista de opciones de materiales
     private void loadListViewMateriales() {
