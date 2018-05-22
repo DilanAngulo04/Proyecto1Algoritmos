@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TitledPane?>
@@ -10,7 +12,7 @@
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anp_root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="626.0" prefWidth="805.0" style="-fx-background-color: #004C71;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazPrincipalUsuarioController">
+<AnchorPane fx:id="anp_root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="626.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazPrincipalUsuarioController">
    <effect>
       <Lighting diffuseConstant="1.51">
          <bumpInput>
@@ -22,7 +24,7 @@
       </Lighting>
    </effect>
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" layoutX="67.0" layoutY="115.0" prefHeight="534.0" prefWidth="728.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.29797979797979796" layoutX="67.0" layoutY="29.0" prefHeight="597.0" prefWidth="805.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="50.0" SplitPane.resizableWithParent="false">
                <children>
@@ -32,7 +34,7 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #810000;">
                                  <children>
-                                    <JFXListView layoutX="-7.0" layoutY="62.0" prefHeight="523.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <JFXListView fx:id="lvw_participantes" layoutX="-7.0" layoutY="62.0" prefHeight="523.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children></AnchorPane>
                         </content>
                            <effect>
@@ -60,7 +62,7 @@
                                     </Lighting>
                                  </effect>
                                  <children>
-                                    <JFXListView layoutX="-7.0" layoutY="49.0" prefHeight="523.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <JFXListView fx:id="lvw_subastas" layoutX="-7.0" layoutY="49.0" prefHeight="523.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children></AnchorPane>
                         </content>
                       </TitledPane>
@@ -123,5 +125,22 @@
             </AnchorPane>
         </items>
       </SplitPane>
+      <AnchorPane layoutX="-1.0" layoutY="2.0" prefHeight="25.0" prefWidth="805.0" style="-fx-background-color: #810000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <JFXButton fx:id="btn_cerrarSesion" buttonType="RAISED" layoutX="711.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#ir_elegirlogin" ripplerFill="WHITE" text="Cerrar Sesión" textFill="WHITE" AnchorPane.rightAnchor="0.0" />
+            <Label fx:id="lbl_hora" layoutX="15.0" layoutY="4.0" text="Label" textFill="WHITE" />
+            <Label fx:id="lbl_fecha" layoutX="81.0" layoutY="4.0" prefHeight="17.0" prefWidth="187.0" text="Label" textFill="WHITE" />
+         </children>
+         <effect>
+            <Lighting diffuseConstant="1.51">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </AnchorPane>
    </children>
 </AnchorPane>

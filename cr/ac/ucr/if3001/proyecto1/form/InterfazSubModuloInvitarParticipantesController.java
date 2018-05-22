@@ -14,12 +14,20 @@ import cr.ac.ucr.if3001.proyecto1.domain.ListaEnlazada;
 import cr.ac.ucr.if3001.proyecto1.exception.ListaException;
 import cr.ac.ucr.if3001.proyecto1.object.Participantes;
 import cr.ac.ucr.if3001.proyecto1.object.RegistroInvitaciones;
+import cr.ac.ucr.if3001.proyecto1.util.Utilidades;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +42,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import javafx.util.converter.LocalDateStringConverter;
 import javax.mail.MessagingException;
@@ -49,6 +58,8 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
     private final ObservableList<Añadidos> part = FXCollections.observableArrayList();
     private final ListaEnlazada listaProductosS = new ListaEnlazada();
     private final ListaEnlazada listaParticipantesS = new ListaEnlazada();
+    String ruta = "src\\cr\\ac\\ucr\\if3001\\proyecto1\\file\\";
+    String nombre = "Participantes.dat";
     String producto, participante, material, usuario;
     LocalDate diaSubasta;
     LocalTime horaInicio, horaFin;
@@ -80,12 +91,17 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
     private Label lbl_errorInicio;
     @FXML
     private Label lbl_errorfin;
+    @FXML
+    private AnchorPane anp_root;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        anp_root.setOpacity(0);
+        Utilidades.transition(anp_root);
+
         if (ComprobarConexion.comprobarConexion()) {
-            Notifications.create().title("!:)!").text("Se establecio la conección a internet").showInformation();
+            Notifications.create().title(":)").text("Se establecio la conección a internet").showInformation();
         } else {
             Notifications.create().title("¡Ups!").text("No hay conección a internet").showError();
         }
@@ -246,7 +262,7 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
         lsv_listaParticipantes.setItems(ols);
     }//Fin m'etodo 
 
-    //***********************************************Invisivilizar mansajes de error************************************************
+    //***********************************************Invisivilizar mensajes de error************************************************
     @FXML
     private void ingresarDia(MouseEvent event) {
         invisible();
@@ -262,7 +278,7 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
         invisible();
     }//fin action
     //****************************************************************************************************************************
-    
+
     //Se envian los correos si cumple con las restricciones
     @FXML
     private void enviarCorreos(ActionEvent event) throws ListaException, IOException, ClassNotFoundException, MessagingException {
@@ -289,6 +305,7 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
                                 //Esto para que siga funcionado la app mientras se env'ian los correos
                                 //(no se pegue)
                                 new EnviarCorre().start();
+                                cambiarInvitacion();
                                 Notifications.create().title(":D").text("Enviando Correos").showInformation();
 
                             } else {
@@ -326,6 +343,7 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
         diaSubasta = dpk_diaSubasta.getValue();
         horaInicio = dpk_horaInicio.getTime();
         horaFin = dpk_horaFin.getTime();
+        List<RegistroInvitaciones> invitaciones = new ArrayList<RegistroInvitaciones>();
 
         //Se declaran los strings para el correo
         String productos = "";
@@ -343,13 +361,10 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
             RegistroInvitaciones rInvitaciones
                     = new RegistroInvitaciones("" + listaParticipantesS.getNodo(i).elemento,
                             productos, "" + diaSubasta, "" + horaInicio, "" + horaFin);
-            controlA.setNombre("RegistroInvitaciones.dat");
-            controlA.escribir(rInvitaciones);
+
+            invitaciones.add(rInvitaciones);
 
             Object part = new Participantes();
-            controlA.setNombre("Participantes.dat");
-            listE = controlA.cargarLista();
-            System.out.println(listE.getSize());
 
             //Se obtienen los valores necesarios
             for (int j = 1; j <= listE.getSize(); j++) {
@@ -367,12 +382,51 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
 
                     //Se env'ian los correos
                     EnviarCorreo.enviarConGMail(destinatario, asuntoCorreo, mensajeCorreo);
+                }//if
 
+            }//for
+
+        }//for
+        controlA.setNombre("RegistroInvitaciones.dat");
+        controlA.escribirNuevo(invitaciones);
+    }//fin m'etodo
+
+    //metodo para cambiar el atributo invitaci'on a true de los participantes invitados
+    public void cambiarInvitacion() throws IOException, ClassNotFoundException, ListaException {
+
+        File file = new File(ruta + nombre);
+        List<Participantes> array = new ArrayList<Participantes>();
+
+        //Validaci'on
+        if (file.exists()) {
+            ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream(ruta + nombre));
+            Object aux = objectInput.readObject();
+
+            array = (List<Participantes>) aux;
+
+            for (int i = 1; i <= listaParticipantesS.getSize(); i++) {
+
+                for (int j = 0; j < array.size(); j++) {
+                    if (array.get(j).getNombreUsuario().equalsIgnoreCase(""
+                            + listaParticipantesS.getNodo(i).elemento)) {
+
+                        Participantes usuarios = new Participantes(array.get(j).getNombre(),
+                                array.get(j).getCorreo(), array.get(j).getNombreUsuario(),
+                                array.get(j).getContraseña(), array.get(j).getNumeroTelefono(), true);
+                        array.remove(j);
+                        array.add(usuarios);
+                    }
+
+                    objectInput.close();
                 }
+
+                ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(ruta + nombre));
+                output.writeUnshared(array);
 
             }
 
-        }
+        }//for
+
     }//fin m'etodo
 
     //Clase con el metodo abstracto run para la ejecion independiente de enviar correos 

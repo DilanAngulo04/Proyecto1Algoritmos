@@ -96,6 +96,8 @@ public class InterfazLoginParticipantesController implements Initializable {
 
             if (verificar()) {
 
+                Utilidades util = new Utilidades();
+                util.setNombreUsuario(nombreUsuario);
                 AnchorPane anchor = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazPrincipalUsuario.fxml"));
                 Scene scene = new Scene(anchor);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -105,7 +107,7 @@ public class InterfazLoginParticipantesController implements Initializable {
 
             } else {
                 lbl_error.setVisible(true);
-                lbl_error.setText("¡Lo sentimos! No se encuentra registrado aún");
+                lbl_error.setText("¡Lo sentimos! No se encuentra registrado");
             }
 
         } else {
@@ -143,7 +145,7 @@ public class InterfazLoginParticipantesController implements Initializable {
                             if (contrasena.equals(confirmarContraseña)) {
 
                                 Participantes participantes = new Participantes(nombreCompleto, correo,
-                                        nombreU, contrasena, Integer.parseInt(numeroTelefono));
+                                        nombreU, contrasena, Integer.parseInt(numeroTelefono), false);
                                 controlA.setNombre("Participantes.dat");
                                 controlA.escribir(participantes);
                                 tfd_correo.clear();
@@ -247,12 +249,6 @@ public class InterfazLoginParticipantesController implements Initializable {
                 } else if (p.getNombreUsuario().equalsIgnoreCase(nombreU)) {
                     return true;
                 }
-//                if (p.getCorreo().equalsIgnoreCase(correo)) {
-//                    return true;
-//                }
-//                if (("" + p.getNumeroTelefono()).equals(numeroTelefono + "")) {
-//                    return true;
-//                }
             }
         }
         return false;

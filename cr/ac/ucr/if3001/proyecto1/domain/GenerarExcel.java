@@ -15,14 +15,14 @@ import jxl.write.WriteException;
 public class GenerarExcel {
 
     //M'etodo para crear un archivo .xls (Excel)
-    public void generar(String[][] matrizDatos, String ruta, String nombreHoja) throws WriteException {
+    public boolean generar(String[][] matrizDatos, String ruta, String nombreHoja) throws WriteException {
 
         try {
             /*Se utiliza la biblioteca -jxl.jar- para declarar los objetos 
             que daran la funci'on de crear un archivo Excel*/
             WorkbookSettings configuracion = new WorkbookSettings();
             configuracion.setEncoding("ISO-8859-1");
-            WritableWorkbook ww = Workbook.createWorkbook(new File(ruta), configuracion);
+            WritableWorkbook ww = Workbook.createWorkbook(new File(ruta+".xls"), configuracion);
             WritableSheet ws = ww.createSheet(nombreHoja, 0);
             WritableFont font = new WritableFont(WritableFont.COURIER, 16, WritableFont.NO_BOLD);
             WritableCellFormat cFormat = new WritableCellFormat(font);
@@ -37,10 +37,13 @@ public class GenerarExcel {
             ww.write();
             //Se cierra el archivo
             ww.close();
+            return  true;
 
         } catch (IOException | WriteException ex) {
             Logger.getLogger(GenerarExcel.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        return false;
     }//fin m'etodo
+    
 }//fin class

@@ -182,7 +182,7 @@ public class InterfazSubModuloModificarParticipanteController implements Initial
                             //Solo necesito la posicion dada por "i"
                             if (array.get(i).getNombreUsuario().equals(nombreBuscar)) {
                                 Participantes newParticipantes = new Participantes(newNombre, newCorreo, newNombreU,
-                                        array.get(i).getContraseña(), Integer.parseInt(newTelfono));
+                                        array.get(i).getContraseña(), Integer.parseInt(newTelfono), false);
                                 array.remove(i);
 
                                 //Se comprueba que se haya añadido de nuevo a la lista

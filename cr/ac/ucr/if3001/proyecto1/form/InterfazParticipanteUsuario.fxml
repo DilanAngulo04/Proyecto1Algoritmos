@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="anp_root" prefHeight="900.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazParticipanteUsuarioController">
+   <children>
+      <Label fx:id="lbl_mensaje" layoutX="353.0" layoutY="45.0" prefHeight="53.0" prefWidth="328.0" text="-" textAlignment="CENTER" textFill="#810000" AnchorPane.bottomAnchor="803.0" AnchorPane.leftAnchor="353.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="45.0">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="50.0" layoutY="116.0" prefHeight="500.0" prefWidth="901.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="116.0">
+         <children>
+            <Label layoutX="180.0" layoutY="36.0" prefHeight="52.0" prefWidth="541.0" text="¡Lo sentimos!, no hay subastas en este momento." AnchorPane.bottomAnchor="614.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="36.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="91.0" fitWidth="109.0" layoutX="89.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/error.png" />
+               </image>
+               <effect>
+                  <Lighting diffuseConstant="1.51">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="250.0" fitWidth="245.0" layoutX="58.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="169.0" layoutY="388.0" prefHeight="17.0" prefWidth="134.0" text="Leoran Auctions ©">
+               <font>
+                  <Font name="Rockwell Condensed" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="304.0" layoutY="226.0" prefHeight="27.0" prefWidth="541.0" text="Intenta en otro momento, la familia Leorans Auctions te estará ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="304.0" layoutY="253.0" prefHeight="27.0" prefWidth="541.0" text="esperando. :)">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <AnchorPane fx:id="anp_invitado" layoutX="-7.0" layoutY="-16.0" prefHeight="539.0" prefWidth="901.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <ImageView fitHeight="91.0" fitWidth="118.0" layoutX="70.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/invitado.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lbl_invitado" layoutX="205.0" layoutY="59.0" prefHeight="91.0" prefWidth="655.0" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="245.0" fitWidth="245.0" layoutX="43.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="154.0" layoutY="414.0" prefHeight="17.0" prefWidth="134.0" text="Leoran Auctions ©">
+                     <font>
+                        <Font name="Rockwell Condensed" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="313.0" layoutY="320.0" prefHeight="27.0" prefWidth="179.0" text="¡Que tengas suerte! :)">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+         <effect>
+            <Lighting diffuseConstant="1.51">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>

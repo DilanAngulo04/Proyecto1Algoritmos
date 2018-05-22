@@ -1,7 +1,6 @@
 package cr.ac.ucr.if3001.proyecto1.domain;
 
 import cr.ac.ucr.if3001.proyecto1.exception.ListaException;
-import cr.ac.ucr.if3001.proyecto1.util.Utilidades;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -27,6 +26,18 @@ public class ControlArchivos {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }    
+    
+    //permite escribir en un archivo
+    //reemplaza el contenido del archivo
+    public void escribirNuevo(Object objeto){
+        try{
+           ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ruta+nombre));
+           oos.writeUnshared(objeto);
+           oos.close();
+        }catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void escribir(Object objeto) throws IOException, ClassNotFoundException {
@@ -37,7 +48,7 @@ public class ControlArchivos {
         //Validaci'on
         if (file.exists()) {
             ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream(ruta + nombre));
-            Object aux = objectInput.readObject();
+            Object aux = objectInput.readUnshared();
 
             array = (List<Object>) aux;
             objectInput.close();
@@ -60,7 +71,7 @@ public class ControlArchivos {
         //Validaci'on
         if (file.exists()) {
             ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream(ruta + nombre));
-            Object aux = objectInput.readObject();
+            Object aux = objectInput.readUnshared();
 
             studentArray = (List<Object>) aux;
             objectInput.close();
@@ -80,36 +91,5 @@ public class ControlArchivos {
         return listaE;
         
     }//fin m'etodo   
-    
-    public void eliminar(Object objeto) throws IOException, ClassNotFoundException {
-
-        objeto = Utilidades.instanciaDe(objeto);        
-        File file = new File(ruta + nombre);
-        List<Object> array = new ArrayList<Object>();
-
-        //Validaci'on
-        if (file.exists()) {
-            ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream(ruta + nombre));
-            Object aux = objectInput.readObject();
-
-            array = (List<Object>) aux;            
-            System.out.println(array.size());
-            System.out.println(array.get(0));
-            
-//            for(int i = 0; i < array.size(); i++){
-                if(array.get(0).equals(objeto) ){
-                    System.out.println("Hola");
-//                    array.remove(i);
-                    
-//                }
-            }
-            
-            objectInput.close();
-        }
-        
-        ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(ruta + nombre));
-        output.writeUnshared(array);
-        
-    }//Fin del m'etodo
 
 }//fin class

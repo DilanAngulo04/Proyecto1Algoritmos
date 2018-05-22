@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="721.0" prefWidth="1004.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazSubModuloInvitarParticipantesController">
+<AnchorPane id="AnchorPane" fx:id="anp_root" prefHeight="721.0" prefWidth="1004.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazSubModuloInvitarParticipantesController">
    <children>
       <Label layoutX="37.0" layoutY="108.0" text="Fecha a efectuar">
          <font>

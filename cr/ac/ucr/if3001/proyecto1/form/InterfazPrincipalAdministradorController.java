@@ -5,9 +5,15 @@ import com.jfoenix.controls.JFXListView;
 import cr.ac.ucr.if3001.proyecto1.util.Utilidades;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -18,13 +24,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class InterfazPrincipalAdministradorController implements Initializable {
+
+    //Formato fecha
+    DateFormat dfDateFull = DateFormat.getDateInstance(DateFormat.FULL);
+    Date fecha = new Date();
+    String fech = "" + dfDateFull.format(fecha);
 
     @FXML
     private JFXListView<String> listViewMaterial;
@@ -42,11 +55,30 @@ public class InterfazPrincipalAdministradorController implements Initializable {
     private AnchorPane anp_Root;
     @FXML
     private JFXButton btn_cerrarSesion;
+    @FXML
+    private Label lbl_hora;
+    @FXML
+    private Label lbl_fecha;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         anp_Root.setOpacity(0);
         Utilidades.transition(anp_Root);
+
+        lbl_fecha.setText(fech);
+        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+            Calendar calendario = Calendar.getInstance();
+            String segundos = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND) : "0" + calendario.get(Calendar.SECOND);
+            String minutos = calendario.get(Calendar.MINUTE) > 9 ? "" + calendario.get(Calendar.MINUTE) : "0" + calendario.get(Calendar.MINUTE);
+            String hora = calendario.get(Calendar.HOUR) > 9 ? "" + calendario.get(Calendar.HOUR) : "0" + calendario.get(Calendar.HOUR);
+            //System.out.println(hour + ":" + (minute) + ":" + second);
+            lbl_hora.setText(hora + ":" + (minutos) + ":" + segundos);
+        }),
+                new KeyFrame(Duration.seconds(1))
+        );
+        clock.setCycleCount(Animation.INDEFINITE);
+        clock.play();
+
         Node node;
         try {
             node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazBienvenida.fxml"));
@@ -72,7 +104,6 @@ public class InterfazPrincipalAdministradorController implements Initializable {
         ObservableList<String> ols = FXCollections.observableArrayList();
         ols.add("Ver Participantes");
         ols.add("Modificar Participantes");
-        ols.add("Eliminar Participantes");
         ols.add("Invitar Participantes");
         lsv_participantes.setItems(ols);
     }//fin
@@ -85,36 +116,22 @@ public class InterfazPrincipalAdministradorController implements Initializable {
                 int i = lsv_participantes.getSelectionModel().getSelectedIndex();
                 if (i == 0) {
                     try {
-                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloVerParticipantes.fxml"));
-                        Tab td = new Tab("Ver Participantes", node);
-                        tab_ventanas.getTabs().add(td);
+                        añadirPestaña("InterfazSubModuloVerParticipantes.fxml", "Ver Participantes");
+
                     } catch (IOException ioe) {
                         Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
                     }
                 }
                 if (i == 1) {
                     try {
-                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloModificarParticipante.fxml"));
-                        Tab td = new Tab("Modificar Participantes", node);
-                        tab_ventanas.getTabs().add(td);
+                        añadirPestaña("InterfazSubModuloModificarParticipante.fxml", "Modificar Participantes");
                     } catch (IOException ioe) {
                         Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
                     }
                 }
                 if (i == 2) {
                     try {
-                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloEliminarParticipante.fxml"));
-                        Tab td = new Tab("Eliminar Participantes", node);
-                        tab_ventanas.getTabs().add(td);
-                    } catch (IOException ioe) {
-                        Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
-                    }
-                }
-                if (i == 3) {
-                    try {
-                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloInvitarParticipantes.fxml"));
-                        Tab td = new Tab("Invitar Participantes", node);
-                        tab_ventanas.getTabs().add(td);
+                        añadirPestaña("InterfazSubModuloInvitarParticipantes.fxml", "Invitar Participantes");
                     } catch (IOException ioe) {
                         Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
                     }
@@ -139,18 +156,14 @@ public class InterfazPrincipalAdministradorController implements Initializable {
                 int i = lsw_subastas.getSelectionModel().getSelectedIndex();
                 if (i == 0) {
                     try {
-                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloConfSubasta.fxml"));
-                        Tab td = new Tab("Configurar Subasta", node);
-                        tab_ventanas.getTabs().add(td);
+                        añadirPestaña("InterfazSubModuloConfSubasta.fxml", "Configurar Subasta");
                     } catch (IOException ioe) {
                         Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
                     }
                 }//fin if
                 if (i == 1) {
                     try {
-                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloControlSubasta.fxml"));
-                        Tab td = new Tab("Control Subastas", node);
-                        tab_ventanas.getTabs().add(td);
+                        añadirPestaña("InterfazSubModuloControlSubasta.fxml", "Control Subastas");
                     } catch (IOException ioe) {
                         Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
                     }
@@ -176,36 +189,30 @@ public class InterfazPrincipalAdministradorController implements Initializable {
                 int i = listViewMaterial.getSelectionModel().getSelectedIndex();
                 if (i == 0) {
                     try {
-                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloProductos.fxml"));
-                        Tab td = new Tab("Productos", node);
-                        tab_ventanas.getTabs().add(td);
+                        añadirPestaña("InterfazSubModuloProductos.fxml", "Productos");
                     } catch (IOException ioe) {
                         Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
                     }
                 }
                 if (i == 1) {
                     try {
-                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloBienes.fxml"));
-                        Tab td = new Tab("Bienes", node);
-                        tab_ventanas.getTabs().add(td);
+                        añadirPestaña("InterfazSubModuloBienes.fxml", "Bienes");
                     } catch (IOException ioe) {
                         Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
                     }
                 }
                 if (i == 2) {
                     try {
-                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloServicios.fxml"));
-                        Tab td = new Tab("Subastas", node);
-                        tab_ventanas.getTabs().add(td);
-                    } catch (IOException ioe) {
-                        Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
+                        añadirPestaña("InterfazSubModuloServicios.fxml", "Servicios");
+                    } catch (IOException ex) {
+                        Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
         });
     }
-    
-     private void loadListViewSeguridad() {
+
+    private void loadListViewSeguridad() {
         ObservableList<String> ols = FXCollections.observableArrayList();
         ols.add("Registrar Administrador");
         lsv_seguridad.setItems(ols);
@@ -225,7 +232,7 @@ public class InterfazPrincipalAdministradorController implements Initializable {
                     } catch (IOException ioe) {
                         Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
                     }
-                }                
+                }
             }
         });
     }
@@ -236,7 +243,14 @@ public class InterfazPrincipalAdministradorController implements Initializable {
         Scene scene = new Scene(anchor);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.show();        
+        stage.show();
+    }
+
+    public void añadirPestaña(String ventana, String nombreVentana) throws IOException {
+        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource(ventana));
+        Tab td = new Tab(nombreVentana, node);
+        tab_ventanas.getSelectionModel().select(td);
+        tab_ventanas.getTabs().add(td);
     }
 
 }//fin class

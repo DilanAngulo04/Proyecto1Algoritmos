@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TitledPane?>
@@ -102,14 +103,6 @@
                                  </children></AnchorPane>
                           </content>
                         </TitledPane>
-                        <TitledPane text="Administrador">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #810000;">
-                                 <children>
-                                    <JFXListView fx:id="lsv_administrador" layoutX="-7.0" layoutY="34.0" prefHeight="498.0" prefWidth="234.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                 </children></AnchorPane>
-                          </content>
-                        </TitledPane>
                     </panes>
                   </Accordion>
                </children>
@@ -132,9 +125,11 @@
             </AnchorPane>
         </items>
       </SplitPane>
-      <AnchorPane layoutX="1.0" layoutY="2.0" prefHeight="25.0" prefWidth="798.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane layoutX="1.0" layoutY="2.0" prefHeight="25.0" prefWidth="798.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="0.0">
          <children>
             <JFXButton fx:id="btn_cerrarSesion" buttonType="RAISED" layoutX="711.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#ir_elegirlogin" ripplerFill="WHITE" text="Cerrar Sesión" textFill="WHITE" AnchorPane.rightAnchor="0.0" />
+            <Label fx:id="lbl_hora" layoutX="25.0" layoutY="4.0" text="Label" textFill="WHITE" />
+            <Label fx:id="lbl_fecha" layoutX="87.0" layoutY="4.0" prefHeight="17.0" prefWidth="200.0" text="Label" textFill="WHITE" />
          </children>
          <effect>
             <Lighting diffuseConstant="1.51">

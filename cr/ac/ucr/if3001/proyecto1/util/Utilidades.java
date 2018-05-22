@@ -13,7 +13,29 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
 public class Utilidades {
+    
+    //Se intancia el atributo nombre de Usuario para obtener el nombre de la persona que ingresa al sistema
+    private static String nombreUsuario;
+    private static String nombreAdministrador;
 
+    public static String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public static void setNombreUsuario(String nombreUsuario) {
+        Utilidades.nombreUsuario = nombreUsuario;
+    }
+
+    public static String getNombreAdministrador() {
+        return nombreAdministrador;
+    }
+
+    public static void setNombreAdministrador(String nombreAdministrador) {
+        Utilidades.nombreAdministrador = nombreAdministrador;
+    }    
+    //fin setters and getters
+    
+    
     public static Object instanciaDe(Object a) {
         boolean o;
         if (a instanceof Participantes) {

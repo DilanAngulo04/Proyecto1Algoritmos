@@ -9,26 +9,30 @@ import java.io.FileOutputStream;
 
 public class GenerarPDF {
     //Atributos
-    private String contenido;
     private String ruta;
-    
-    //Contructor para el manejo de par'ametros
-    public GenerarPDF(String contenido, String ruta){
-       this.contenido = contenido;
-       this.ruta = ruta;
-    }    
+      
+    public String getRuta() {
+        return ruta;
+    }
+
+    public void setRuta(String ruta) {
+        this.ruta = ruta;
+    }
     
     //M'etodo para crear un archivo .pdf
-    public void generar() throws DocumentException{
+    public boolean generar(String contenido) throws DocumentException{
+        
         try{
         FileOutputStream archivo = new FileOutputStream(ruta + ".pdf");
         Document doc = new Document();
             PdfWriter.getInstance(doc, archivo);
             doc.open();
             doc.add(new Paragraph(contenido));
-            doc.close();                       
+            doc.close();   
+            return true;
         }catch(FileNotFoundException ex){
             System.out.println("...Error " + ex);
         }
+        return false;
     }
 }//fin class
