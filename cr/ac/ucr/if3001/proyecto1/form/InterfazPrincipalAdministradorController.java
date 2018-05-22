@@ -175,9 +175,9 @@ public class InterfazPrincipalAdministradorController implements Initializable {
     //Agregar contenido a la lista de opciones
     private void loadListViewMateriales() {
         ObservableList<String> ols = FXCollections.observableArrayList();
-        ols.add("Productos");
-        ols.add("Bienes");
-        ols.add("Servicios");
+        ols.add("Registrar bienes");
+        ols.add("Modificar");
+        ols.add("Consultar");
         listViewMaterial.setItems(ols);
     }
 
@@ -189,21 +189,21 @@ public class InterfazPrincipalAdministradorController implements Initializable {
                 int i = listViewMaterial.getSelectionModel().getSelectedIndex();
                 if (i == 0) {
                     try {
-                        añadirPestaña("InterfazSubModuloProductos.fxml", "Productos");
+                        añadirPestaña("InterfazModuloMaterial.fxml", "Registrar bienes");
                     } catch (IOException ioe) {
                         Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
                     }
                 }
                 if (i == 1) {
                     try {
-                        añadirPestaña("InterfazSubModuloBienes.fxml", "Bienes");
+                        añadirPestaña("InterfazSubModuloModificarProductos.fxml", "Modificar");
                     } catch (IOException ioe) {
                         Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
                     }
                 }
                 if (i == 2) {
                     try {
-                        añadirPestaña("InterfazSubModuloServicios.fxml", "Servicios");
+                        añadirPestaña("InterfazSubModuloConsultarElemento.fxml", "Consultar");
                     } catch (IOException ex) {
                         Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ex);
                     }

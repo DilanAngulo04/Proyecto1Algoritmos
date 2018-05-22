@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazSubModuloVerProductoController">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="721.0" prefWidth="981.0">
+         <children>
+            <SplitPane dividerPositions="0.29797979797979796" layoutX="42.0" layoutY="154.0" prefHeight="721.0" prefWidth="981.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <ListView fx:id="lv_productos" layoutX="14.0" layoutY="14.0" onMouseClicked="#getDetalles" prefHeight="719.0" prefWidth="289.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane fx:id="ap_infoProducto" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fx:id="iv_produto" fitHeight="320.0" fitWidth="507.0" layoutX="14.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+                        <AnchorPane fx:id="anp_infoProducto" layoutX="14.0" layoutY="366.0" prefHeight="330.0" prefWidth="507.0">
+                           <children>
+                              <Label fx:id="lb_costo" layoutX="64.0" layoutY="68.0" text="Costo">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lb_descripcion" layoutX="64.0" layoutY="149.0" text="Descripción">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="24.0" layoutY="14.0" text="Detalles Producto">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Separator layoutX="212.0" layoutY="25.0" prefHeight="4.0" prefWidth="281.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

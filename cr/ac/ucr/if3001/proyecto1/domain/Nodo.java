@@ -3,6 +3,7 @@
 public class Nodo {
     public Object elemento; //objeto almacenado en el nodo
     public Nodo sgte; //apuntador al sgte nodo
+    public Nodo ant; //apuntador al nodo anterior;
 
     //Constructor
     public Nodo(Object elemento){
@@ -12,8 +13,7 @@ public class Nodo {
 
     public Nodo() {
         this.elemento = null;
-        this.sgte = null;
+        this.ant = this.sgte = null;
     } 
     
 }//fin clase nodo
-

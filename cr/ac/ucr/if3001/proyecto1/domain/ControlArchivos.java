@@ -1,6 +1,7 @@
 package cr.ac.ucr.if3001.proyecto1.domain;
 
 import cr.ac.ucr.if3001.proyecto1.exception.ListaException;
+import cr.ac.ucr.if3001.proyecto1.object.Material;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -91,5 +92,40 @@ public class ControlArchivos {
         return listaE;
         
     }//fin m'etodo   
+
+   //M'etodo para llenar una lista circular doble enlazada.
+    public ListaCircularEnlazadaDoble cargarListaCircularDobleEnlazada() throws IOException, ClassNotFoundException, ListaException {
+
+        ListaCircularEnlazadaDoble lista = new ListaCircularEnlazadaDoble();
+        for(int i = 0; i < readList().size(); i++){
+            lista.insertar(readList().get(i));
+        }
+        
+        return lista;
+    }//fin m'etodo
+    
+        //Obtener los nombres de todos los productos
+    public List<String> getNombres() throws ListaException, IOException, ClassNotFoundException {
+
+        ListaCircularEnlazadaDoble lista = new ListaCircularEnlazadaDoble();
+        List<String> nombres = new ArrayList<>();
+        Object objeto = new Material();
+        setNombre("Material.dat");
+        lista = cargarListaCircularDobleEnlazada();
+
+        if (!lista.isEmpty()) {
+            //Se recorre el archivo para obtener los datos
+            for (int i = 1; i <= lista.getSize(); i++) {
+                objeto = lista.getNodo(i).elemento;
+                Material producto = (Material) objeto;
+                nombres.add(producto.getNombre());
+            }
+
+        }
+
+        return nombres;
+
+    }//fin getNombres
+    
 
 }//fin class

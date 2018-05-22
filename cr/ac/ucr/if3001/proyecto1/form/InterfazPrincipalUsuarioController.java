@@ -123,9 +123,9 @@ public class InterfazPrincipalUsuarioController extends Thread implements Initia
     //Agregar contenido a la lista de opciones de materiales
     private void loadListViewMateriales() {
         ObservableList<String> ols = FXCollections.observableArrayList();
-        ols.add("Productos");
-        ols.add("Bienes");
-        ols.add("Servicios");
+        ols.add("Ver Bienes");
+        //ols.add("Bienes");
+        //ols.add("Servicios");
         listViewMaterial.setItems(ols);
     }//fin m'etodo
 
@@ -138,8 +138,8 @@ public class InterfazPrincipalUsuarioController extends Thread implements Initia
                 //se agrega la ventana según el numero por defecto de las opciones de la lista
                 if (i == 0) {
                     try {
-                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloProductos.fxml"));
-                        Tab td = new Tab("Productos", node);
+                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloVerProducto.fxml"));
+                        Tab td = new Tab("Ver bienes", node);
                         tab_ventanas.getSelectionModel().select(td);
                         tab_ventanas.getTabs().add(td);
                     } catch (IOException ioe) {

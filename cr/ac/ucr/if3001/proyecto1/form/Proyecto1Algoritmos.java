@@ -16,12 +16,12 @@ public class Proyecto1Algoritmos extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-//        Parent root = FXMLLoader.load(getClass().getResource("InterfazElegirLogin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("InterfazElegirLogin.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("InterfazSubModuloProductos.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("InterfazPrincipalAdministrador.fxml"));
 //Parent root = FXMLLoader.load(getClass().getResource("InterfazPrincipalUsuario.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("InterfazElegirLogin.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("InterfazSubModuloVerParticipantes.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("InterfazSubModuloVerParticipantes.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("InterfazSubModuloInvitarParticipantes.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("InterfazLoginParticipantes.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("InterfazPrincipalUsuario.fxml"));
