@@ -3,6 +3,7 @@ package cr.ac.ucr.if3001.proyecto1.form;
 
 import com.itextpdf.text.DocumentException;
 import cr.ac.ucr.if3001.proyecto1.domain.ControlArchivos;
+import cr.ac.ucr.if3001.proyecto1.domain.GenerarExcel;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
@@ -29,8 +30,10 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import jxl.write.WriteException;
 import org.controlsfx.control.Notifications;
 
 
@@ -38,6 +41,7 @@ public class InterfazSubModuloMantSubastasController implements Initializable {
     //instancias necesarias
     ControlArchivos controlA= new ControlArchivos();
     FilteredList filter;
+    private ListaEnlazada listaE = new ListaEnlazada();
     
     @FXML
     private TableView<EventoSubasta> tvw_verSubastas;
@@ -56,36 +60,39 @@ public class InterfazSubModuloMantSubastasController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        anp_root.setOpacity(0);
+        Utilidades.transition(anp_root);
+        
         try {
             // TODO
-            anp_root.setOpacity(0);
-            Utilidades.transition(anp_root);
-            
             controlA.setNombre("Subastas.dat");
             ObservableList lista= FXCollections.observableArrayList(controlA.readList());
             
             clm_usuario.setCellValueFactory(new PropertyValueFactory<>("nombreUsuario"));
-            clm_nombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+            clm_nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
             clm_monto.setCellValueFactory(new PropertyValueFactory<>("montoPorPuja"));
             
             tvw_verSubastas.setItems(lista);
             
             filter= new FilteredList(lista, e->true);
             
-        } catch (IOException | ClassNotFoundException ex) {
+            listaE= controlA.cargarLista();
+            
+        } catch (IOException | ClassNotFoundException | ListaException ex) {
             Logger.getLogger(InterfazSubModuloMantSubastasController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
 
     @FXML
     private void btn_buscar(ActionEvent event) {
+        
         tfd_busca.textProperty().addListener((observable, oldValue, newValue) -> {
             
             filter.setPredicate((Predicate<EventoSubasta>) (EventoSubasta evento1)->{
             
                 if (newValue.isEmpty() || newValue==null) {
                     return true;
-                }else if(evento1.getNombre().contains(newValue)){
+                }else if(evento1.getNombre().contains(newValue) || evento1.getNombre().equalsIgnoreCase(newValue)){
                     return true;
                 }
                 String lowerCaseFilter = newValue.toLowerCase();
@@ -145,4 +152,37 @@ public class InterfazSubModuloMantSubastasController implements Initializable {
         }
         return ruta;
     }//fin m'etodo
+
+    @FXML
+    private void btn_generaXLS(ActionEvent event) throws ListaException, IOException, ClassNotFoundException, WriteException {
+        Object objeto = new Material();
+        //Se necesita una matriz para poder llenar las celdas del archivo excel
+        
+        String[][] excel = new String[listaE.getSize()][9];
+        int fila = 0;
+        //Se obtiene el valor de la ruta
+        String ruta = guardarArchivo(event);
+
+        for (int i = 1; i <= listaE.getSize(); i++) {
+            objeto = listaE.getNodo(i).elemento;
+            EventoSubasta eventoSub = (EventoSubasta) objeto;
+
+            //Se el i-1 va a ser el valor de las columnas en la matriz
+            excel[i - 1][fila] = eventoSub.getNombre();
+            excel[i - 1][++fila] = ""+eventoSub.getNombreUsuario();
+            excel[i - 1][++fila] = ""+eventoSub.getMontoPorPuja();
+
+            //Se reinicia el valor de las filas
+            fila = 0;
+        }//for
+
+        GenerarExcel generar = new GenerarExcel();
+        if (generar.generar(excel, ruta, "Participantes")) {//Si se cumple se guarda el nombre en el archivo y se muestra la notificaci'on
+            controlA.setNombre("ArchivosExcel.dat");
+            controlA.escribir(ruta + ".xls");
+            Notifications.create().title(":)").text("Se guardó el archivo").showInformation();
+        } else {//Se muestra la notificacion de error
+            Notifications.create().title("¡Ups!").text("Problemas al guardar el archivo").showError();
+        }
+    }
 }

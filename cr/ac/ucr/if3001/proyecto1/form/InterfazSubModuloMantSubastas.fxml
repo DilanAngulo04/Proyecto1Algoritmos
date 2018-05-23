@@ -25,5 +25,6 @@
       <Button fx:id="btn_pdfSub" layoutX="841.0" layoutY="587.0" mnemonicParsing="false" onAction="#btn_generaPDF" text="Generar PDF" />
       <TextField fx:id="tfd_busca" layoutX="413.0" layoutY="72.0" prefHeight="25.0" prefWidth="252.0" />
       <Button layoutX="685.0" layoutY="72.0" mnemonicParsing="false" onAction="#btn_buscar" text="Buscar" />
+      <Button layoutX="841.0" layoutY="550.0" mnemonicParsing="false" onAction="#btn_generaXLS" text="Generar Excel" />
    </children>
 </AnchorPane>

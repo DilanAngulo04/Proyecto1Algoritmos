@@ -174,6 +174,17 @@ public class InterfazPrincipalUsuarioController extends Thread implements Initia
                             Logger.getLogger(InterfazPrincipalUsuarioController.class.getName()).log(Level.SEVERE, null, ioe);
                         }
                     }
+                    if(i == 2){
+                        try {
+                            Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("ModuloMejoresPujas.fxml"));
+                            Tab td = new Tab("TOP 3", node);
+                            tab_ventanas.getSelectionModel().select(td);
+                            tab_ventanas.getTabs().add(td);
+                            
+                        } catch (IOException ioe) {
+                            Logger.getLogger(InterfazPrincipalUsuarioController.class.getName()).log(Level.SEVERE, null, ioe);
+                        }
+                    }
                 } catch (ListaException ex) {
                     Logger.getLogger(InterfazPrincipalUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
@@ -283,5 +294,41 @@ public class InterfazPrincipalUsuarioController extends Thread implements Initia
         Date fechaActual = new Date();
         
        return  newDate.compareTo(fechaActual)>=0;
+    }
+    
+    private Thread thread;
+    private long sistema;
+    private long horaFinal;
+    private long espera;
+
+    @Override
+    public void run() {
+        try {
+            RegistroInvitaciones regsAuxGanador = subastaEntrante();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:MM");
+            while(true){
+                try {
+                    horaFinal = dateFormat.parse(regsAuxGanador.getHoraFin()).getTime();
+                    sistema=System.nanoTime();
+                    if(horaFinal>sistema){
+                        try {
+                            
+                            Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazModuloGanador.fxml"));
+                            Tab td = new Tab("Ganador", node);
+                            tab_ventanas.getSelectionModel().select(td);
+                            tab_ventanas.getTabs().add(td);
+                            
+                        } catch (IOException ioe) {
+                            Logger.getLogger(InterfazPrincipalUsuarioController.class.getName()).log(Level.SEVERE, null, ioe);
+                        }
+                    }
+                    espera = 200;
+                    Thread.sleep(espera);
+                }
+                catch (InterruptedException ex) {}
+            }
+        } catch (ListaException | IOException | ClassNotFoundException | ParseException ex) {
+            Logger.getLogger(InterfazPrincipalUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }//fin class

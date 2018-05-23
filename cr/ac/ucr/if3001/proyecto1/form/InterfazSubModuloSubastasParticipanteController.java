@@ -59,10 +59,14 @@ public class InterfazSubModuloSubastasParticipanteController implements Initiali
         try {
             // TODO
             controlA.setNombre("Participantes.dat");
+            controlB.setNombre("Subastas.dat");
             
             listaSub = controlB.cargarLista(); //listaConLasSubastas
             listaPart = controlA.cargarLista(); //ListaConlosParticipantes
             
+            if(!listaSub.isEmpty()){
+                tfd_mejorPrecio.setText(((EventoSubasta) listaSub.ultimo()).getMontoPorPuja()+"");
+            }
         } catch (IOException | ClassNotFoundException | ListaException ex) {
             Logger.getLogger(InterfazSubModuloSubastasParticipanteController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -100,7 +104,7 @@ public class InterfazSubModuloSubastasParticipanteController implements Initiali
             //crea un objeto subasta y lo inserta en la listaSub, listaEnlazada que guarda subastas
             EventoSubasta nuevaSubasta = new EventoSubasta(Utilidades.getNombreUsuario(), pActual.getNombre(), nuevaPuja);
             listaSub.insertarOrdenado(nuevaSubasta);
-            controlB.setNombre("Subastas.dat");
+            //controlB.setNombre("Subastas.dat");
             controlB.escribir(nuevaSubasta);
             System.out.println(listaSub.toString());
             //hacer que el label indique exito por un periodo de tiempo(segudos)
