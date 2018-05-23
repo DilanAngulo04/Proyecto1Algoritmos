@@ -61,6 +61,11 @@ public class Utilidades {
             Integer y = (Integer) b;
             o = x == y;
         }
+        if (a instanceof String && b instanceof String) {
+            String x = (String) a;
+            String y = (String) b;
+            o = x.equalsIgnoreCase(y);
+        }
         if (a instanceof Participantes && b instanceof Participantes) {
             Participantes x = (Participantes) a;
             Participantes y = (Participantes) b;

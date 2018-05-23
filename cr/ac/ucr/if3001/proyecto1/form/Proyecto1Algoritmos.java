@@ -1,7 +1,5 @@
 package cr.ac.ucr.if3001.proyecto1.form;
 
-import cr.ac.ucr.if3001.proyecto1.domain.ControlArchivos;
-import cr.ac.ucr.if3001.proyecto1.domain.ListaEnlazada;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,9 +8,6 @@ import javafx.stage.Stage;
 import javax.mail.MessagingException;
 
 public class Proyecto1Algoritmos extends Application {
-
-    private static ListaEnlazada listE = new ListaEnlazada();
-    private static ControlArchivos controlA = new ControlArchivos();
 
     @Override
     public void start(Stage stage) throws Exception {

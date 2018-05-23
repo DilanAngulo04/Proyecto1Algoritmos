@@ -124,7 +124,28 @@ public class ListaEnlazada implements Lista {
 
     @Override
     public void suprimir(Object elemento) throws ListaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+        if (isEmpty()) {
+            throw new ListaException("La lista esta vacia");
+        }
+        //Caso1, El elemento a suprimir es el primero
+        if (Utilidades.igualQ(inicio.elemento, elemento)) {
+            inicio = inicio.sgte;
+        } //caso2, Esta en el resto de la lista
+        else {
+            Nodo auxAnt = inicio;
+            Nodo aux = inicio.sgte;
+            while (aux.sgte != null && !Utilidades.igualQ(aux.elemento, elemento)) {
+                auxAnt = aux;
+                aux = aux.sgte;
+            }
+            //se sale cuando alcanza nulo
+            //o cuando encuentra el elemento a suprimir
+            if (aux != null && Utilidades.igualQ(aux.elemento, elemento)) {
+                //desenlaza el nodo
+                auxAnt.sgte = aux.sgte; // lo brinca "lo suprime"
+            }
+        }
     }
 
     @Override

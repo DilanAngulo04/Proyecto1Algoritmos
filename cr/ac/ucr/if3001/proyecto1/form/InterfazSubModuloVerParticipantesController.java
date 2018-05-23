@@ -61,7 +61,7 @@ public class InterfazSubModuloVerParticipantesController implements Initializabl
         //Se muestra una transicion cuando se abre la pestaña
         anp_root.setOpacity(0);
         Utilidades.transition(anp_root);
-        
+
         //Columna que muestra la informaci'on del nombre completo de los participantes registrados
         JFXTreeTableColumn<User, String> colunm = new JFXTreeTableColumn<>("Nombre Completo");
         colunm.setPrefWidth(150);
@@ -129,19 +129,17 @@ public class InterfazSubModuloVerParticipantesController implements Initializabl
         controlA.setNombre("Participantes.dat");
         //Se carga la lista con los datos de los paraticipantes guardados en un archivo
         listE = controlA.cargarLista();
-        int i = 1;
         if (!listE.isEmpty()) {
 
             //Se recorre la lista para obtener los datos de los participantes
+            for (int i = 1; i <= listE.getSize(); i++) {
                 part = listE.getNodo(i).elemento;
                 Participantes p = (Participantes) part;
-
-                do{
                 participantes.add(new User(p.getNombre(), p.getNombreUsuario(), p.getCorreo(),
                         Utilidades.formatTelefono(p.getNumeroTelefono()), p.isInvitacion() == true
                         ? "Invitado" : "No Invitado"));
-                i++;
-                }while(i <= listE.getSize());                                               
+            }
+
         }//if
     }//Fin m'etodo
 
@@ -254,5 +252,5 @@ public class InterfazSubModuloVerParticipantesController implements Initializabl
         //fin constructor
 
     }//fin class
-    
+
 }//fin class

@@ -3,6 +3,7 @@ package cr.ac.ucr.if3001.proyecto1.form;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXPopup;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
@@ -37,12 +38,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import javafx.util.converter.LocalDateStringConverter;
 import javax.mail.MessagingException;
@@ -93,6 +97,10 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
     private Label lbl_errorfin;
     @FXML
     private AnchorPane anp_root;
+    @FXML
+    private JFXPopup ppp_productos;
+    @FXML
+    private JFXPopup ppp_participantes;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -160,6 +168,9 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
         tvw_participantes.getColumns().setAll(parte);
         tvw_participantes.setRoot(rootPart);
         tvw_participantes.setShowRoot(false);
+        
+        ventanaMenuParticipantes();
+        ventanaMenuProductos();
     }//fin initialize
 
     //Se obtiene el valor del participante seleccionado en la lista
@@ -208,7 +219,7 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
         }//fin else
     }//fin action
 
-    //Método para verificar que no se seleccione la opcion mas de una ves en listview 
+    //M'etodo para verificar que no se seleccione la opcion mas de una ves en listview 
     private boolean verificar(String elemento, ListaEnlazada lista) throws ListaException {
         for (int i = 1; i <= lista.getSize(); i++) {
             //Se verifica que el elemento seleccionado no se repita
@@ -428,6 +439,68 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
         }//for
 
     }//fin m'etodo
+    
+    //Método para eliminar un producto ingresado a la tabla
+    private void ventanaMenuParticipantes() {
+        JFXButton eliminar = new JFXButton("Eliminar");
+        
+        eliminar.setOnAction((event) -> {
+            int indice = tvw_participantes.getSelectionModel().getSelectedIndex();
+            try {
+                listaParticipantesS.suprimir(listaParticipantesS.getNodo(indice+1).elemento);                
+                part.remove(indice);
+            } catch (ListaException ex) {
+                Logger.getLogger(InterfazSubModuloInvitarParticipantesController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        eliminar.setPadding(new Insets(10));
+        
+        VBox vbox = new VBox(eliminar);
+        
+        ppp_participantes.setContent(vbox);
+        ppp_participantes.setSource(tvw_participantes);
+        
+    }//fin m'etodo
+    
+    //Método para eliminar un producto ingresado a la tabla
+    private void ventanaMenuProductos() {
+        JFXButton eliminar = new JFXButton("Eliminar");
+        
+        eliminar.setOnAction((event) -> {
+            int indice = tvw_productos.getSelectionModel().getSelectedIndex();
+            try {
+                listaProductosS.suprimir(listaProductosS.getNodo(indice+1).elemento);     
+                System.out.println(listaProductosS.toString());
+                produc.remove(indice);
+            } catch (ListaException ex) {
+                Logger.getLogger(InterfazSubModuloInvitarParticipantesController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        eliminar.setPadding(new Insets(10)); 
+        
+        VBox vbox = new VBox(eliminar);
+        
+        ppp_productos.setContent(vbox);
+        ppp_productos.setSource(tvw_productos);
+        
+    }//fin m'etodo
+
+    @FXML
+    private void eliminarProducto(MouseEvent event) {
+        if(event.getButton() == MouseButton.SECONDARY)
+            ppp_productos.show(JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT, event.getX(), event.getY());               
+    }
+
+    @FXML
+    private void eliminarParticipante(MouseEvent event) {
+        if(event.getButton() == MouseButton.SECONDARY)
+        ppp_participantes.show(JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT, event.getX(), event.getY());
+    }
+    
+    
+    
 
     //Clase con el metodo abstracto run para la ejecion independiente de enviar correos 
     class EnviarCorre extends Thread {
@@ -456,7 +529,7 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
             this.producto = new SimpleStringProperty(producto);
         }//fin constructor
 
-    }//fin añadidos  
+    }//fin añadidos 
 
 }//fin class
 

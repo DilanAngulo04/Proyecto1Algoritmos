@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXPopup?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Light.Distant?>
@@ -71,12 +72,14 @@
             </Lighting>
          </effect>
       </JFXListView>
-      <JFXTreeTableView fx:id="tvw_productos" layoutX="478.0" layoutY="399.0" prefHeight="244.0" prefWidth="229.0" stylesheets="@../css/interfazsubmoduloverparticipantes.css" />
-      <JFXTreeTableView fx:id="tvw_participantes" layoutX="741.0" layoutY="398.0" prefHeight="244.0" prefWidth="229.0" stylesheets="@../css/interfazsubmoduloverparticipantes.css" />
+      <JFXTreeTableView fx:id="tvw_productos" layoutX="478.0" layoutY="399.0" onMouseClicked="#eliminarProducto" prefHeight="244.0" prefWidth="229.0" stylesheets="@../css/interfazsubmoduloverparticipantes.css" />
+      <JFXTreeTableView fx:id="tvw_participantes" layoutX="741.0" layoutY="398.0" onMouseClicked="#eliminarParticipante" prefHeight="244.0" prefWidth="229.0" stylesheets="@../css/interfazsubmoduloverparticipantes.css" />
       <Label fx:id="lbl_errorProductos" layoutX="475.0" layoutY="376.0" prefHeight="17.0" prefWidth="229.0" text="Elemento añadido anteriormente" textFill="#e75050" visible="false" />
       <Label fx:id="lbl_errorParticipantes" layoutX="736.0" layoutY="376.0" prefHeight="17.0" prefWidth="229.0" text="Elemento añadido anteriormente" textFill="#e75050" visible="false" />
       <Label fx:id="lbl_errorDia" layoutX="183.0" layoutY="134.0" prefHeight="17.0" prefWidth="179.0" text="Se debe llenar este campo" textFill="#d34545" visible="false" />
       <Label fx:id="lbl_errorInicio" layoutX="182.0" layoutY="212.0" prefHeight="17.0" prefWidth="143.0" text="Se debe llenar este campo" textFill="#d34545" visible="false" />
       <Label fx:id="lbl_errorfin" layoutX="182.0" layoutY="281.0" prefHeight="17.0" prefWidth="143.0" text="Se debe llenar este campo" textFill="#d34545" visible="false" />
+      <JFXPopup fx:id="ppp_productos" layoutX="14.0" layoutY="13.0" />
+      <JFXPopup fx:id="ppp_participantes" layoutX="37.0" layoutY="13.0" />
    </children>
 </AnchorPane>

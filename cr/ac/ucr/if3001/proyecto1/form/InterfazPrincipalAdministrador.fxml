@@ -24,7 +24,7 @@
       </Lighting>
    </effect>
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" layoutX="67.0" layoutY="28.0" prefHeight="598.0" prefWidth="805.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="28.0">
+      <SplitPane dividerPositions="0.29797979797979796" layoutX="67.0" layoutY="27.0" prefHeight="599.0" prefWidth="805.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="613.0" prefWidth="236.0" style="-fx-background-color: #810000;" SplitPane.resizableWithParent="false">
                <children>
@@ -125,11 +125,9 @@
             </AnchorPane>
         </items>
       </SplitPane>
-      <AnchorPane layoutX="1.0" layoutY="2.0" prefHeight="25.0" prefWidth="798.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane layoutX="715.0" layoutY="2.0" prefHeight="25.0" prefWidth="90.0" AnchorPane.leftAnchor="715.0" AnchorPane.rightAnchor="0.0">
          <children>
             <JFXButton fx:id="btn_cerrarSesion" buttonType="RAISED" layoutX="711.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#ir_elegirlogin" ripplerFill="WHITE" text="Cerrar Sesión" textFill="WHITE" AnchorPane.rightAnchor="0.0" />
-            <Label fx:id="lbl_hora" layoutX="25.0" layoutY="4.0" text="Label" textFill="WHITE" />
-            <Label fx:id="lbl_fecha" layoutX="87.0" layoutY="4.0" prefHeight="17.0" prefWidth="200.0" text="Label" textFill="WHITE" />
          </children>
          <effect>
             <Lighting diffuseConstant="1.51">
@@ -142,5 +140,7 @@
             </Lighting>
          </effect>
       </AnchorPane>
+      <Label fx:id="lbl_fecha" layoutX="75.0" layoutY="6.0" prefHeight="17.0" prefWidth="200.0" text="Label" textFill="WHITE" AnchorPane.leftAnchor="80.0" />
+      <Label fx:id="lbl_hora" layoutX="22.0" layoutY="6.0" text="Label" textFill="WHITE" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="755.0" />
    </children>
 </AnchorPane>
