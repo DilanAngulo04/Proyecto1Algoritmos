@@ -3,7 +3,6 @@ package cr.ac.ucr.if3001.proyecto1.form;
 import cr.ac.ucr.if3001.proyecto1.domain.ControlArchivos;
 import cr.ac.ucr.if3001.proyecto1.domain.ListaEnlazada;
 import cr.ac.ucr.if3001.proyecto1.exception.ListaException;
-import cr.ac.ucr.if3001.proyecto1.object.Participantes;
 import cr.ac.ucr.if3001.proyecto1.object.RegistroInvitaciones;
 import cr.ac.ucr.if3001.proyecto1.util.Utilidades;
 import java.io.IOException;
@@ -68,12 +67,12 @@ public class InterfazParticipanteUsuarioController implements Initializable {
 
 //    public boolean verificar() throws IOException, ClassNotFoundException, ListaException {
 //        Object participantes = new Participantes();
-//        controlA.setNombre("Participantes.dat");
-//        listaE = controlA.cargarLista();
+//        
 //
 //        if (!listaE.isEmpty()) {
 //
 //            for (int i = 1; i <= listaE.getSize(); i++) {
+//                
 //                participantes = listaE.getNodo(i).elemento;
 //                Participantes p = (Participantes) participantes;
 //

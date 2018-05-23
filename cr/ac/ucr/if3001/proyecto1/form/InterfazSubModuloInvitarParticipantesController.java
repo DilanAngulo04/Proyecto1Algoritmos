@@ -74,6 +74,7 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
     LocalDate diaSubasta;
     LocalTime horaInicio, horaFin;
     String indice;
+    int ind;
 
     //Childrens de la clase
     @FXML
@@ -187,17 +188,9 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
 
         lbl_numeroSubasta.setVisible(true);
         try {
-            int ind = cargarArchivoSubasta() + 1;
+            ind = (Utilidades.cargarArchivoSubasta() + 1);
             lbl_numeroSubasta.setText("" + ind);
             indice = lbl_numeroSubasta.getText();
-
-            ControlArchivos controlArchivos = new ControlArchivos();
-            List<NumeroArchivo> lista = new ArrayList<>();
-
-            controlArchivos.setNombre("CantidadArchivos.dat");
-            NumeroArchivo numerArchivo = new NumeroArchivo(ind);
-            lista.add(numerArchivo);
-            controlArchivos.escribirNuevo(lista);
 
         } catch (IOException | ClassNotFoundException | ListaException ex) {
             Logger.getLogger(InterfazSubModuloInvitarParticipantesController.class.getName()).log(Level.SEVERE, null, ex);
@@ -355,6 +348,14 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
                                 //(no se pegue)
                                 new EnviarCorre().start();
                                 disminuirCantidadMaterial();
+                                ControlArchivos controlArchivos = new ControlArchivos();
+                                List<NumeroArchivo> lista = new ArrayList<>();
+
+                                controlArchivos.setNombre("CantidadArchivos.dat");
+                                NumeroArchivo numerArchivo = new NumeroArchivo(ind);
+                                lista.add(numerArchivo);
+                                controlArchivos.escribirNuevo(lista);
+
                                 Notifications.create().title(":D").text("Enviando Correos").showInformation();
 
                             } else {
@@ -490,52 +491,35 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
             array = (List<Material>) aux;
 
             //Se verifica que no hayan campos sin llenar 
-            for (int i = 0; i < array.size(); i++) {
+            for (int j = 1; j <= listaProductosS.getSize(); j++) {
+                for (int i = 0; i < array.size(); i++) {
 
-                //Se comprueba que exista (no va pasar porque si est'a)
-                //Solo necesito la posicion dada por "i"
-                if (array.get(i).getNombre().equalsIgnoreCase("" + listaProductosS.getNodo(i+1).elemento)) {                
-                    
-                    Material productoEditado = new Material(array.get(i).getNombre(),
-                            array.get(i).getPrecio(), array.get(i).getTipo(),
-                            array.get(i).getDescripcion(), (array.get(i).getCantidad() - 1),
-                            array.get(i).getPathImage());
-                    array.add(productoEditado);
-                    array.remove(i);
+                    //Se comprueba que exista (no va pasar porque si est'a)
+                    //Solo necesito la posicion dada por "i"
+                    if (array.get(i).getNombre().equalsIgnoreCase("" + listaProductosS.getNodo(j).elemento)) {
 
-                    objectInput.close();
-                    ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(ruta + "Material.dat"));
-                    output.writeUnshared(array);
+                        Material productoEditado = new Material(array.get(i).getNombre(),
+                                array.get(i).getPrecio(), array.get(i).getTipo(),
+                                array.get(i).getDescripcion(), (array.get(i).getCantidad() - 1),
+                                array.get(i).getPathImage());
+                        array.remove(i);
+                        
+                        array.add(productoEditado);
 
-                } else {
-                    //no encontrado (no va pasar porque si está)
-                }
+                        objectInput.close();
+                        ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(ruta + "Material.dat"));
+                        output.writeUnshared(array);
 
-            }//fin for
+                    } else {
+                        //no encontrado (no va pasar porque si está)
+                    }
+
+                }//fin for
+            }
 
         }
 
     }//fin m'etodo
-
-    public int cargarArchivoSubasta() throws IOException, ClassNotFoundException, ListaException {
-        Object objeto = new NumeroArchivo();
-        ControlArchivos controlArchivos = new ControlArchivos();
-        ListaEnlazada listaE = new ListaEnlazada();
-
-        controlArchivos.setNombre("CantidadArchivos.dat");
-        listaE = controlArchivos.cargarLista();
-
-        if (listaE.isEmpty()) {
-            return 0;
-        }
-
-        objeto = listaE.getNodo(1).elemento;
-        NumeroArchivo p = (NumeroArchivo) objeto;
-
-        int numero = p.getNumeroArchivo();
-
-        return numero;
-    }
 
     //Método para eliminar un producto ingresado a la tabla
     private void ventanaMenuParticipantes() {

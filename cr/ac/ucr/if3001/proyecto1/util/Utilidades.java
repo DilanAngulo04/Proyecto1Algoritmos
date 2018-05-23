@@ -4,6 +4,7 @@ import cr.ac.ucr.if3001.proyecto1.domain.ControlArchivos;
 import cr.ac.ucr.if3001.proyecto1.domain.ListaEnlazada;
 import cr.ac.ucr.if3001.proyecto1.exception.ListaException;
 import cr.ac.ucr.if3001.proyecto1.object.Administrador;
+import cr.ac.ucr.if3001.proyecto1.object.NumeroArchivo;
 import cr.ac.ucr.if3001.proyecto1.object.Participantes;
 import cr.ac.ucr.if3001.proyecto1.object.Productos;
 import cr.ac.ucr.if3001.proyecto1.object.Subastas;
@@ -167,6 +168,26 @@ public class Utilidades {
         Matcher mather = pattern.matcher(email);
         return mather.find() == true;
 
+    }
+    
+    public static int cargarArchivoSubasta() throws IOException, ClassNotFoundException, ListaException {
+        Object objeto = new NumeroArchivo();
+        ControlArchivos controlArchivos = new ControlArchivos();
+        ListaEnlazada listaE = new ListaEnlazada();
+
+        controlArchivos.setNombre("CantidadArchivos.dat");
+        listaE = controlArchivos.cargarLista();
+
+        if (listaE.isEmpty()) {
+            return 0;
+        }
+
+        objeto = listaE.getNodo(1).elemento;
+        NumeroArchivo p = (NumeroArchivo) objeto;
+
+        int numero = p.getNumeroArchivo();
+
+        return numero;
     }
     
 
