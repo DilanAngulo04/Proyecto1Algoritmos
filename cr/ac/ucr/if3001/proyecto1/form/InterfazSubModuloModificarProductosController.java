@@ -1,17 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cr.ac.ucr.if3001.proyecto1.form;
 
 import cr.ac.ucr.if3001.proyecto1.domain.Bitacora;
 import cr.ac.ucr.if3001.proyecto1.domain.ControlArchivos;
 import cr.ac.ucr.if3001.proyecto1.domain.ListaCircularEnlazadaDoble;
-import cr.ac.ucr.if3001.proyecto1.domain.MapaLinkedHash;
 import cr.ac.ucr.if3001.proyecto1.exception.ListaException;
 import cr.ac.ucr.if3001.proyecto1.object.Material;
-import cr.ac.ucr.if3001.proyecto1.object.Registro;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,7 +15,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -44,11 +36,6 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import org.controlsfx.control.textfield.TextFields;
 
-/**
- * FXML Controller class
- *
- * @author Maria
- */
 public class InterfazSubModuloModificarProductosController implements Initializable {
 
     //instancias necesarias
@@ -140,7 +127,6 @@ public class InterfazSubModuloModificarProductosController implements Initializa
                 if (array.get(i).getNombre().equals(productoBuscar) && array.get(i).getCantidad()==1) {
                     
                 //Control Bitacora
-                controlB.escribir(Calendar.getInstance().getTime().toString(), new Registro(array.get(i), "Supresion"));
                 array.remove(i);
                     
                 }else if(array.get(i).getNombre().equals(productoBuscar) && array.get(i).getCantidad()>1){

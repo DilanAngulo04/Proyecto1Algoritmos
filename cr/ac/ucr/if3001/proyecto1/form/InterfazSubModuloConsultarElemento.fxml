@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="721.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazSubModuloConsultarElementoController">
+<AnchorPane id="AnchorPane" prefHeight="721.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazSubModuloConsultarElementoController">
    <children>
       <AnchorPane layoutY="123.0" prefHeight="597.0" prefWidth="1080.0">
          <children>
-            <TableView fx:id="tabla" layoutX="52.0" layoutY="32.0" prefHeight="597.0" prefWidth="1062.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="tabla" layoutX="52.0" layoutY="32.0" prefHeight="597.0" prefWidth="1062.0" stylesheets="@../css/interfazsubmoduloverparticipantes.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
                 <TableColumn fx:id="nombreCol" maxWidth="225.0" minWidth="225.0" prefWidth="225.0" text="Nombre" />
                 <TableColumn fx:id="costoCol" maxWidth="225.0" minWidth="225.0" prefWidth="225.0" text="Costo" />

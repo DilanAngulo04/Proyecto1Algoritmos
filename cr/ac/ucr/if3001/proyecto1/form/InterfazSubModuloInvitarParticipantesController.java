@@ -18,7 +18,12 @@ import cr.ac.ucr.if3001.proyecto1.object.NumeroArchivo;
 import cr.ac.ucr.if3001.proyecto1.object.Participantes;
 import cr.ac.ucr.if3001.proyecto1.object.RegistroInvitaciones;
 import cr.ac.ucr.if3001.proyecto1.util.Utilidades;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -182,10 +187,10 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
 
         lbl_numeroSubasta.setVisible(true);
         try {
-            int ind = cargarArchivoSubasta()+1;
+            int ind = cargarArchivoSubasta() + 1;
             lbl_numeroSubasta.setText("" + ind);
             indice = lbl_numeroSubasta.getText();
-            
+
             ControlArchivos controlArchivos = new ControlArchivos();
             List<NumeroArchivo> lista = new ArrayList<>();
 
@@ -235,9 +240,11 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
         } else {//si no, se recorre la lista para comparar los elementos internos
             //se verifica que no re repitan elementos 
             if (!verificar(material, listaProductosS)) {//si no se repiten elementos se ingresa el valor a la lista y la la tableview                
+
                 listaProductosS.insertar(material);
                 produc.add(new Añadidos(null, material));
                 lbl_errorProductos.setVisible(false);
+
             } else {
                 lbl_errorProductos.setVisible(true);
             }
@@ -278,7 +285,9 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
             for (int i = 1; i <= listaProductos.getSize(); i++) {
                 part = listaProductos.getNodo(i).elemento;
                 Material p = (Material) part;
-                ol.add(p.getNombre().trim());
+                if (p.getCantidad() > 0) {
+                    ol.add(p.getNombre().trim());
+                }
             }
         }
 
@@ -345,6 +354,7 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
                                 //Esto para que siga funcionado la app mientras se env'ian los correos
                                 //(no se pegue)
                                 new EnviarCorre().start();
+                                disminuirCantidadMaterial();
                                 Notifications.create().title(":D").text("Enviando Correos").showInformation();
 
                             } else {
@@ -467,6 +477,46 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
 
     }//fin m'etodo
 
+    public void disminuirCantidadMaterial() throws ListaException, IOException, ClassNotFoundException {
+
+        File file = new File(ruta + "Material.dat");
+        List<Material> array = new ArrayList<Material>();
+
+        //Validaci'on
+        if (file.exists()) {
+            ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream(ruta + "Material.dat"));
+            Object aux = objectInput.readObject();
+
+            array = (List<Material>) aux;
+
+            //Se verifica que no hayan campos sin llenar 
+            for (int i = 0; i < array.size(); i++) {
+
+                //Se comprueba que exista (no va pasar porque si est'a)
+                //Solo necesito la posicion dada por "i"
+                if (array.get(i).getNombre().equalsIgnoreCase("" + listaProductosS.getNodo(i+1).elemento)) {                
+                    
+                    Material productoEditado = new Material(array.get(i).getNombre(),
+                            array.get(i).getPrecio(), array.get(i).getTipo(),
+                            array.get(i).getDescripcion(), (array.get(i).getCantidad() - 1),
+                            array.get(i).getPathImage());
+                    array.add(productoEditado);
+                    array.remove(i);
+
+                    objectInput.close();
+                    ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(ruta + "Material.dat"));
+                    output.writeUnshared(array);
+
+                } else {
+                    //no encontrado (no va pasar porque si está)
+                }
+
+            }//fin for
+
+        }
+
+    }//fin m'etodo
+
     public int cargarArchivoSubasta() throws IOException, ClassNotFoundException, ListaException {
         Object objeto = new NumeroArchivo();
         ControlArchivos controlArchivos = new ControlArchivos();
@@ -478,7 +528,7 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
         if (listaE.isEmpty()) {
             return 0;
         }
-        
+
         objeto = listaE.getNodo(1).elemento;
         NumeroArchivo p = (NumeroArchivo) objeto;
 
@@ -512,9 +562,32 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
 
     //Método para eliminar un producto ingresado a la tabla
     private void ventanaMenuProductos() {
-        
+
         JFXButton eliminar = new JFXButton("Eliminar");
 
+        eliminar.setOnAction((event) -> {
+            int indice = tvw_productos.getSelectionModel().getSelectedIndex();
+            try {
+                listaProductosS.suprimir(listaProductosS.getNodo(indice + 1).elemento);
+                produc.remove(indice);
+            } catch (ListaException ex) {
+                Logger.getLogger(InterfazSubModuloInvitarParticipantesController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+
+        eliminar.setPadding(new Insets(10));
+
+        VBox vbox = new VBox(eliminar);
+
+        ppp_productos.setContent(vbox);
+        ppp_productos.setSource(tvw_productos);
+
+    }//fin m'etodo
+
+    //Método para eliminar un producto ingresado a la tabla
+    private void ventanaMenuCantidadProductos() {
+
+        JFXButton eliminar = new JFXButton("Eliminar");
 
         eliminar.setOnAction((event) -> {
             int indice = tvw_productos.getSelectionModel().getSelectedIndex();
