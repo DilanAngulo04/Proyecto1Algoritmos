@@ -13,21 +13,21 @@ import cr.ac.ucr.if3001.proyecto1.domain.ControlArchivos;
 import cr.ac.ucr.if3001.proyecto1.domain.EnviarCorreo;
 import cr.ac.ucr.if3001.proyecto1.domain.ListaEnlazada;
 import cr.ac.ucr.if3001.proyecto1.exception.ListaException;
+import cr.ac.ucr.if3001.proyecto1.object.Material;
+import cr.ac.ucr.if3001.proyecto1.object.NumeroArchivo;
 import cr.ac.ucr.if3001.proyecto1.object.Participantes;
 import cr.ac.ucr.if3001.proyecto1.object.RegistroInvitaciones;
 import cr.ac.ucr.if3001.proyecto1.util.Utilidades;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -57,6 +57,7 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
     //instancias necesarias
     private final ObservableList<String> ols = FXCollections.observableArrayList();
     private ListaEnlazada listE = new ListaEnlazada();
+    private ListaEnlazada listaProductos = new ListaEnlazada();
     private final ControlArchivos controlA = new ControlArchivos();
     private final ObservableList<Añadidos> produc = FXCollections.observableArrayList();
     private final ObservableList<Añadidos> part = FXCollections.observableArrayList();
@@ -67,6 +68,7 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
     String producto, participante, material, usuario;
     LocalDate diaSubasta;
     LocalTime horaInicio, horaFin;
+    String indice;
 
     //Childrens de la clase
     @FXML
@@ -101,6 +103,8 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
     private JFXPopup ppp_productos;
     @FXML
     private JFXPopup ppp_participantes;
+    @FXML
+    private Label lbl_numeroSubasta;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -138,7 +142,11 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
         dpk_diaSubasta.setDayCellFactory(dayCellFactory);
         dpk_diaSubasta.setValue(LocalDate.now().plusDays(0));
 
-        loadListViewProductos();
+        try {
+            loadListViewProductos();
+        } catch (IOException | ClassNotFoundException | ListaException ex) {
+            Logger.getLogger(InterfazSubModuloInvitarParticipantesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             cargarListaParticipantes();
         } catch (ListaException | IOException | ClassNotFoundException ex) {
@@ -168,9 +176,27 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
         tvw_participantes.getColumns().setAll(parte);
         tvw_participantes.setRoot(rootPart);
         tvw_participantes.setShowRoot(false);
-        
+
         ventanaMenuParticipantes();
         ventanaMenuProductos();
+
+        lbl_numeroSubasta.setVisible(true);
+        try {
+            int ind = cargarArchivoSubasta()+1;
+            lbl_numeroSubasta.setText("" + ind);
+            indice = lbl_numeroSubasta.getText();
+            
+            ControlArchivos controlArchivos = new ControlArchivos();
+            List<NumeroArchivo> lista = new ArrayList<>();
+
+            controlArchivos.setNombre("CantidadArchivos.dat");
+            NumeroArchivo numerArchivo = new NumeroArchivo(ind);
+            lista.add(numerArchivo);
+            controlArchivos.escribirNuevo(lista);
+
+        } catch (IOException | ClassNotFoundException | ListaException ex) {
+            Logger.getLogger(InterfazSubModuloInvitarParticipantesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//fin initialize
 
     //Se obtiene el valor del participante seleccionado en la lista
@@ -198,7 +224,7 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
 
     //Se obtiene el valor del producto seleccionado en la lista
     @FXML
-    void cargarTablaProductos(MouseEvent event) throws ListaException {
+    void cargarTablaProductos(MouseEvent event) throws ListaException, IOException, ClassNotFoundException {
         invisible();
         material = lsv_listaProductos.getSelectionModel().getSelectedItem();
         //Se verifica si la lista est'a vac'ia   
@@ -215,7 +241,6 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
             } else {
                 lbl_errorProductos.setVisible(true);
             }
-
         }//fin else
     }//fin action
 
@@ -240,17 +265,24 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
     }
 
     //se carga la lista de productos totales
-    private void loadListViewProductos() {
-        ObservableList<String> ols = FXCollections.observableArrayList();
-        ols.add("Auto BMW");
-        ols.add("Casa");
-        ols.add("Barco");
-        ols.add("Mesa");
-        ols.add("Pintura");
-        ols.add("PS4 PRO");
-        ols.add("iop");
+    private void loadListViewProductos() throws IOException, ClassNotFoundException, ListaException {
+        Object part = new Material();
+        ObservableList<String> ol = FXCollections.observableArrayList();
 
-        lsv_listaProductos.setItems(ols);
+        controlA.setNombre("Material.dat");
+        listaProductos = controlA.cargarLista();
+
+        //Se comprueba que la lista no este vac'ia
+        if (!listaProductos.isEmpty()) {
+            //Se recorre la lista para obtener todos los nombres de usuario
+            for (int i = 1; i <= listaProductos.getSize(); i++) {
+                part = listaProductos.getNodo(i).elemento;
+                Material p = (Material) part;
+                ol.add(p.getNombre().trim());
+            }
+        }
+
+        lsv_listaProductos.setItems(ol);
     }//fin m'etodo
 
     //Se carga la lista de participantes totales 
@@ -269,7 +301,6 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
                 ols.add(p.getNombreUsuario().trim());
             }
         }
-
         lsv_listaParticipantes.setItems(ols);
     }//Fin m'etodo 
 
@@ -300,11 +331,9 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
             //Se verifica que el campo de ingresar el dia no este vac'io
             if (dpk_diaSubasta.getValue() != null) {
 
-                //Se verifica que el campo de ingresar la hora de inicio no este vac'io
-                if (dpk_horaInicio.getTime() != null) {
+                if (verificarHoraInicio()) {
 
-                    //Se verifica que el campo de ingresar la hora de finalizaci'on no este vac'io
-                    if (dpk_horaFin.getTime() != null) {
+                    if (verificarHoraFin()) {
 
                         //Se verifica que se hayan selecionado productos
                         if (!listaProductosS.isEmpty()) {
@@ -316,7 +345,6 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
                                 //Esto para que siga funcionado la app mientras se env'ian los correos
                                 //(no se pegue)
                                 new EnviarCorre().start();
-                                cambiarInvitacion();
                                 Notifications.create().title(":D").text("Enviando Correos").showInformation();
 
                             } else {
@@ -329,13 +357,16 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
                             lbl_errorProductos.setVisible(true);
                             lbl_errorProductos.setText("No han selecionado productos");
                         }
-
                     } else {
                         lbl_errorfin.setVisible(true);
+                        lbl_errorfin.setText("Hora de finalización no válida");
+
                     }
 
                 } else {
                     lbl_errorInicio.setVisible(true);
+                    lbl_errorInicio.setText("Hora de inicio no válida");
+
                 }
 
             } else {
@@ -347,6 +378,38 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
         }
 
     }//fin action
+
+    private boolean verificarHoraFin() {
+
+        if (dpk_horaFin.getTime() != null) {
+
+            int minutos = (int) ChronoUnit.SECONDS.between(dpk_horaInicio.getTime(),
+                    dpk_horaFin.getTime());
+            if (minutos >= 0) {
+                return true;
+            }
+
+        } else {
+            lbl_errorfin.setVisible(true);
+        }
+
+        return false;
+    }
+
+    private boolean verificarHoraInicio() {
+        String horaActual = new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
+
+        if (dpk_horaInicio.getTime() != null) {
+            int minutos = (int) ChronoUnit.SECONDS.between(LocalTime.parse(horaActual),
+                    dpk_horaInicio.getTime());
+            if (minutos >= 0) {
+                return true;
+            }
+        } else {
+            lbl_errorInicio.setVisible(true);
+        }
+        return false;
+    }
 
     public void enviarCorreo() throws InterruptedException, ListaException, MessagingException, IOException, ClassNotFoundException {
 
@@ -398,109 +461,93 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
             }//for
 
         }//for
-        controlA.setNombre("RegistroInvitaciones.dat");
+
+        controlA.setNombre("Invitaciones" + indice + ".dat");
         controlA.escribirNuevo(invitaciones);
-    }//fin m'etodo
-
-    //metodo para cambiar el atributo invitaci'on a true de los participantes invitados
-    public void cambiarInvitacion() throws IOException, ClassNotFoundException, ListaException {
-
-        File file = new File(ruta + nombre);
-        List<Participantes> array = new ArrayList<Participantes>();
-
-        //Validaci'on
-        if (file.exists()) {
-            ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream(ruta + nombre));
-            Object aux = objectInput.readObject();
-
-            array = (List<Participantes>) aux;
-
-            for (int i = 1; i <= listaParticipantesS.getSize(); i++) {
-
-                for (int j = 0; j < array.size(); j++) {
-                    if (array.get(j).getNombreUsuario().equalsIgnoreCase(""
-                            + listaParticipantesS.getNodo(i).elemento)) {
-
-                        Participantes usuarios = new Participantes(array.get(j).getNombre(),
-                                array.get(j).getCorreo(), array.get(j).getNombreUsuario(),
-                                array.get(j).getContraseña(), array.get(j).getNumeroTelefono(), true);
-                        array.remove(j);
-                        array.add(usuarios);
-                    }
-
-                    objectInput.close();
-                }
-
-                ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(ruta + nombre));
-                output.writeUnshared(array);
-
-            }
-
-        }//for
 
     }//fin m'etodo
-    
+
+    public int cargarArchivoSubasta() throws IOException, ClassNotFoundException, ListaException {
+        Object objeto = new NumeroArchivo();
+        ControlArchivos controlArchivos = new ControlArchivos();
+        ListaEnlazada listaE = new ListaEnlazada();
+
+        controlArchivos.setNombre("CantidadArchivos.dat");
+        listaE = controlArchivos.cargarLista();
+
+        if (listaE.isEmpty()) {
+            return 0;
+        }
+        
+        objeto = listaE.getNodo(1).elemento;
+        NumeroArchivo p = (NumeroArchivo) objeto;
+
+        int numero = p.getNumeroArchivo();
+
+        return numero;
+    }
+
     //Método para eliminar un producto ingresado a la tabla
     private void ventanaMenuParticipantes() {
         JFXButton eliminar = new JFXButton("Eliminar");
-        
+
         eliminar.setOnAction((event) -> {
             int indice = tvw_participantes.getSelectionModel().getSelectedIndex();
             try {
-                listaParticipantesS.suprimir(listaParticipantesS.getNodo(indice+1).elemento);                
+                listaParticipantesS.suprimir(listaParticipantesS.getNodo(indice + 1).elemento);
                 part.remove(indice);
             } catch (ListaException ex) {
                 Logger.getLogger(InterfazSubModuloInvitarParticipantesController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        
+
         eliminar.setPadding(new Insets(10));
-        
+
         VBox vbox = new VBox(eliminar);
-        
+
         ppp_participantes.setContent(vbox);
         ppp_participantes.setSource(tvw_participantes);
-        
+
     }//fin m'etodo
-    
+
     //Método para eliminar un producto ingresado a la tabla
     private void ventanaMenuProductos() {
-        JFXButton eliminar = new JFXButton("Eliminar");
         
+        JFXButton eliminar = new JFXButton("Eliminar");
+
+
         eliminar.setOnAction((event) -> {
             int indice = tvw_productos.getSelectionModel().getSelectedIndex();
             try {
-                listaProductosS.suprimir(listaProductosS.getNodo(indice+1).elemento);     
-                System.out.println(listaProductosS.toString());
+                listaProductosS.suprimir(listaProductosS.getNodo(indice + 1).elemento);
                 produc.remove(indice);
             } catch (ListaException ex) {
                 Logger.getLogger(InterfazSubModuloInvitarParticipantesController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        
-        eliminar.setPadding(new Insets(10)); 
-        
+
+        eliminar.setPadding(new Insets(10));
+
         VBox vbox = new VBox(eliminar);
-        
+
         ppp_productos.setContent(vbox);
         ppp_productos.setSource(tvw_productos);
-        
+
     }//fin m'etodo
 
     @FXML
     private void eliminarProducto(MouseEvent event) {
-        if(event.getButton() == MouseButton.SECONDARY)
-            ppp_productos.show(JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT, event.getX(), event.getY());               
+        if (event.getButton() == MouseButton.SECONDARY) {
+            ppp_productos.show(JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT, event.getX(), event.getY());
+        }
     }
 
     @FXML
     private void eliminarParticipante(MouseEvent event) {
-        if(event.getButton() == MouseButton.SECONDARY)
-        ppp_participantes.show(JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT, event.getX(), event.getY());
+        if (event.getButton() == MouseButton.SECONDARY) {
+            ppp_participantes.show(JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT, event.getX(), event.getY());
+        }
     }
-    
-    
-    
 
     //Clase con el metodo abstracto run para la ejecion independiente de enviar correos 
     class EnviarCorre extends Thread {

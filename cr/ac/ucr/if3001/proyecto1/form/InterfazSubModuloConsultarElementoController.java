@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cr.ac.ucr.if3001.proyecto1.form;
 
 import cr.ac.ucr.if3001.proyecto1.domain.ControlArchivos;
@@ -25,11 +20,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-/**
- * FXML Controller class
- *
- * @author Maria
- */
 public class InterfazSubModuloConsultarElementoController implements Initializable {
 
     //instancias necesarias
@@ -86,7 +76,7 @@ public class InterfazSubModuloConsultarElementoController implements Initializab
             
                 if (newValue.isEmpty() || newValue==null) {
                     return true;
-                }else if(material.getNombre().contains(newValue)){
+                }else if(material.getNombre().contains(newValue) || material.getNombre().equalsIgnoreCase(newValue)){
                     return true;
                 }
                 String lowerCaseFilter = newValue.toLowerCase();

@@ -100,14 +100,14 @@ public class InterfazSubModuloVerParticipantesController implements Initializabl
         });
 
         //Columna que muestra si el participante está invitado  a una puja en ese momento
-        JFXTreeTableColumn<User, String> colunm5 = new JFXTreeTableColumn<>("Invitación");
-        colunm5.setPrefWidth(200);
-        colunm5.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<User, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<User, String> param) {
-                return param.getValue().getValue().invitado;
-            }
-        });
+//        JFXTreeTableColumn<User, String> colunm5 = new JFXTreeTableColumn<>("Invitación");
+//        colunm5.setPrefWidth(200);
+//        colunm5.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<User, String>, ObservableValue<String>>() {
+//            @Override
+//            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<User, String> param) {
+//                return param.getValue().getValue().invitado;
+//            }
+//        });
 
         try {
             cargarTabla();
@@ -117,7 +117,7 @@ public class InterfazSubModuloVerParticipantesController implements Initializabl
 
         final TreeItem<User> root = new RecursiveTreeItem<>(participantes, RecursiveTreeObject::getChildren);
         //Se agregan las columnas a la tabla
-        tbv_participantes.getColumns().setAll(colunm, colunm2, colunm3, colunm4, colunm5);
+        tbv_participantes.getColumns().setAll(colunm, colunm2, colunm3, colunm4);
         tbv_participantes.setRoot(root);
         tbv_participantes.setShowRoot(false);
     }//fin initialize
@@ -135,9 +135,7 @@ public class InterfazSubModuloVerParticipantesController implements Initializabl
             for (int i = 1; i <= listE.getSize(); i++) {
                 part = listE.getNodo(i).elemento;
                 Participantes p = (Participantes) part;
-                participantes.add(new User(p.getNombre(), p.getNombreUsuario(), p.getCorreo(),
-                        Utilidades.formatTelefono(p.getNumeroTelefono()), p.isInvitacion() == true
-                        ? "Invitado" : "No Invitado"));
+                participantes.add(new User(p.getNombre(), p.getNombreUsuario(), p.getCorreo(), Utilidades.formatTelefono(p.getNumeroTelefono())));
             }
 
         }//if
@@ -158,7 +156,7 @@ public class InterfazSubModuloVerParticipantesController implements Initializabl
             //Se genera un String con la informaci'on de los participantes registrados           
             datos += "Nombre: " + p.getNombre() + ", Nombre de Usuario: " + p.getNombreUsuario()
                     + ", Correo Electrónico: " + p.getCorreo() + ", Número de Teléfono: " + Utilidades.formatTelefono(p.getNumeroTelefono())
-                    + ", Invitación: " + (p.isInvitacion() == true ? "Invitado" : "No Invitado") + "\n\n\n";
+                    + "\n\n\n";
         }//fin for
 
         GenerarPDF generarPdf = new GenerarPDF();
@@ -192,7 +190,6 @@ public class InterfazSubModuloVerParticipantesController implements Initializabl
             excel[i - 1][++fila] = p.getNombreUsuario();
             excel[i - 1][++fila] = p.getCorreo();
             excel[i - 1][++fila] = Utilidades.formatTelefono(p.getNumeroTelefono());
-            excel[i - 1][++fila] = p.isInvitacion() == true ? "Invitado" : "No invitado";
 
             //Se reinicia el valor de las filas
             fila = 0;
@@ -239,15 +236,13 @@ public class InterfazSubModuloVerParticipantesController implements Initializabl
         SimpleStringProperty nombreUsuario;
         SimpleStringProperty correo;
         SimpleStringProperty telefono;
-        SimpleStringProperty invitado;
 
         //Constructor
-        public User(String nombre, String nombreUsuario, String correo, String telefono, String invitado) {
+        public User(String nombre, String nombreUsuario, String correo, String telefono) {
             this.nombre = new SimpleStringProperty(nombre);
             this.nombreUsuario = new SimpleStringProperty(nombreUsuario);
             this.correo = new SimpleStringProperty(correo);
             this.telefono = new SimpleStringProperty(telefono);
-            this.invitado = new SimpleStringProperty(invitado);
         }
         //fin constructor
 

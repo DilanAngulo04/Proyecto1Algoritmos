@@ -1,9 +1,13 @@
 package cr.ac.ucr.if3001.proyecto1.util;
 
+import cr.ac.ucr.if3001.proyecto1.domain.ControlArchivos;
+import cr.ac.ucr.if3001.proyecto1.domain.ListaEnlazada;
+import cr.ac.ucr.if3001.proyecto1.exception.ListaException;
 import cr.ac.ucr.if3001.proyecto1.object.Administrador;
 import cr.ac.ucr.if3001.proyecto1.object.Participantes;
 import cr.ac.ucr.if3001.proyecto1.object.Productos;
 import cr.ac.ucr.if3001.proyecto1.object.Subastas;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.animation.FadeTransition;
@@ -164,5 +168,6 @@ public class Utilidades {
         return mather.find() == true;
 
     }
+    
 
 }//fin class

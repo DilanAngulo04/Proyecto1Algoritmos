@@ -145,7 +145,7 @@ public class InterfazLoginParticipantesController implements Initializable {
                             if (contrasena.equals(confirmarContraseña)) {
 
                                 Participantes participantes = new Participantes(nombreCompleto, correo,
-                                        nombreU, contrasena, Integer.parseInt(numeroTelefono), false);
+                                        nombreU, contrasena, Integer.parseInt(numeroTelefono), 0, 0);
                                 controlA.setNombre("Participantes.dat");
                                 controlA.escribir(participantes);
                                 tfd_correo.clear();

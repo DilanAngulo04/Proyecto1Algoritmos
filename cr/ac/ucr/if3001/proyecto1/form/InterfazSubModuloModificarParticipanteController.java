@@ -133,9 +133,8 @@ public class InterfazSubModuloModificarParticipanteController implements Initial
 
             ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(ruta + nombre));
             output.writeUnshared(array);
-
         }
-    }
+    }//fin eliminares
 
     @FXML
     private void btn_modificarDatos(ActionEvent event) {
@@ -154,7 +153,7 @@ public class InterfazSubModuloModificarParticipanteController implements Initial
     //Se modifican los valores y se vuelven a cargar
     @FXML
     private void handleModificar(ActionEvent event) throws IOException, ClassNotFoundException, ListaException {
-        
+
         String newNombreU = tfd_newNombreUsuario.getText().trim();
         String newCorreo = tfd_newEmail.getText().trim();
         String newNombre = tfd_newNombre.getText().trim();
@@ -182,7 +181,9 @@ public class InterfazSubModuloModificarParticipanteController implements Initial
                             //Solo necesito la posicion dada por "i"
                             if (array.get(i).getNombreUsuario().equals(nombreBuscar)) {
                                 Participantes newParticipantes = new Participantes(newNombre, newCorreo, newNombreU,
-                                        array.get(i).getContraseña(), Integer.parseInt(newTelfono), false);
+                                        array.get(i).getContraseña(), Integer.parseInt(newTelfono),
+                                        array.get(i).getMontosAdjudicados(),
+                                        array.get(i).getRanking());
                                 array.remove(i);
 
                                 //Se comprueba que se haya añadido de nuevo a la lista
@@ -194,7 +195,7 @@ public class InterfazSubModuloModificarParticipanteController implements Initial
                                 } else {
                                     System.err.println("Error al insertar en la lista");
                                 }
-                                
+
                                 objectInput.close();
                                 ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(ruta + nombre));
                                 output.writeUnshared(array);
@@ -210,17 +211,17 @@ public class InterfazSubModuloModificarParticipanteController implements Initial
                         lbl_errorTelefono.setText("No es un número de teléfono válido");
                     }
 
-                }else{
+                } else {
                     lbl_errorCorreo.setVisible(true);
                     lbl_errorCorreo.setText("No es un correo válido");
-                            
+
                 }
-            }else{
+            } else {
                 lbl_errorTelefono.setVisible(true);
                 lbl_errorTelefono.setText("Hay campos sin llenar");
             }
 
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Problemas con el archivo");
         }
 

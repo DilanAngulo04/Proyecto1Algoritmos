@@ -39,7 +39,7 @@ public class InterfazParticipanteUsuarioController implements Initializable {
 
         lbl_mensaje.setText("¡Saludos " + Utilidades.getNombreUsuario() + "!");
         try {
-            if (verificar()) {
+//            if (verificar()) {
                 anp_invitado.setVisible(true);
 
                 Object subasta = new RegistroInvitaciones();
@@ -59,32 +59,32 @@ public class InterfazParticipanteUsuarioController implements Initializable {
                 }
 
                 
-            }
+//            }
         } catch (IOException | ClassNotFoundException | ListaException ex) {
             Logger.getLogger(InterfazParticipanteUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//fin initialize
 
-    public boolean verificar() throws IOException, ClassNotFoundException, ListaException {
-        Object participantes = new Participantes();
-        controlA.setNombre("Participantes.dat");
-        listaE = controlA.cargarLista();
-
-        if (!listaE.isEmpty()) {
-
-            for (int i = 1; i <= listaE.getSize(); i++) {
-                participantes = listaE.getNodo(i).elemento;
-                Participantes p = (Participantes) participantes;
-
-                if (p.getNombreUsuario().equalsIgnoreCase(Utilidades.getNombreUsuario())) {
-                    if (p.isInvitacion()) {
-                        return true;
-                    }
-                }
-            }//for
-        }
-        return false;
-    }// fin m'etodo
+//    public boolean verificar() throws IOException, ClassNotFoundException, ListaException {
+//        Object participantes = new Participantes();
+//        controlA.setNombre("Participantes.dat");
+//        listaE = controlA.cargarLista();
+//
+//        if (!listaE.isEmpty()) {
+//
+//            for (int i = 1; i <= listaE.getSize(); i++) {
+//                participantes = listaE.getNodo(i).elemento;
+//                Participantes p = (Participantes) participantes;
+//
+//                if (p.getNombreUsuario().equalsIgnoreCase(Utilidades.getNombreUsuario())) {
+//                    if (p.isInvitacion()) {
+//                        return true;
+//                    }
+//                }
+//            }//for
+//        }
+//        return false;
+//    }// fin m'etodo
 
 }//fin class

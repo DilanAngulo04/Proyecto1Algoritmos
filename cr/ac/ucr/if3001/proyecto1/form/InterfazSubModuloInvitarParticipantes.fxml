@@ -77,9 +77,15 @@
       <Label fx:id="lbl_errorProductos" layoutX="475.0" layoutY="376.0" prefHeight="17.0" prefWidth="229.0" text="Elemento añadido anteriormente" textFill="#e75050" visible="false" />
       <Label fx:id="lbl_errorParticipantes" layoutX="736.0" layoutY="376.0" prefHeight="17.0" prefWidth="229.0" text="Elemento añadido anteriormente" textFill="#e75050" visible="false" />
       <Label fx:id="lbl_errorDia" layoutX="183.0" layoutY="134.0" prefHeight="17.0" prefWidth="179.0" text="Se debe llenar este campo" textFill="#d34545" visible="false" />
-      <Label fx:id="lbl_errorInicio" layoutX="182.0" layoutY="212.0" prefHeight="17.0" prefWidth="143.0" text="Se debe llenar este campo" textFill="#d34545" visible="false" />
-      <Label fx:id="lbl_errorfin" layoutX="182.0" layoutY="281.0" prefHeight="17.0" prefWidth="143.0" text="Se debe llenar este campo" textFill="#d34545" visible="false" />
+      <Label fx:id="lbl_errorInicio" layoutX="182.0" layoutY="212.0" prefHeight="17.0" prefWidth="229.0" text="Se debe llenar este campo" textFill="#d34545" visible="false" />
+      <Label fx:id="lbl_errorfin" layoutX="182.0" layoutY="281.0" prefHeight="17.0" prefWidth="229.0" text="Se debe llenar este campo" textFill="#d34545" visible="false" />
       <JFXPopup fx:id="ppp_productos" layoutX="14.0" layoutY="13.0" />
       <JFXPopup fx:id="ppp_participantes" layoutX="37.0" layoutY="13.0" />
+      <Label layoutX="35.0" layoutY="314.0" text="Número de Subasta">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_numeroSubasta" layoutX="200.0" layoutY="316.0" text="-" />
    </children>
 </AnchorPane>

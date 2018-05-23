@@ -5,32 +5,44 @@ import java.io.Serializable;
 public class Participantes extends Seguridad implements Serializable{
     
     //atributos
-    private boolean invitacion;
+    private int montosAdjudicados;
+    private int ranking;
 
     public Participantes(String nombre, String correo, String nombreUsuario, String contraseña, 
-            int numeroTelefono, boolean invitacion) {
+            int numeroTelefono, int montosAdjudicados, int ranking) {
         super(nombre, correo, nombreUsuario, contraseña, numeroTelefono);
-        this.invitacion = invitacion;
+        this.montosAdjudicados = montosAdjudicados;
+        this.ranking = ranking;
     }   
 
     public Participantes() {
         super();
-        invitacion = false;
+        this.montosAdjudicados = 0;
+        this.ranking = 0;
+        
     }    
     //fin contructores
 
-    public boolean isInvitacion() {
-        return invitacion;
+    public int getRanking() {
+        return ranking;
     }
 
-    public void setInvitacion(boolean invitacion) {
-        this.invitacion = invitacion;
+    public void setRanking(int ranking) {
+        this.ranking = ranking;
+    }    
+
+    public int getMontosAdjudicados() {
+        return montosAdjudicados;
     }
+
+    public void setMontosAdjudicados(int montosAdjudicados) {
+        this.montosAdjudicados = montosAdjudicados;
+    }        
     //Fin setters and getters   
 
     @Override
     public String toString() {
-        return "Participantes {" + " Invitación = " + invitacion + '}';
+        return "Participantes {" + ", Montos Adjudicados = " + montosAdjudicados + ", Ranking = " + ranking + '}';
     }
     //fin toString
 
