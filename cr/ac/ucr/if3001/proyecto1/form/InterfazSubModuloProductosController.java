@@ -23,9 +23,7 @@ public class InterfazSubModuloProductosController implements Initializable {
     private AnchorPane anp_participantes;
     @FXML
     private ImageView btn_perfil;
-    @FXML
     private ImageView btn_participnates;
-    @FXML
     private ImageView btn_cerrar;
     @FXML
     private Label lbl_nombreUsuario;
@@ -41,21 +39,25 @@ public class InterfazSubModuloProductosController implements Initializable {
 //        anp_root.setOpacity(0);
 //        Utilidades.transition(anp_root);
 //        lvw_participantes.setEditable(false);
+
+
+
+//        anp_participantes.setVisible(false);
+        anp_participantes.setVisible(false);
+//        anp_options.setVisible(true);
+        
     }//fin initialize
 
     @FXML
     private void action(MouseEvent event) {
+
+        int count= event.getClickCount();
         
-        if (event.getTarget() == btn_perfil) {
-            anp_perfil.setVisible(true);
-            anp_participantes.setVisible(false);            
-        } else if (event.getTarget() == btn_participnates) {
-            anp_perfil.setVisible(false);
-            anp_participantes.setVisible(true);            
-        } else if (event.getTarget() == btn_cerrar) {
-            anp_perfil.setVisible(false);
-            anp_participantes.setVisible(false);            
-        }
+        if (event.getTarget() == btn_perfil && count==1) {
+            anp_participantes.setVisible(true);
+        } else if(event.getTarget() == btn_perfil && count==2)
+            anp_participantes.setVisible(false);
+             count=0;
         
     }
     

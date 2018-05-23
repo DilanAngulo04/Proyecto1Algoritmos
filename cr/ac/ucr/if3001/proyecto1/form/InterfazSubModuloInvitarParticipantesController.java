@@ -445,7 +445,7 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
             //se hace un registro de los participantes
             RegistroInvitaciones rInvitaciones
                     = new RegistroInvitaciones("" + listaParticipantesS.getNodo(i).elemento,
-                            productos, "" + diaSubasta, "" + horaInicio, "" + horaFin);
+                            productos, "" + diaSubasta, "" + horaInicio, "" + horaFin, true);
 
             invitaciones.add(rInvitaciones);
 

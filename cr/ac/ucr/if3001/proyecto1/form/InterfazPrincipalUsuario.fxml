@@ -24,7 +24,7 @@
       </Lighting>
    </effect>
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" layoutX="67.0" layoutY="66.0" prefHeight="560.0" prefWidth="805.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="66.0">
+      <SplitPane dividerPositions="0.29797979797979796" layoutX="67.0" layoutY="32.0" prefHeight="594.0" prefWidth="806.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="50.0" SplitPane.resizableWithParent="false">
                <children>

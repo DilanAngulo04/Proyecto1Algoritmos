@@ -104,7 +104,7 @@ public class InterfazPrincipalAdministradorController implements Initializable {
         ObservableList<String> ols = FXCollections.observableArrayList();
         ols.add("Ver Participantes");
         ols.add("Modificar Participantes");
-        ols.add("Invitar Participantes");
+        
         lsv_participantes.setItems(ols);
     }//fin
 
@@ -129,13 +129,7 @@ public class InterfazPrincipalAdministradorController implements Initializable {
                         Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
                     }
                 }
-                if (i == 2) {
-                    try {
-                        añadirPestaña("InterfazSubModuloInvitarParticipantes.fxml", "Invitar Participantes");
-                    } catch (IOException ioe) {
-                        Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
-                    }
-                }
+                
             }
         });
     }//fin m'etodo
@@ -143,8 +137,7 @@ public class InterfazPrincipalAdministradorController implements Initializable {
     //Agregar contenido a la lista de opciones
     private void loadListViewSubastas() {
         ObservableList<String> ols = FXCollections.observableArrayList();
-        ols.add("Configurar Subasta");
-        ols.add("Control de Subasta");
+        ols.add("Invitar Participantes");
         lsw_subastas.setItems(ols);
     }//fin m'etodo
 
@@ -154,20 +147,13 @@ public class InterfazPrincipalAdministradorController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 int i = lsw_subastas.getSelectionModel().getSelectedIndex();
-                if (i == 0) {
+                if (i == 2) {
                     try {
-                        añadirPestaña("InterfazSubModuloConfSubasta.fxml", "Configurar Subasta");
+                        añadirPestaña("InterfazSubModuloInvitarParticipantes.fxml", "Invitar Participantes");
                     } catch (IOException ioe) {
                         Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
                     }
-                }//fin if
-                if (i == 1) {
-                    try {
-                        añadirPestaña("InterfazSubModuloControlSubasta.fxml", "Control Subastas");
-                    } catch (IOException ioe) {
-                        Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
-                    }
-                }//fin if              
+                }            
             }
         });
     }//fin m'etodo

@@ -58,7 +58,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <AnchorPane fx:id="anp_invitado" layoutX="-7.0" layoutY="-16.0" prefHeight="539.0" prefWidth="901.0" style="-fx-background-color: #ffffff;">
+            <AnchorPane fx:id="anp_invitado" layoutX="-7.0" layoutY="-16.0" prefHeight="539.0" prefWidth="901.0" style="-fx-background-color: #ffffff;" visible="false">
                <children>
                   <ImageView fitHeight="91.0" fitWidth="118.0" layoutX="70.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
                      <image>

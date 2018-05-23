@@ -162,19 +162,7 @@ public class InterfazPrincipalUsuarioController extends Thread implements Initia
                             Logger.getLogger(InterfazPrincipalUsuarioController.class.getName()).log(Level.SEVERE, null, ioe);
                         }
                     }
-//                    else 
-//                        if(i == 0){ // carga pantalla de espera si no ha alcanzado la fecha de subasta
-//                        try {
-//                            
-//                            Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubastaNoDisponible.fxml"));
-//                            Tab td = new Tab("Hacer Pujas", node);
-//                            tab_ventanas.getSelectionModel().select(td);
-//                            tab_ventanas.getTabs().add(td);
-//                            
-//                        } catch (IOException ioe) {
-//                            Logger.getLogger(InterfazPrincipalUsuarioController.class.getName()).log(Level.SEVERE, null, ioe);
-//                        }
-//                    }
+
                     if(i == 1){
                         try {
                             Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloMantSubastas.fxml"));

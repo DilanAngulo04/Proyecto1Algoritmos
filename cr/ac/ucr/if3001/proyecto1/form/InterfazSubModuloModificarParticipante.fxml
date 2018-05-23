@@ -24,11 +24,6 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lbl_insOtrosD" layoutX="106.0" layoutY="274.0" text="Otros datos:" visible="false">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
       <Label fx:id="lbl_insCorreo" layoutX="523.0" layoutY="161.0" text="Correo Electronico:" visible="false">
          <font>
             <Font size="14.0" />
@@ -40,16 +35,6 @@
          </font>
       </Label>
       <Label fx:id="ins_numeroT" layoutX="717.0" layoutY="161.0" text="Número telefónico:" visible="false">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="lbl_insPujasTotal" layoutX="118.0" layoutY="331.0" text="Total pujas realizadas:" visible="false">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="lbl_insMontosTotal" layoutX="312.0" layoutY="331.0" text="Montos Acumulados:" visible="false">
          <font>
             <Font size="14.0" />
          </font>
@@ -70,16 +55,6 @@
          </font>
       </Label>
       <Label fx:id="lbl_numeroT" layoutX="771.0" layoutY="215.0" text="-" visible="false">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="lbl_totalPujas" layoutX="165.0" layoutY="389.0" text="-" visible="false">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="lbl_montosTotales" layoutX="363.0" layoutY="389.0" text="-" visible="false">
          <font>
             <Font size="14.0" />
          </font>

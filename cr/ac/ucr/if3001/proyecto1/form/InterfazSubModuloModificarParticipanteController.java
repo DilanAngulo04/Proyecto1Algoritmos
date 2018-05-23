@@ -47,10 +47,6 @@ public class InterfazSubModuloModificarParticipanteController implements Initial
     @FXML
     private Label lbl_numeroT;
     @FXML
-    private Label lbl_totalPujas;
-    @FXML
-    private Label lbl_montosTotales;
-    @FXML
     private JFXButton btn_modificarDatos;
     @FXML
     private Label lbl_dontFound;
@@ -69,15 +65,9 @@ public class InterfazSubModuloModificarParticipanteController implements Initial
     @FXML
     private Label lbl_insNombreC;
     @FXML
-    private Label lbl_insOtrosD;
-    @FXML
     private Label lbl_insCorreo;
     @FXML
     private Label lbl_insNombreU;
-    @FXML
-    private Label lbl_insPujasTotal;
-    @FXML
-    private Label lbl_insMontosTotal;
     @FXML
     private Label lbl_newNombreC;
     @FXML
@@ -185,6 +175,7 @@ public class InterfazSubModuloModificarParticipanteController implements Initial
                                         array.get(i).getMontosAdjudicados(),
                                         array.get(i).getRanking());
                                 array.remove(i);
+                                
 
                                 //Se comprueba que se haya añadido de nuevo a la lista
                                 if (array.add(newParticipantes)) {
@@ -192,6 +183,8 @@ public class InterfazSubModuloModificarParticipanteController implements Initial
                                     lbl_nombreUsuario.setText(newNombreU);
                                     lbl_correo.setText(newCorreo);
                                     lbl_numeroT.setText(Utilidades.formatTelefono(Integer.parseInt(newTelfono)));
+                                    lbl_errorCorreo.setVisible(true);
+                                    lbl_errorCorreo.setText("Se modificaron los datos");
                                 } else {
                                     System.err.println("Error al insertar en la lista");
                                 }
@@ -248,6 +241,7 @@ public class InterfazSubModuloModificarParticipanteController implements Initial
                     //Se verifica que el valor ingresado coincida con el registrado
                     if (part.getNombreUsuario().equalsIgnoreCase(nombreBuscar)) {
 
+                        lbl_dontFound.setVisible(false);
                         lbl_nombreCompleto.setVisible(true);
                         lbl_nombreUsuario.setVisible(true);
                         lbl_correo.setVisible(true);
@@ -255,11 +249,6 @@ public class InterfazSubModuloModificarParticipanteController implements Initial
                         lbl_insNombreC.setVisible(true);
                         lbl_insNombreU.setVisible(true);
                         lbl_insCorreo.setVisible(true);
-                        lbl_insOtrosD.setVisible(true);
-                        lbl_insPujasTotal.setVisible(true);
-                        lbl_insMontosTotal.setVisible(true);
-                        lbl_montosTotales.setVisible(true);
-                        lbl_totalPujas.setVisible(true);
                         btn_modificarDatos.setVisible(true);
                         btn_eliminarParticipante.setVisible(true);
                         ins_numeroT.setVisible(true);
@@ -303,11 +292,6 @@ public class InterfazSubModuloModificarParticipanteController implements Initial
         lbl_insNombreC.setVisible(false);
         lbl_insNombreU.setVisible(false);
         lbl_insCorreo.setVisible(false);
-        lbl_insOtrosD.setVisible(false);
-        lbl_insPujasTotal.setVisible(false);
-        lbl_insMontosTotal.setVisible(false);
-        lbl_montosTotales.setVisible(false);
-        lbl_totalPujas.setVisible(false);
         lbl_dontFound.setVisible(false);
         btn_modificarDatos.setVisible(false);
         btn_eliminarParticipante.setVisible(false);
