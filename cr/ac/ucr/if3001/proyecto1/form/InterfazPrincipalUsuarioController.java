@@ -3,9 +3,15 @@ package cr.ac.ucr.if3001.proyecto1.form;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import cr.ac.ucr.if3001.proyecto1.util.Utilidades;
+import cr.ac.ucr.if3001.proyecto1.domain.ListaEnlazada;
+import cr.ac.ucr.if3001.proyecto1.object.RegistroInvitaciones;
+import cr.ac.ucr.if3001.proyecto1.domain.ControlArchivos;
+import cr.ac.ucr.if3001.proyecto1.exception.ListaException;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -57,7 +63,7 @@ public class InterfazPrincipalUsuarioController extends Thread implements Initia
     private JFXListView<String> lvw_subastas;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) { //hacer commit de esta clase 
         
         anp_root.setOpacity(0);
         Utilidades.transition(anp_root);
@@ -128,6 +134,7 @@ public class InterfazPrincipalUsuarioController extends Thread implements Initia
     private void loadListViewSubastas(){
     ObservableList<String> ols = FXCollections.observableArrayList();
     ols.add("Subastas");
+    ols.add("Mantenimiento subastas");
     lvw_subastas.setItems(ols);
     }//fin de metodo
     
@@ -136,19 +143,57 @@ public class InterfazPrincipalUsuarioController extends Thread implements Initia
         lvw_subastas.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                int i = lvw_subastas.getSelectionModel().getSelectedIndex();
-                //se agrega la ventana según el numero por defecto de las opciones de la lista
-                if (i == 0) { //hacer condicion aqui para que aparezca pujas o no
-                    try {
-
-                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloSubastasParticipante.fxml"));
-                        Tab td = new Tab("Hacer Pujas", node);
-                        tab_ventanas.getSelectionModel().select(td);
-                        tab_ventanas.getTabs().add(td);
-
-                    } catch (IOException ioe) {
-                        Logger.getLogger(InterfazPrincipalUsuarioController.class.getName()).log(Level.SEVERE, null, ioe);
+                try {
+                    int i = lvw_subastas.getSelectionModel().getSelectedIndex();
+                    //se agrega la ventana según el numero por defecto de las opciones de la lista
+                    //instancio la invitacion con la fecha mas cercana a comenzar
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("HH:MM");
+                    RegistroInvitaciones regsInvi = subastaEntrante();
+                    Date fecha = dateFormat.parse(regsInvi.getHoraIncio());
+                    if (i == 0 ) { //hacer condicion aqui para que aparezca pujas o no //&& fechaInvitacionAnterior(fecha)
+                        try {
+                            
+                            Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloSubastasParticipante.fxml"));
+                            Tab td = new Tab("Hacer Pujas", node);
+                            tab_ventanas.getSelectionModel().select(td);
+                            tab_ventanas.getTabs().add(td);
+                            
+                        } catch (IOException ioe) {
+                            Logger.getLogger(InterfazPrincipalUsuarioController.class.getName()).log(Level.SEVERE, null, ioe);
+                        }
                     }
+//                    else 
+//                        if(i == 0){ // carga pantalla de espera si no ha alcanzado la fecha de subasta
+//                        try {
+//                            
+//                            Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubastaNoDisponible.fxml"));
+//                            Tab td = new Tab("Hacer Pujas", node);
+//                            tab_ventanas.getSelectionModel().select(td);
+//                            tab_ventanas.getTabs().add(td);
+//                            
+//                        } catch (IOException ioe) {
+//                            Logger.getLogger(InterfazPrincipalUsuarioController.class.getName()).log(Level.SEVERE, null, ioe);
+//                        }
+//                    }
+                    if(i == 1){
+                        try {
+                            Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("InterfazSubModuloMantSubastas.fxml"));
+                            Tab td = new Tab("Mantenimiento Subastas", node);
+                            tab_ventanas.getSelectionModel().select(td);
+                            tab_ventanas.getTabs().add(td);
+                            
+                        } catch (IOException ioe) {
+                            Logger.getLogger(InterfazPrincipalUsuarioController.class.getName()).log(Level.SEVERE, null, ioe);
+                        }
+                    }
+                } catch (ListaException ex) {
+                    Logger.getLogger(InterfazPrincipalUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(InterfazPrincipalUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(InterfazPrincipalUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(InterfazPrincipalUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -211,5 +256,44 @@ public class InterfazPrincipalUsuarioController extends Thread implements Initia
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+    
+    public static RegistroInvitaciones subastaEntrante() throws ListaException, IOException, ClassNotFoundException, ParseException{
+        ControlArchivos controlA = new ControlArchivos();
+        controlA.setNombre("RegistroInvitaciones.dat");
+        ListaEnlazada listaInvitaSub = new ListaEnlazada();
+        
+        Date fechaActual = new Date();
+        listaInvitaSub = controlA.cargarLista();
+        
+        int marca = 1; //guarda la posicion del nodo en la lista que tiene la fecha mas cercana a realizarse la subasta
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:MM");
+        
+        RegistroInvitaciones regAux = (RegistroInvitaciones) listaInvitaSub.getNodo(1).elemento;
+        
+        Date fechamenor = dateFormat.parse(regAux.getHoraIncio());
+        
+        for (int i = 1; i <= listaInvitaSub.getSize(); i++) {
+            regAux = (RegistroInvitaciones) listaInvitaSub.getNodo(i).elemento;
+            
+            Date deliveryDay = dateFormat.parse(regAux.getHoraIncio());
+            
+            if(deliveryDay.compareTo(fechaActual)<0 && deliveryDay.compareTo(fechamenor)<=0){
+                fechamenor = deliveryDay;
+                marca = i;
+            }
+
+        }
+        
+        return (RegistroInvitaciones) listaInvitaSub.getNodo(marca).elemento;
+    }
+    
+    
+    //metodo compara una fecha con la fecha actual del equipo
+    public boolean fechaInvitacionAnterior(Date newDate){
+        Date fechaActual = new Date();
+        
+       return  newDate.compareTo(fechaActual)>=0;
     }
 }//fin class

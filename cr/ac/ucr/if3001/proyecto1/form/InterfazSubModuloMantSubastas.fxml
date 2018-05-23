@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="anp_root" prefHeight="645.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazSubModuloMantSubastasController">
+   <children>
+      <TableView fx:id="tvw_verSubastas" layoutX="67.0" layoutY="137.0" prefHeight="475.0" prefWidth="670.0">
+        <columns>
+          <TableColumn fx:id="clm_usuario" editable="false" prefWidth="161.0" text="Usuario" />
+          <TableColumn fx:id="clm_nombre" editable="false" minWidth="0.0" prefWidth="373.0" text="Nombre" />
+            <TableColumn fx:id="clm_monto" editable="false" prefWidth="113.0" text="Monto" />
+        </columns>
+      </TableView>
+      <Label layoutX="33.0" layoutY="38.0" text="Ver subasta">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <Button fx:id="btn_pdfSub" layoutX="841.0" layoutY="587.0" mnemonicParsing="false" onAction="#btn_generaPDF" text="Generar PDF" />
+      <TextField fx:id="tfd_busca" layoutX="413.0" layoutY="72.0" prefHeight="25.0" prefWidth="252.0" />
+      <Button layoutX="685.0" layoutY="72.0" mnemonicParsing="false" onAction="#btn_buscar" text="Buscar" />
+   </children>
+</AnchorPane>

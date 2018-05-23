@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 
 public class EventoSubasta implements Serializable{ 
-    //private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     private String nombreUsuario;
     private String nombre;
     private int montoPorPuja;
@@ -15,6 +15,14 @@ public class EventoSubasta implements Serializable{
         this.nombre = nombre;
         this.montoPorPuja = montoPorPuja;
     }
+
+    public EventoSubasta() {
+        this.nombreUsuario = "";
+        this.nombre = "";
+        this.montoPorPuja = 0;
+    }
+    
+    
 
     public String getNombreUsuario() {
         return nombreUsuario;
