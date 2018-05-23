@@ -5,6 +5,7 @@ import cr.ac.ucr.if3001.proyecto1.domain.ControlArchivos;
 import cr.ac.ucr.if3001.proyecto1.domain.ListaCircularEnlazadaDoble;
 import cr.ac.ucr.if3001.proyecto1.exception.ListaException;
 import cr.ac.ucr.if3001.proyecto1.object.Material;
+import cr.ac.ucr.if3001.proyecto1.util.Utilidades;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -86,12 +87,17 @@ public class InterfazSubModuloModificarProductosController implements Initializa
     private ComboBox<Integer> cb_cantidad;
     @FXML
     private Label lb_cantidad;
+    @FXML
+    private AnchorPane anp_root;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        anp_root.setOpacity(0);
+        Utilidades.transition(anp_root);
+        
         anp_modificar.setVisible(false);
         try {
             TextFields.bindAutoCompletion(txt_buscar, controlA.getNombres());
