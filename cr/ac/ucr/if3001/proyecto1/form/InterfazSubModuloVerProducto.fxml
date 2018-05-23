@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anp_root" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazSubModuloVerProductoController">
+<AnchorPane fx:id="anp_root" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.ucr.if3001.proyecto1.form.InterfazSubModuloVerProductoController">
    <children>
       <AnchorPane id="AnchorPane" prefHeight="721.0" prefWidth="981.0">
          <children>
@@ -29,7 +29,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lb_descripcion" layoutX="64.0" layoutY="149.0" text="Descripción">
+                              <Label fx:id="lb_descripcion" layoutX="64.0" layoutY="210.0" text="Descripción">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -40,6 +40,11 @@
                                  </font>
                               </Label>
                               <Separator layoutX="212.0" layoutY="25.0" prefHeight="4.0" prefWidth="281.0" />
+                              <Label fx:id="lb_cantidad" layoutX="68.0" layoutY="137.0" text="Cantidad">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </children>

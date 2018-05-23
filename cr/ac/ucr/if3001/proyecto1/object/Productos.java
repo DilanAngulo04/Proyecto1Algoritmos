@@ -6,8 +6,8 @@ import java.nio.file.Path;
 public class Productos extends Material implements Serializable{
     
     //contructores
-    public Productos(String nombre, int precio, String tipo, String descripcion, String pathImage) {
-        super(nombre, precio, tipo, descripcion, pathImage);
+    public Productos(String nombre, int precio, String tipo, String descripcion, int cantidad ,String pathImage) {
+        super(nombre, precio, tipo, descripcion, cantidad ,pathImage);
     }
 
     public Productos() {

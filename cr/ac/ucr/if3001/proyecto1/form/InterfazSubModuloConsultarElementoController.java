@@ -48,6 +48,8 @@ public class InterfazSubModuloConsultarElementoController implements Initializab
     private TextField txt_search;
     @FXML
     private TableColumn<Material, String> nombreCol;
+    @FXML
+    private TableColumn<Material, Integer> cantCol;
 
     /**
      * Initializes the controller class.
@@ -63,6 +65,7 @@ public class InterfazSubModuloConsultarElementoController implements Initializab
             costoCol.setCellValueFactory(new PropertyValueFactory<>("precio"));
             categoriaCol.setCellValueFactory(new PropertyValueFactory<>("tipo"));
             descripcionCol.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+            cantCol.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
             
             tabla.setItems(lista);
             

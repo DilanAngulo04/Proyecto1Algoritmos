@@ -27,11 +27,11 @@
                   </DisplacementMap>
                </effect>
             </Label>
-            <Label layoutX="28.0" layoutY="70.0" text="Nombre">
+            <Label layoutX="26.0" layoutY="69.0" text="Nombre">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <TextField fx:id="tfd_nombre" layoutX="120.0" layoutY="66.0">
+            <TextField fx:id="tfd_nombre" layoutX="120.0" layoutY="70.0">
                <effect>
                   <DisplacementMap>
                      <mapData>
@@ -39,7 +39,7 @@
                      </mapData>
                   </DisplacementMap>
                </effect></TextField>
-            <Label layoutX="28.0" layoutY="126.0" text="Costo">
+            <Label layoutX="26.0" layoutY="123.0" text="Costo">
                <font>
                   <Font size="14.0" />
                </font></Label>
@@ -67,15 +67,15 @@
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Label layoutX="25.0" layoutY="177.0" text="Categoría">
+            <Label layoutX="25.0" layoutY="180.0" text="Categoría">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label layoutX="28.0" layoutY="233.0" text="Descripción">
+            <Label layoutX="28.0" layoutY="296.0" text="Descripción">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <TextArea fx:id="ta_descripcion" layoutX="119.0" layoutY="241.0" prefHeight="105.0" prefWidth="204.0">
+            <TextArea fx:id="ta_descripcion" layoutX="119.0" layoutY="304.0" prefHeight="105.0" prefWidth="204.0">
                <effect>
                   <DisplacementMap>
                      <mapData>
@@ -89,7 +89,7 @@
                </font></Button>
             <ImageView fx:id="iv_Image" fitHeight="140.0" fitWidth="177.0" layoutX="387.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="lbl_registrado" layoutX="475.0" layoutY="253.0" />
-            <ComboBox fx:id="cb_categoria" layoutX="119.0" layoutY="174.0" prefWidth="150.0">
+            <ComboBox fx:id="cb_categoria" layoutX="120.0" layoutY="179.0" prefWidth="150.0">
                <effect>
                   <DisplacementMap>
                      <mapData>
@@ -98,6 +98,12 @@
                   </DisplacementMap>
                </effect></ComboBox>
             <Label fx:id="lb_numberFormat" layoutX="120.0" layoutY="147.0" prefHeight="17.0" prefWidth="150.0" />
+            <Label layoutX="27.0" layoutY="237.0" text="Cantidad">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cb_cantidad" layoutX="120.0" layoutY="238.0" prefWidth="150.0" />
          </children>
          <effect>
             <DisplacementMap>

@@ -11,6 +11,7 @@ private static final long serialVersionUID=-1204159794749022321L;
     private String tipo;
     private String descripcion;
     private String pathImage;
+    private int cantidad;
 
     //constructor vacio 
     public Material() {
@@ -19,15 +20,17 @@ private static final long serialVersionUID=-1204159794749022321L;
         this.tipo = "";
         this.descripcion = "";
         this.pathImage= "";
+        this.cantidad=0;
     }
 
     //constructor normal
-    public Material(String nombre, int precio, String tipo, String descripcion, String pathImage) {
+    public Material(String nombre, int precio, String tipo, String descripcion,int cantidad,String pathImage) {
         this.nombre = nombre;
         this.precio = precio;
         this.tipo = tipo;
         this.descripcion = descripcion;
         this.pathImage= pathImage;
+        this.cantidad= cantidad;
     }//fin constructor
 
     //setter and getters
@@ -61,6 +64,14 @@ private static final long serialVersionUID=-1204159794749022321L;
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
     
     public String getPathImage() {

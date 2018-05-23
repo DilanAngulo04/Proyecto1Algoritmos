@@ -32,6 +32,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -75,8 +76,6 @@ public class InterfazSubModuloModificarProductosController implements Initializa
     @FXML
     private TextField txt_costo;
     @FXML
-    private TextField txt_categoria;
-    @FXML
     private TextField txt_buscar;
     @FXML
     private AnchorPane anp_modificar;
@@ -94,6 +93,12 @@ public class InterfazSubModuloModificarProductosController implements Initializa
     private ImageView iv_nuevaImagen;
     @FXML
     private Button btn_nuevaImagen;
+    @FXML
+    private ComboBox<String> cb_categoria;
+    @FXML
+    private ComboBox<Integer> cb_cantidad;
+    @FXML
+    private Label lb_cantidad;
 
     /**
      * Initializes the controller class.
@@ -103,6 +108,8 @@ public class InterfazSubModuloModificarProductosController implements Initializa
         anp_modificar.setVisible(false);
         try {
             TextFields.bindAutoCompletion(txt_buscar, controlA.getNombres());
+            cb_categoria.getItems().addAll("Servicios", "Productos");
+            cb_cantidad.getItems().addAll(1, 2, 3, 4, 5);
         } catch (ListaException | IOException | ClassNotFoundException ex) {
             Logger.getLogger(InterfazSubModuloModificarProductosController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -130,16 +137,14 @@ public class InterfazSubModuloModificarProductosController implements Initializa
             array = (List<Material>) aux;
 
             for (int i = 0; i < array.size(); i++) {
-                if (array.get(i).getNombre().equals(productoBuscar)) {
+                if (array.get(i).getNombre().equals(productoBuscar) && array.get(i).getCantidad()==1) {
                     
                 //Control Bitacora
                 controlB.escribir(Calendar.getInstance().getTime().toString(), new Registro(array.get(i), "Supresion"));
-                
-//                Bitacora.bitacora.insertar(Calendar.getInstance().getTime().toString(), new Registro(array.get(i), "Supresion"));
-//                System.out.println("BITACORA "+Bitacora.bitacora.toString());
-                
                 array.remove(i);
                     
+                }else if(array.get(i).getNombre().equals(productoBuscar) && array.get(i).getCantidad()>1){
+                    array.get(i).setCantidad(array.get(i).getCantidad()-1);
                 }
 
                 objectInput.close();
@@ -189,11 +194,11 @@ public class InterfazSubModuloModificarProductosController implements Initializa
                         lb_costo.setText("" + producto.getPrecio());
                         lb_categoria.setText(producto.getTipo());
                         lb_descripcion.setText(producto.getDescripcion());
+                        lb_cantidad.setText(""+producto.getCantidad());
                         
                         txt_nombre.setText(producto.getNombre());
                         txt_costo.setText(""+ producto.getPrecio());
-                        txt_categoria.setText(producto.getTipo());
-                        txt_descripcion.setText(producto.getDescripcion());
+                        txt_descripcion.setText("Bla"+producto.getDescripcion());
                         
                         //Validacion
                         if (!"".equals(producto.getPathImage())) {
@@ -227,8 +232,9 @@ public class InterfazSubModuloModificarProductosController implements Initializa
 
         String newNombre = txt_nombre.getText().trim();
         int newCosto = Integer.parseInt(txt_costo.getText().trim());
-        String newTipo = txt_categoria.getText().trim();
+        String newTipo = cb_categoria.getValue();
         String newDescripcion = txt_descripcion.getText().trim();
+        int newCantidad= cb_cantidad.getValue();
 
         File file = new File(ruta + nombre);
         List<Material> array = new ArrayList<>();
@@ -249,15 +255,11 @@ public class InterfazSubModuloModificarProductosController implements Initializa
                     //Se comprueba que exista (no va pasar porque si est'a)
                     //Solo necesito la posicion dada por "i"
                     if (array.get(i).getNombre().equals(productoBuscar)) {
-                        Material newMaterial = new Material(newNombre, newCosto, newTipo, newDescripcion, path);
+                        Material newMaterial = new Material(newNombre, newCosto, newTipo, newDescripcion, newCantidad, path);
                         
                         //Control Bitacora
-                        controlB.escribir(Calendar.getInstance().getTime().toString(), new Registro(array.get(i), "Modificacion"));
-                        System.out.println("LEER "+controlB.cargarBitacora().toString());
-                        
-//                        Bitacora.bitacora.insertar(Calendar.getInstance().getTime().toString(), new Registro(array.get(i), "Modificacion"));
-//                        System.out.println("BITACORA " + Bitacora.bitacora.toString());
-                        
+                        //controlB.escribir(Calendar.getInstance().getTime().toString(), new Registro(array.get(i), "Modificacion"));
+                        //System.out.println("LEER "+controlB.cargarBitacora().toString());                        
                         
                         array.remove(i);
                         array.add(newMaterial);
@@ -311,8 +313,9 @@ public class InterfazSubModuloModificarProductosController implements Initializa
         txt_buscar.clear();
         txt_nombre.clear();
         txt_costo.clear();
-        txt_categoria.clear();
         txt_descripcion.clear();
+        cb_cantidad.getSelectionModel().clearSelection();
+        cb_categoria.getSelectionModel().clearSelection();
         iv_nuevaImagen.setImage(null);
     }    
 

@@ -62,6 +62,8 @@ public class InterfazSubModuloVerProductoController implements Initializable {
     private AnchorPane anp_infoProducto;
     @FXML
     private AnchorPane anp_root;
+    @FXML
+    private Label lb_cantidad;
 
     /**
      * Initializes the controller class.
@@ -121,6 +123,7 @@ public class InterfazSubModuloVerProductoController implements Initializable {
 
                 if (producto.getNombre().equalsIgnoreCase(opcion)) {
                     lb_costo.setText("Precio: " + producto.getPrecio());
+                    lb_cantidad.setText("Cantidad: "+producto.getCantidad());
                     lb_descripcion.setText("Descripción: " + producto.getDescripcion());
                     
                     if(!"".equals(producto.getPathImage())){  

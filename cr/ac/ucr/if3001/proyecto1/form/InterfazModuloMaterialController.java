@@ -55,12 +55,15 @@ public class InterfazModuloMaterialController implements Initializable {
     private ComboBox<String> cb_categoria;
     @FXML
     private Label lb_numberFormat;
+    @FXML
+    private ComboBox<Integer> cb_cantidad;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         anp_root.setOpacity(0);
         Utilidades.transition(anp_root);
         cb_categoria.getItems().addAll("Servicios", "Productos");
+        cb_cantidad.getItems().addAll(1,2,3,4,5);
 
     }//fin initialize
 
@@ -81,10 +84,11 @@ public class InterfazModuloMaterialController implements Initializable {
         nombre = tfd_nombre.getText().trim();
         String tipo = cb_categoria.getValue();
         String descripcion = ta_descripcion.getText().trim();
+        int cantidad= cb_cantidad.getValue();
         if (!existe()) {
             if (nombre.length() > 0 && descripcion.length() > 0 && tfd_costo.getText().length() > 0 && !tipo.isEmpty()) {
 
-                Productos p = new Productos(nombre, precio, tipo, descripcion, path);
+                Productos p = new Productos(nombre, precio, tipo, descripcion, cantidad, path);
 
                 //Escribir en archivo
                 controlA.setNombre("Material.dat");
@@ -105,7 +109,6 @@ public class InterfazModuloMaterialController implements Initializable {
         lbl_registrado.setText(nombre+" ha sido registrado");
         }
         limpiarCampos();
-        System.out.println(lista.toString());
 
     }//fin action
     
@@ -148,6 +151,8 @@ public class InterfazModuloMaterialController implements Initializable {
         tfd_nombre.clear();
         tfd_costo.clear();
         ta_descripcion.clear();
+        cb_cantidad.getSelectionModel().clearSelection();
+        cb_categoria.getSelectionModel().clearSelection();
         iv_Image.setImage(null);
     }//fin limpiarCampos
     

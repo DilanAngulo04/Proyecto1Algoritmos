@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
@@ -18,7 +19,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <AnchorPane layoutX="31.0" layoutY="93.0" prefHeight="38.0" prefWidth="580.0" style="-fx-background-color: #ffffff;">
+            <AnchorPane layoutX="31.0" layoutY="93.0" prefHeight="38.0" prefWidth="616.0" style="-fx-background-color: #ffffff;">
                <children>
                   <Label layoutX="14.0" layoutY="11.0" text="Nombre">
                      <font>
@@ -32,13 +33,19 @@
                      <font>
                         <Font size="14.0" />
                      </font></Label>
-                  <Label layoutX="380.0" layoutY="11.0" text="Descripción">
+                  <Label layoutX="385.0" layoutY="9.0" text="Cantidad">
                      <font>
                         <Font size="14.0" />
-                     </font></Label>
+                     </font>
+                  </Label>
+                  <Label layoutX="503.0" layoutY="11.0" text="Descripción">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="31.0" layoutY="137.0" prefHeight="99.0" prefWidth="572.0" style="-fx-background-color: #ffffff;">
+            <AnchorPane layoutX="31.0" layoutY="137.0" prefHeight="99.0" prefWidth="691.0" style="-fx-background-color: #ffffff;">
                <children>
                   <Label fx:id="lb_nombre" layoutX="14.0" layoutY="11.0">
                      <font>
@@ -52,10 +59,15 @@
                      <font>
                         <Font size="14.0" />
                      </font></Label>
-                  <Label fx:id="lb_descripcion" layoutX="377.0" layoutY="11.0" prefHeight="75.0" prefWidth="186.0">
+                  <Label fx:id="lb_descripcion" layoutX="491.0" layoutY="12.0" prefHeight="75.0" prefWidth="186.0">
                      <font>
                         <Font size="14.0" />
                      </font></Label>
+                  <Label fx:id="lb_cantidad" layoutX="383.0" layoutY="13.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <RadioButton fx:id="tb_modificar" layoutX="451.0" layoutY="248.0" mnemonicParsing="false" onAction="#modificar" text="Modificar">
@@ -67,14 +79,14 @@
                   <Font size="14.0" />
                </font></Button>
             <TextField fx:id="txt_buscar" layoutX="45.0" layoutY="49.0" onAction="#buscar" prefHeight="25.0" prefWidth="299.0" />
-            <AnchorPane fx:id="anp_modificar" layoutX="14.0" layoutY="284.0" prefHeight="359.0" prefWidth="666.0" style="-fx-background-color: #ffffff;">
+            <AnchorPane fx:id="anp_modificar" layoutX="14.0" layoutY="284.0" prefHeight="419.0" prefWidth="775.0" style="-fx-background-color: #ffffff;">
                <children>
                   <Label layoutX="14.0" layoutY="1.0" text="Modificar">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="30.0" layoutY="57.0" text="Nombre">
+                  <Label layoutX="30.0" layoutY="54.0" text="Nombre">
                      <font>
                         <Font size="14.0" />
                      </font></Label>
@@ -82,30 +94,36 @@
                      <font>
                         <Font size="14.0" />
                      </font></Label>
-                  <Label layoutX="32.0" layoutY="170.0" text="Categoría">
+                  <Label layoutX="27.0" layoutY="218.0" text="Categoría">
                      <font>
                         <Font size="14.0" />
                      </font></Label>
-                  <Label layoutX="34.0" layoutY="227.0" text="Descripción">
+                  <Label layoutX="32.0" layoutY="275.0" text="Descripción">
                      <font>
                         <Font size="14.0" />
                      </font></Label>
-                  <TextField fx:id="txt_descripcion" layoutX="119.0" layoutY="227.0" prefHeight="69.0" prefWidth="217.0" />
-                  <TextField fx:id="txt_categoria" layoutX="119.0" layoutY="158.0" prefHeight="25.0" prefWidth="217.0" />
-                  <TextField fx:id="txt_costo" layoutX="119.0" layoutY="106.0" prefHeight="25.0" prefWidth="217.0" />
-                  <TextField fx:id="txt_nombre" layoutX="119.0" layoutY="53.0" prefHeight="25.0" prefWidth="217.0" />
+                  <TextField fx:id="txt_descripcion" layoutX="119.0" layoutY="281.0" prefHeight="69.0" prefWidth="217.0" />
+                  <TextField fx:id="txt_costo" layoutX="119.0" layoutY="108.0" prefHeight="25.0" prefWidth="217.0" />
+                  <TextField fx:id="txt_nombre" layoutX="119.0" layoutY="54.0" prefHeight="25.0" prefWidth="217.0" />
                   <Separator layoutX="6.0" layoutY="-1.0" prefHeight="0.0" prefWidth="580.0" />
                   <Separator orientation="VERTICAL" prefHeight="325.0" prefWidth="14.0" />
-                  <Button fx:id="btn_modificar" layoutX="408.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleModificar" text="Modifcar">
+                  <Button fx:id="btn_modificar" layoutX="430.0" layoutY="316.0" mnemonicParsing="false" onAction="#handleModificar" text="Modifcar">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
                   <Label fx:id="lb_modifExcepcion" layoutX="484.0" layoutY="248.0" prefHeight="17.0" prefWidth="175.0" />
-                  <ImageView fx:id="iv_nuevaImagen" fitHeight="150.0" fitWidth="200.0" layoutX="408.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="btn_nuevaImagen" layoutX="408.0" layoutY="187.0" mnemonicParsing="false" onAction="#buscarImagen" prefHeight="25.0" prefWidth="200.0" text="Cargar nueva Imagen">
+                  <ImageView fx:id="iv_nuevaImagen" fitHeight="150.0" fitWidth="200.0" layoutX="430.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="btn_nuevaImagen" layoutX="430.0" layoutY="213.0" mnemonicParsing="false" onAction="#buscarImagen" prefHeight="25.0" prefWidth="200.0" text="Cargar nueva Imagen">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
+                  <ComboBox fx:id="cb_categoria" layoutX="119.0" layoutY="216.0" prefHeight="25.0" prefWidth="217.0" />
+                  <Label layoutX="28.0" layoutY="163.0" text="Cantidad">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="cb_cantidad" layoutX="119.0" layoutY="161.0" prefHeight="25.0" prefWidth="217.0" />
                </children>
             </AnchorPane>
             <Label fx:id="lb_excepcion" layoutX="388.0" layoutY="53.0" prefHeight="17.0" prefWidth="299.0" />
