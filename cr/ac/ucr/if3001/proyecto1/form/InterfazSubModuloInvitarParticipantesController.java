@@ -279,7 +279,7 @@ public class InterfazSubModuloInvitarParticipantesController extends Thread impl
                 part = listaProductos.getNodo(i).elemento;
                 Material p = (Material) part;
                 if (p.getCantidad() > 0) {
-                    ol.add(p.getNombre().trim());
+                    ol.add(p.getNombre().trim() + "   ($" + p.getPrecio() + ")");
                 }
             }
         }

@@ -138,6 +138,7 @@ public class InterfazPrincipalAdministradorController implements Initializable {
     private void loadListViewSubastas() {
         ObservableList<String> ols = FXCollections.observableArrayList();
         ols.add("Invitar Participantes");
+        ols.add("Top 3");
         lsw_subastas.setItems(ols);
     }//fin m'etodo
 
@@ -147,13 +148,20 @@ public class InterfazPrincipalAdministradorController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 int i = lsw_subastas.getSelectionModel().getSelectedIndex();
-                if (i == 2) {
+                if (i == 0) {
                     try {
-                        añadirPestaña("InterfazSubModuloInvitarParticipantes.fxml", "Invitar Participantes");
+                        añadirPestaña("InterfazSubModuloInvitarParticipantes.fxml", "Invitar Participantes");                        
                     } catch (IOException ioe) {
                         Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
                     }
-                }            
+                }    
+                if (i == 1) {
+                    try {
+                        añadirPestaña("ModuloMejoresPujas.fxml", "Top 3");                        
+                    } catch (IOException ioe) {
+                        Logger.getLogger(InterfazPrincipalAdministradorController.class.getName()).log(Level.SEVERE, null, ioe);
+                    }
+                }    
             }
         });
     }//fin m'etodo
